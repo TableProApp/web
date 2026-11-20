@@ -13,6 +13,7 @@ const UA = {
     firefoxMac: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 14.6; rv:131.0) Gecko/20100101 Firefox/131.0',
     chromeMac: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36',
     chromeWindows: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36',
+    edgeWindows: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36 Edg/129.0.0.0',
     android: 'Mozilla/5.0 (Linux; Android 14; Pixel 8) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Mobile Safari/537.36',
     linux: 'Mozilla/5.0 (X11; Linux x86_64; rv:131.0) Gecko/20100101 Firefox/131.0',
     chromeOS: 'Mozilla/5.0 (X11; CrOS x86_64 14541.0.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36',
@@ -43,8 +44,12 @@ test('a Linux desktop is Linux, on Wayland or X11', () => {
     assert.equal(classifyDevice('Mozilla/5.0 (X11; Fedora; Linux x86_64; rv:146.0) Gecko/20100101 Firefox/146.0', 0), 'linux');
 });
 
-test('Windows, Android and ChromeOS are none of them', () => {
-    assert.equal(classifyDevice(UA.chromeWindows, 0), 'other');
+test('a Windows browser is Windows, with a mouse or a touch screen', () => {
+    assert.equal(classifyDevice(UA.chromeWindows, 0), 'windows');
+    assert.equal(classifyDevice(UA.edgeWindows, 10), 'windows');
+});
+
+test('Android and ChromeOS are none of them', () => {
     assert.equal(classifyDevice(UA.android, 5), 'other');
     assert.equal(classifyDevice('Mozilla/5.0 (X11; CrOS x86_64 14541.0.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', 0), 'other');
     assert.equal(classifyDevice('', 0), 'other');
@@ -67,7 +72,7 @@ test('the head script marks each device as classifyDevice names it, and a Mac wi
     assert.ok(start < blade.indexOf("document.documentElement.classList.remove('has-banner')"), 'the device is known before the banner rule reads it');
 
     const run = new Function('navigator', 'document', blade.slice(start, end));
-    const classes = { mac: [], ios: ['ios'], linux: ['linux'], other: ['other-device'] };
+    const classes = { mac: [], ios: ['ios'], windows: ['windows'], linux: ['linux'], other: ['other-device'] };
 
     for (const [name, userAgent] of Object.entries({ ...UA, unknown: 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)' })) {
         for (const maxTouchPoints of [0, 1, 5]) {

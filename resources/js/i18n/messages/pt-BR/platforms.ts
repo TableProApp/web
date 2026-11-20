@@ -33,6 +33,9 @@ export default {
         "badge": "{version}",
         "badgeLabel": "Adicionado no TablePro {version} para Mac. O Homebrew ainda pode instalar uma versão anterior."
     },
+    "windows": {
+        "requirement": "{systems} {version} versão {releaseName} ou posterior"
+    },
     "linux": {
         "requirement": {
             "beta": "{name} (beta): {distributions}",

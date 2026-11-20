@@ -2,7 +2,7 @@
 // is a server-rendered link and nothing starts on its own. The result only decides which action leads.
 // Pure, with no imports, so `node --test` loads it directly (tests/js/device.test.ts).
 
-export type DeviceKind = 'mac' | 'ios' | 'linux' | 'other';
+export type DeviceKind = 'mac' | 'ios' | 'windows' | 'linux' | 'other';
 
 export function classifyDevice(userAgent: string, maxTouchPoints: number): DeviceKind {
     if (/iPhone|iPad|iPod/.test(userAgent)) {
@@ -17,6 +17,11 @@ export function classifyDevice(userAgent: string, maxTouchPoints: number): Devic
     // Android and ChromeOS also say Linux or X11, and neither runs the desktop packages.
     if (/Android|CrOS/.test(userAgent)) {
         return 'other';
+    }
+
+    // Windows 10 and 11 browsers say "Windows NT 10.0"; an Xbox says so too, and gets the Windows variant.
+    if (/Windows NT/.test(userAgent)) {
+        return 'windows';
     }
 
     return /Linux|X11/.test(userAgent) ? 'linux' : 'other';

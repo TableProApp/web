@@ -13,8 +13,8 @@ use Illuminate\Support\Facades\App;
 use Inertia\Inertia;
 use Inertia\Response;
 
-// Every URL and fact the page shows arrives as a prop from the data files and the release services. Linux is sent only
-// once platforms.json says it is released, the same way an unreleased iPhone app sends null.
+// Every URL and fact the page shows arrives as a prop from the data files and the release services. Linux and Windows are
+// sent only once platforms.json says they are released, the same way an unreleased iPhone app sends null.
 class DownloadController extends Controller
 {
     private const LINUX_METHODS = ['ppa', 'copr', 'flatpak'];
@@ -38,6 +38,7 @@ class DownloadController extends Controller
                 'homebrewCommand' => $this->string($platforms->destination('mac', 'homebrew')['command'] ?? null),
             ],
             'ios' => $this->ios($platforms, $facts, $locale),
+            'windows' => $platforms->isReleased('windows') ? $this->windows($platforms, $locale) : null,
             'linux' => $platforms->isReleased('linux') ? $this->linux($platforms, $linuxReleases->latest(), $locale) : null,
             'unreleased' => $platforms->unreleased(),
             'links' => $this->links($facts),
@@ -101,6 +102,40 @@ class DownloadController extends Controller
                 'publishedOn' => $this->date($release->publishedAt, $locale),
                 'releaseUrl' => $release->releaseUrl,
                 'releasesUrl' => $release->releasesUrl,
+            ],
+        ];
+    }
+
+    // The release is platforms.json's record, null until one is recorded; the App Installer file always installs the newest.
+    /**
+     * @return array{deviceNames: list<string>, requirements: array{systems: list<string>, minVersion: string, displayVersion: string, releaseName: string|null}|null, architectures: list<string>, appInstaller: string|null, betaAppInstaller: string|null, winget: array{command: string, update: string}|null, releasesUrl: string, release: array{version: string, shortVersion: string, publishedOn: string|null, releaseUrl: string}|null}
+     */
+    private function windows(PlatformCatalog $platforms, string $locale): array
+    {
+        $platform = $platforms->find('windows') ?? [];
+        $summary = $platforms->summary('windows');
+        $winget = $platforms->destination('windows', 'winget') ?? [];
+        $releases = $platforms->destination('windows', 'releases') ?? [];
+        $releasesUrl = $this->url($releases['url'] ?? null) ?? 'https://github.com/' . config('services.github.repo') . '/releases';
+        $release = is_array($platform['release'] ?? null) ? $platform['release'] : [];
+        $version = $this->string($release['version'] ?? null);
+        $tagPrefix = $this->string($releases['tagPrefix'] ?? null) ?? 'windows-v';
+        $command = $this->string($winget['command'] ?? null);
+        $update = $this->string($winget['update'] ?? null);
+
+        return [
+            'deviceNames' => $summary['deviceNames'] ?? [],
+            'requirements' => $summary['requirements'] ?? null,
+            'architectures' => $this->strings($platform['architectures'] ?? []),
+            'appInstaller' => $platforms->windowsAppInstaller('stable'),
+            'betaAppInstaller' => $platforms->windowsAppInstaller('beta'),
+            'winget' => $command !== null && $update !== null ? ['command' => $command, 'update' => $update] : null,
+            'releasesUrl' => $releasesUrl,
+            'release' => $version === null ? null : [
+                'version' => $version,
+                'shortVersion' => $this->shortVersion($version) ?? $version,
+                'publishedOn' => $this->date($release['publishedAt'] ?? null, $locale),
+                'releaseUrl' => 'https://github.com/' . config('services.github.repo') . '/releases/tag/' . $tagPrefix . $version,
             ],
         ];
     }

@@ -16,6 +16,9 @@ export default {
     "linuxApp": {
         "alternateName": "Linux 版 TablePro"
     },
+    "windowsApp": {
+        "alternateName": "Windows 版 TablePro"
+    },
     "breadcrumbs": {
         "features": "機能",
         "databases": "データベース",

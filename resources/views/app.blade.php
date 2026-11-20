@@ -35,7 +35,7 @@
 
     {{-- The reader's machine by `classifyDevice` in resources/js/lib/device.ts
          (tests/js/device.test.ts runs this against it), before first paint:
-         `ios`, `linux`, `other-device` for one TablePro has no app for, and no
+         `ios`, `windows`, `linux`, `other-device` for one TablePro has no app for, and no
          class on a Mac. The App Store badge leads on iOS, the download page
          shows that machine's action, and nothing swaps under a finger. --}}
     <script>
@@ -45,6 +45,8 @@
                 document.documentElement.classList.add('ios');
             } else if (/Macintosh/.test(ua)) {
                 return;
+            } else if (!/Android|CrOS/.test(ua) && /Windows NT/.test(ua)) {
+                document.documentElement.classList.add('windows');
             } else if (!/Android|CrOS/.test(ua) && /Linux|X11/.test(ua)) {
                 document.documentElement.classList.add('linux');
             } else {

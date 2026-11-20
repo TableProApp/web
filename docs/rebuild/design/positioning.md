@@ -131,7 +131,7 @@ platforms or requirements in text.
 | `availability.summary` | Available for {deviceList}. | Hiện có trên {deviceList}. |
 
 - `{deviceList}` joins each available platform's `deviceNames` with the catalog's list joiners (§11.4) during SSR
-  (architecture §1.5). Today it renders as "Mac, iPhone and iPad" / "Mac, iPhone và iPad".
+  (architecture §1.5). Today it renders as "Mac, Windows, Linux, iPhone and iPad" / "Mac, Windows, Linux, iPhone và iPad".
 - Platforms whose `status` is not `released` (architecture §1.8) never render.
 - Platforms are always listed desktop first: Mac, Windows (once it ships), Linux, then iPhone & iPad (owner,
   2026-11-07). `platforms.json` holds them in that order and every list follows it: `{deviceList}`, tabs, columns,
@@ -145,6 +145,7 @@ platforms or requirements in text.
 |---|---|---|---|
 | Header button | Download | Tải về | `/download`, one card per available platform. The label stays neutral when a platform ships |
 | Mac action (hero, closing CTA, blog CTA, mobile menu, `/download`) | Download for Mac | Tải về cho Mac | Only place "for Mac" appears on the homepage. An availability key, not a `nav.*` key (§13) |
+| `/download` Windows action | Download for Windows | Tải về cho Windows | The stable App Installer file, which installs the newest release and keeps it updated |
 | `/download` Linux action | Install on Linux | Cài đặt trên Linux | Jumps to the Linux commands; there is no single file |
 | Package managers / mirrors | Other ways to install | Cách cài đặt khác | |
 | Copy a command | Copy · Copied | Sao chép · Đã sao chép | |
@@ -703,7 +704,7 @@ Structured data and OG cards take their text from those sources, so they need no
 | Class | About | Banned (EN) | Banned (VI) | Allowed form |
 |---|---|---|---|---|
 | Universals | TablePro | every database, all databases, any database, all platforms, every platform, cross-platform, one app everywhere, works everywhere | mọi cơ sở dữ liệu, tất cả cơ sở dữ liệu, mọi nền tảng, đa nền tảng, trên mọi thiết bị | "{featuredEngines} and more"; "each platform it supports". A link to the hub says "Supported databases" / "Cơ sở dữ liệu được hỗ trợ" |
-| Platform futures | TablePro | coming soon, waitlist, release dates for unreleased platforms; any Windows availability (a reviewer check, because comparison pages name competitors' Windows builds) | sắp ra mắt, danh sách chờ | TablePro's Windows status appears only in the FAQ and on `/download` ("not available, no date"). Linux shipped as a beta on 2026-11-06: say "beta" beside it, name its engines from `engines.json`, and never claim a Mac-only feature or a paid feature for it (the feature pages' "Where it works" tables and `/databases#linux` hold what runs where) |
+| Platform futures | TablePro | coming soon, waitlist, release dates for unreleased platforms | sắp ra mắt, danh sách chờ | Linux shipped as a beta on 2026-11-06: say "beta" beside it, name its engines from `engines.json`, and never claim a Mac-only feature or a paid feature for it (the feature pages' "Where it works" tables and `/databases#linux` hold what runs where). Windows ships with its first release, `windows-v0.1.0`: name it from `platforms.json`, and never claim a Mac-only feature or a paid feature for it; its user guide on docs.tablepro.app lists what it lacks |
 | Brand defined by Mac | TablePro | "Mac database client", or "for Mac" as the identity (tested on identity keys by §13; reviewers check the rest); "TablePro Mobile"; Universal, Universal Binary; Mac App Store; Setapp; visionOS app | TablePro Mobile | "Download for Mac" on Mac actions; platform-specific page titles; "separate builds for Apple silicon and Intel". On `/ios`, "one app for iPhone and iPad" rather than "universal app" |
 | Unscoped free | Any | the whole app is free, all of it, no feature gating, no per-feature gate, no paywall, free forever, completely free, 100% free, free software as a price | hoàn toàn miễn phí, miễn phí hoàn toàn, miễn phí mãi mãi, miễn phí trọn đời | "free to use" next to "paid plans add optional features"; "free, with no in-app purchases" for iPhone |
 | Unlock framing | Any | unlock, unlocks | mở khóa | "adds" / "bổ sung" for paid features. iPhone App Lock is written "lock the app with Face ID" / "khóa ứng dụng bằng Face ID", as in the App Store listing |
@@ -751,7 +752,7 @@ Structured data and OG cards take their text from those sources, so they need no
   hits ordinary prose. A reviewer treats an "anywhere" claim about TablePro as a Universal.
 - **Reviewers check these by hand, not the test:**
   - safety-overreach paraphrases, against the allowed form;
-  - TablePro's Windows availability, and any Linux claim against the feature pages' "Where it works" tables and `/databases#linux`;
+  - any Windows claim against its user guide on docs.tablepro.app, and any Linux claim against the feature pages' "Where it works" tables and `/databases#linux`;
   - "fast" as a claim;
   - "for Mac" as the identity outside the identity keys;
   - counts that `Content/NoTypedCountsTest` cannot see.

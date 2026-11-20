@@ -16,6 +16,9 @@ export default {
     "linuxApp": {
         "alternateName": "TablePro para Linux"
     },
+    "windowsApp": {
+        "alternateName": "TablePro para Windows"
+    },
     "breadcrumbs": {
         "features": "Recursos",
         "databases": "Bancos de dados",

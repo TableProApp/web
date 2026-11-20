@@ -1,6 +1,7 @@
 export default {
     macCta: 'Download for Mac',
     linuxCta: 'Install on Linux',
+    windowsCta: 'Download for Windows',
     release: {
         notes: 'Release notes',
     },

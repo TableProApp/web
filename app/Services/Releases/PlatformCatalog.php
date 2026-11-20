@@ -106,7 +106,7 @@ class PlatformCatalog
     }
 
     /**
-     * A platform's destination of one kind (`dmg`, `homebrew`, `releases`, `app-store`), or null.
+     * A platform's first destination of one kind (`dmg`, `homebrew`, `releases`, `app-store`, `winget`), or null.
      *
      * @return array<string, mixed>|null
      */
@@ -235,6 +235,20 @@ class PlatformCatalog
         $template = $this->linuxPackages()['tagTemplate'] ?? null;
 
         return is_string($template) && str_starts_with($template, 'https://') ? strtr($template, ['{version}' => $version]) : null;
+    }
+
+    // Windows' App Installer file on one channel, `stable` or `beta`; null when platforms.json names none.
+    public function windowsAppInstaller(string $channel): ?string
+    {
+        foreach ($this->find('windows')['destinations'] ?? [] as $destination) {
+            if (is_array($destination) && ($destination['kind'] ?? null) === 'appinstaller' && ($destination['channel'] ?? null) === $channel) {
+                $url = $destination['url'] ?? null;
+
+                return is_string($url) && str_starts_with($url, 'https://') ? $url : null;
+            }
+        }
+
+        return null;
     }
 
     /**

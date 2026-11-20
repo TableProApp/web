@@ -474,8 +474,9 @@ html[data-theme-forced] .theme-setting {
  * /download's variants for the reader's machine (components/download/download-hero.tsx), chosen before first paint by
  * the head script's class in app.blade.php. With no class the machine is a Mac, as the server rendered it.
  */
-html:not(.ios, .linux, .other-device) [data-device]:not([data-device~='mac']),
+html:not(.ios, .windows, .linux, .other-device) [data-device]:not([data-device~='mac']),
 html.ios [data-device]:not([data-device~='ios']),
+html.windows [data-device]:not([data-device~='windows']),
 html.linux [data-device]:not([data-device~='linux']),
 html.other-device [data-device]:not([data-device~='other']) {
   display: none;

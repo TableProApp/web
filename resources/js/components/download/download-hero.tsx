@@ -8,15 +8,17 @@ import { useI18n } from '@/i18n';
 import { joinList, keepTogether } from '@/i18n/format';
 import { trackDownload } from '@/lib/analytics';
 import AppStoreBadge from './app-store-badge';
-import { requirementLine } from './format';
+import { requirementLine, windowsRequirementLine } from './format';
 import { distributionsText } from './linux-text';
 import MacDownload from './mac-download';
-import type { DeviceKey, DownloadContent, IosProp, LinuxProp, MacProp, ReleaseProp } from './types';
+import type { DeviceKey, DownloadContent, IosProp, LinuxProp, MacProp, ReleaseProp, WindowsProp } from './types';
+import WindowsDownload from './windows-download';
 
 interface DownloadHeroProps {
     content: DownloadContent;
     release: ReleaseProp;
     mac: MacProp;
+    windows: WindowsProp | null;
     linux: LinuxProp | null;
     ios: IosProp | null;
 }
@@ -49,14 +51,20 @@ export function IosAction({ content, ios, store, location }: { content: Download
     );
 }
 
-// The release and the one action for the reader's machine: the DMG on a Mac, the Linux commands on Linux, the App Store
-// on an iPhone or iPad. Any other machine gets the Mac's release and a sentence naming where TablePro runs, never a
+// The release and the one action for the reader's machine: the DMG on a Mac, the App Installer file on Windows, the Linux
+// commands on Linux, the App Store on an iPhone or iPad. Any other machine gets the Mac's release and a sentence naming where TablePro runs, never a
 // guessed download. The server renders every variant with the Mac's showing, and the head script's class picks before
 // first paint, so nothing moves.
-export default function DownloadHero({ content, release, mac, linux, ios }: DownloadHeroProps) {
+export default function DownloadHero({ content, release, mac, windows, linux, ios }: DownloadHeroProps) {
     const { m, fmt } = useI18n();
     const store = ios !== null ? ios.appStoreUrl : null;
-    const noApp: DeviceKey[] = ['other', ...(linux === null ? (['linux'] as const) : []), ...(store === null ? (['ios'] as const) : [])];
+    const installer = windows !== null ? windows.appInstaller : null;
+    const noApp: DeviceKey[] = [
+        'other',
+        ...(installer === null ? (['windows'] as const) : []),
+        ...(linux === null ? (['linux'] as const) : []),
+        ...(store === null ? (['ios'] as const) : []),
+    ];
 
     const title = (version: string | null): string => (version !== null ? fmt(content.hero.title, { version }) : content.header.title);
     const released = (date: string | null, notes: string | null): ReactNode => (
@@ -79,6 +87,14 @@ export default function DownloadHero({ content, release, mac, linux, ios }: Down
             lead: live ? released(release.publishedAtFormatted, release.releaseUrl) : null,
         },
     ];
+
+    if (windows !== null && installer !== null) {
+        releases.push({
+            devices: ['windows'],
+            title: title(windows.release?.shortVersion ?? null),
+            lead: windows.release !== null ? released(windows.release.publishedOn, windows.release.releaseUrl) : null,
+        });
+    }
 
     if (linux !== null) {
         releases.push({
@@ -104,7 +120,7 @@ export default function DownloadHero({ content, release, mac, linux, ios }: Down
         releases.push({ devices: ['ios'], title: title(ios.shortVersion), lead: released(ios.publishedAtFormatted, null) });
     }
 
-    const names = [...mac.deviceNames, ...(linux?.deviceNames ?? []), ...(ios?.deviceNames ?? [])];
+    const names = [...mac.deviceNames, ...(windows?.deviceNames ?? []), ...(linux?.deviceNames ?? []), ...(ios?.deviceNames ?? [])];
     const actions: Variant[] = [
         {
             devices: ['mac'],
@@ -123,6 +139,20 @@ export default function DownloadHero({ content, release, mac, linux, ios }: Down
             ),
         },
     ];
+
+    if (windows !== null && installer !== null) {
+        actions.push({
+            devices: ['windows'],
+            node: (
+                <WindowsDownload
+                    href={installer}
+                    variant="primary"
+                    location="download-page"
+                    caption={windows.requirements !== null ? fmt(content.hero.requires, { requirement: windowsRequirementLine(windows.requirements, m.platforms) }) : undefined}
+                />
+            ),
+        });
+    }
 
     if (linux !== null) {
         actions.push({

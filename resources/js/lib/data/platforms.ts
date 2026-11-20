@@ -2,9 +2,9 @@
  * resources/data/platforms.json, typed: where TablePro runs, what each build
  * needs, and where to get it.
  *
- * Only a `released` platform carries requirements, destinations and a
- * release. Linux and Windows are listed with their status and nothing else,
- * so no component can render a requirement, a button or a date for them.
+ * A `released` platform carries requirements, destinations and a release.
+ * Linux and Windows carry their records before they ship, so pages can be
+ * built against them; `status` alone decides whether they show.
  * Every phrase around these values (the "or later" sentence, "Apple silicon",
  * "Mac app") is a `platforms` catalog entry; this module joins them.
  *
@@ -25,6 +25,11 @@ export type MacArchitecture = 'arm64' | 'x86_64';
 export type LinuxArchitecture = 'x86_64' | 'arm64';
 
 export type LinuxChannel = 'beta' | 'stable';
+
+// Microsoft's spellings, shown as they are: "x64 or Arm64".
+export type WindowsArchitecture = 'x64' | 'Arm64';
+
+export type WindowsChannel = 'stable' | 'beta';
 
 export interface Requirements {
     // Apple's system names, never translated: `["iOS", "iPadOS"]`.
@@ -48,8 +53,11 @@ export interface LinuxPackageAsset {
 export type Destination =
     | { kind: 'dmg'; urlTemplate: string }
     | { kind: 'homebrew'; command: string; url: string }
-    | { kind: 'releases'; url: string }
+    | { kind: 'releases'; url: string; tagPrefix?: string }
     | { kind: 'app-store'; url: string; appId: string }
+    // An App Installer file: opening it installs the channel's newest build, and Windows keeps a stable install updated.
+    | { kind: 'appinstaller'; channel: WindowsChannel; url: string }
+    | { kind: 'winget'; packageId: string; command: string; update: string }
     | { kind: 'ppa'; channel: LinuxChannel; repository: string; commands: string[]; update: string }
     | { kind: 'copr'; channel: LinuxChannel; repository: string; commands: string[]; update: string }
     | { kind: 'flatpak'; channel: LinuxChannel; appId: string; branch: string; url: string; commands: string[]; update: string }
@@ -126,18 +134,25 @@ export interface LinuxPlatform extends Omit<ReleasedPlatformBase, 'status'> {
     architectures: LinuxArchitecture[];
 }
 
-export interface UnreleasedPlatform {
+// Windows carries its data before it ships, as Linux does. `release` stays null until a release is recorded here.
+export interface WindowsPlatform extends Omit<ReleasedPlatformBase, 'status' | 'release'> {
     id: 'windows';
-    status: 'prototype' | 'none';
+    status: 'released' | 'prototype' | 'none';
+    channel: WindowsChannel;
+    requirements: Requirements;
+    architectures: WindowsArchitecture[];
+    release: Release | null;
 }
 
 export type ApplePlatform = MacPlatform | IosPlatform;
 
 export type ReleasedLinuxPlatform = LinuxPlatform & { status: 'released' };
 
-export type ReleasedPlatform = ApplePlatform | ReleasedLinuxPlatform;
+export type ReleasedWindowsPlatform = WindowsPlatform & { status: 'released' };
 
-export type Platform = ApplePlatform | LinuxPlatform | UnreleasedPlatform;
+export type ReleasedPlatform = ApplePlatform | ReleasedWindowsPlatform | ReleasedLinuxPlatform;
+
+export type Platform = ApplePlatform | WindowsPlatform | LinuxPlatform;
 
 export interface PlatformsData {
     verifiedAt: string;
@@ -173,6 +188,11 @@ export function iosPlatform(): IosPlatform {
 // Linux's record whether or not it has shipped; ask `isReleased` before showing it.
 export function linuxPlatform(): LinuxPlatform {
     return find('linux') as LinuxPlatform;
+}
+
+// Windows' record whether or not it has shipped; ask `isReleased` before showing it.
+export function windowsPlatform(): WindowsPlatform {
+    return find('windows') as WindowsPlatform;
 }
 
 function find(id: PlatformId): Platform {

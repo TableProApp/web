@@ -15,6 +15,9 @@ export default {
     linuxApp: {
         alternateName: 'TablePro for Linux',
     },
+    windowsApp: {
+        alternateName: 'TablePro for Windows',
+    },
     breadcrumbs: {
         features: 'Features',
         databases: 'Databases',

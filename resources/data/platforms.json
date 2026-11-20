@@ -55,7 +55,52 @@
         },
         {
             "id": "windows",
-            "status": "none"
+            "status": "released",
+            "channel": "stable",
+            "deviceNames": [
+                "Windows"
+            ],
+            "page": null,
+            "requirements": {
+                "systems": [
+                    "Windows"
+                ],
+                "minVersion": "10.0.17763",
+                "displayVersion": "10",
+                "releaseName": "1809"
+            },
+            "architectures": [
+                "x64",
+                "Arm64"
+            ],
+            "destinations": [
+                {
+                    "kind": "appinstaller",
+                    "channel": "stable",
+                    "url": "https://updates.tablepro.app/windows/TablePro.appinstaller"
+                },
+                {
+                    "kind": "appinstaller",
+                    "channel": "beta",
+                    "url": "https://updates.tablepro.app/windows/TablePro-Beta.appinstaller"
+                },
+                {
+                    "kind": "winget",
+                    "packageId": "TablePro.TablePro",
+                    "command": "winget install TablePro.TablePro",
+                    "update": "winget upgrade TablePro.TablePro"
+                },
+                {
+                    "kind": "releases",
+                    "url": "https://github.com/TableProApp/TablePro/releases",
+                    "tagPrefix": "windows-v"
+                }
+            ],
+            "release": null,
+            "appLanguages": [
+                "en"
+            ],
+            "evidence": "TableProApp/TablePro:windows/RELEASING.md:5-16, windows/docs/decisions/0020-app-installer-updates.md:20-29, windows/src/TablePro.App/Package.appxmanifest:24-25"
         },
         {
             "id": "linux",

@@ -4,6 +4,7 @@ import type { Messages } from '../../types.ts';
 export default {
     "macCta": "Tải về cho Mac",
     "linuxCta": "Cài đặt trên Linux",
+    "windowsCta": "Tải về cho Windows",
     "release": {
         "notes": "Ghi chú phát hành (tiếng Anh)"
     },

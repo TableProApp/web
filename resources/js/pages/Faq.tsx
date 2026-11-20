@@ -1,5 +1,5 @@
 import { usePage } from '@inertiajs/react';
-import { requirementLine } from '@/components/download/format';
+import { requirementLine, windowsRequirementLine } from '@/components/download/format';
 import { useContentTags, type SiteLinks } from '@/components/faq/content-links';
 import { plainPageJsonLd } from '@/components/faq/structured-data';
 import AreaNav from '@/components/features/area-nav';
@@ -59,6 +59,7 @@ interface FaqProps {
     platforms: {
         mac: PlatformSummary | null;
         ios: PlatformSummary | null;
+        windows: PlatformSummary | null;
         macLanguages: string[];
         linuxLanguages: string[];
         // Those with packages of their own; any other takes the Flatpak.
@@ -107,6 +108,7 @@ export default function Faq({ content, platforms, facts, links, organizationProf
         linuxDistributions: list(platforms.linuxDistributions),
         ...(platforms.mac !== null && { macRequirement: requirementLine(platforms.mac.requirements, m.platforms) }),
         ...(platforms.ios !== null && { iosRequirement: requirementLine(platforms.ios.requirements, m.platforms) }),
+        ...(platforms.windows !== null && { windowsRequirement: windowsRequirementLine(platforms.windows.requirements, m.platforms) }),
         ...(links.email !== null && { email: links.email }),
         ...(facts.supportBusinessDays !== null && { businessDays: plural(content.counts.businessDays, facts.supportBusinessDays) }),
     };

@@ -260,3 +260,27 @@ test('the Linux app is its own free SoftwareApplication, never the Mac node', as
     assert.equal(node.softwareVersion, '0.1.0-beta.1');
     assert.deepEqual(node.offers, [{ '@type': 'Offer', name: 'TablePro for Linux', price: '0', priceCurrency: 'USD' }]);
 });
+
+test('the Windows app is its own free SoftwareApplication, beside the Linux and Mac nodes', async () => {
+    const { windowsAppNode, windowsAppId, linuxAppId, macAppId } = await import('../../resources/js/lib/structured-data.ts');
+    const node = windowsAppNode(
+        { baseUrl: 'https://tablepro.app', inLanguage: 'en' },
+        {
+            alternateName: 'TablePro for Windows',
+            operatingSystem: 'Windows',
+            requirements: 'Windows 10 version 1809 or later; x64, Arm64',
+            installUrl: 'https://tablepro.app/download#windows',
+            licenseUrl: 'https://github.com/TableProApp/TablePro/blob/main/LICENSE',
+            currency: 'USD',
+            version: null,
+        },
+    );
+
+    assert.equal(node['@id'], 'https://tablepro.app/#windows-app');
+    assert.notEqual(windowsAppId('https://tablepro.app'), linuxAppId('https://tablepro.app'));
+    assert.notEqual(windowsAppId('https://tablepro.app'), macAppId('https://tablepro.app'));
+    assert.equal(node.operatingSystem, 'Windows');
+    assert.equal(node.isAccessibleForFree, true);
+    assert.equal('softwareVersion' in node, false);
+    assert.deepEqual(node.offers, [{ '@type': 'Offer', name: 'TablePro for Windows', price: '0', priceCurrency: 'USD' }]);
+});
