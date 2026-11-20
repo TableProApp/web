@@ -61,6 +61,7 @@ interface FaqProps {
         ios: PlatformSummary | null;
         windows: PlatformSummary | null;
         macLanguages: string[];
+        windowsLanguages: string[];
         linuxLanguages: string[];
         // Those with packages of their own; any other takes the Flatpak.
         linuxDistributions: string[];
@@ -103,6 +104,7 @@ export default function Faq({ content, platforms, facts, links, organizationProf
         starterFeatures: list(facts.paidFeatures.starter),
         teamFeatures: list(facts.paidFeatures.team),
         macLanguages: list(platforms.macLanguages.map(languageName)),
+        windowsLanguages: list(platforms.windowsLanguages.map(languageName)),
         linuxLanguages: list(platforms.linuxLanguages.map(languageName)),
         iosLanguages: list(platforms.iosLanguages.map(languageName)),
         linuxDistributions: list(platforms.linuxDistributions),

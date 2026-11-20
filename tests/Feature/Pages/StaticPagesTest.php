@@ -208,12 +208,13 @@ it('server-renders the FAQ\'s Linux link to a section that exists', function (st
         ->and($download->getElementById('linux'))->not->toBeNull();
 })->with(['en', 'vi'])->group('ssr');
 
-it('asks the FAQ’s platform questions Mac first, then Linux, then iPhone and iPad, and names the Linux app’s languages', function (string $locale): void {
+it('asks the FAQ’s platform questions Mac first, then Windows and Linux, then iPhone and iPad, and names each desktop app’s languages', function (string $locale): void {
     $platforms = collect(data_get(staticPageData("content/{$locale}/faq.json"), 'groups'))->firstWhere('id', 'platforms')['items'];
     $languages = implode(' ', (array) collect($platforms)->firstWhere('id', 'languages')['answer']);
 
     expect(array_slice(array_column($platforms, 'id'), 0, 3))->toBe(['mac-requirements', 'windows-linux', 'iphone-ipad'])
-        ->and(strpos($languages, '{macLanguages}'))->toBeLessThan(strpos($languages, '{linuxLanguages}'))
+        ->and(strpos($languages, '{macLanguages}'))->toBeLessThan(strpos($languages, '{windowsLanguages}'))
+        ->and(strpos($languages, '{windowsLanguages}'))->toBeLessThan(strpos($languages, '{linuxLanguages}'))
         ->and(strpos($languages, '{linuxLanguages}'))->toBeLessThan(strpos($languages, '{iosLanguages}'));
 })->with('locales');
 
