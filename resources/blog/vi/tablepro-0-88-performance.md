@@ -35,7 +35,7 @@ Khi database ở xa, phần lớn thời gian bạn chờ không phải do datab
 
 ```sql
 SET SQL_SELECT_LIMIT = 18446744073709551615;  -- tạm bỏ row limit cho câu USE
-USE `shop`;                                   -- đảm bảo session đang ở đúng database
+USE `shop`;                                   -- đảm bảo đúng database
 SET SQL_SELECT_LIMIT = 10001;                 -- giới hạn kết quả ở 10.000 dòng
 SELECT * FROM orders;
 ```
@@ -73,7 +73,7 @@ Một câu `SELECT` trả về 66 MB dữ liệu cần 43 round trip trên 0.87,
 
 Trước đây, import SQL gửi từng câu lệnh một: gửi, chờ trả lời, rồi mới gửi câu tiếp theo. Một file `pg_dump --inserts` có 642 câu lệnh nghĩa là 661 round trip. Mỗi round trip 200 ms, cộng lại là hơn hai phút chờ cho một file chỉ 59 KB.
 
-Bản 0.88 dùng pipeline mode của libpq cho PostgreSQL. Khi bật **Wrap in transaction**, TablePro gửi mỗi batch tối đa 200 câu lệnh hoặc 4 MB, rồi mới đọc kết quả. Code rút gọn:
+Bản 0.88 dùng pipeline mode của libpq cho PostgreSQL. Khi bật **Bọc trong giao dịch** (Wrap in transaction), TablePro gửi mỗi batch tối đa 200 câu lệnh hoặc 4 MB, rồi mới đọc kết quả. Code rút gọn:
 
 ```swift
 PQenterPipelineMode(conn)
@@ -90,7 +90,7 @@ Nếu có câu lệnh lỗi, import vẫn dừng đúng ở dòng đó và rollb
 
 Phần này không liên quan đến mạng. Trước đây, phần export CSV ghi từng giá trị bằng một lần ghi nhỏ, và chạy logic escape cho mọi giá trị, kể cả số. Bản 0.88 dùng buffer 1 MB, và quét byte của từng giá trị trước: không có gì cần escape thì ghi thẳng ra. Export JSON cũng được tối ưu tương tự.
 
-Export 200.000 dòng từ một bảng SQLite trên máy giảm từ 0,98 xuống 0,12 giây, và file 15,8 MB của hai bản giống nhau đến từng byte. Cả hai bản vẫn mất khoảng 2 giây từ lúc bấm **Save** đến khi bắt đầu ghi file, chỗ này mình chưa tối ưu.
+Export 200.000 dòng từ một bảng SQLite trên máy giảm từ 0,98 xuống 0,12 giây, và file 15,8 MB của hai bản giống nhau đến từng byte. Cả hai bản vẫn mất khoảng 2 giây từ lúc bấm **Lưu** (Save) đến khi bắt đầu ghi file, chỗ này mình chưa tối ưu.
 
 <asset-slot id="blog-tablepro-0-88-performance-5"></asset-slot>
 
@@ -113,4 +113,4 @@ Mỗi thay đổi đều có ghi chú và benchmark riêng trong các pull reque
 
 ## Dùng thử bản beta {#trying-it}
 
-0.88 đang ở beta. Vào **Settings > General > Update channel**, chọn **Beta**, rồi chọn **Check for Updates…**. Chỗ nào bạn thấy vẫn chậm, cứ mở issue và ghi rõ database gì, ở xa cỡ nào, bạn đã thao tác gì.
+0.88 đang ở beta. Vào **Cài đặt > Tổng quát** (Settings > General), ở **Update channel** chọn **Beta**, rồi chọn **Kiểm tra cập nhật…** (Check for Updates…). Chỗ nào bạn thấy vẫn chậm, cứ mở issue và ghi rõ database gì, ở xa cỡ nào, bạn đã thao tác gì.
