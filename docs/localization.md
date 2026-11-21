@@ -27,7 +27,7 @@ Search metadata must fit the existing title and description budgets.
 The image manifest has native descriptions, alternatives and captions. `php artisan assets:handoff` generates
 shared geometry and separate language text files. The page resolver loads the requested text before SSR or
 hydration; concurrent requests cache by language rather than changing a global current language.
-English editorial assets keep English text. Generate localized artwork using `scripts/assets/` and social cards
+A blog figure shows English in every language its text is not written in. Generate localized artwork using `scripts/assets/` and social cards
 with `php artisan og:generate`, retaining the original geometry and source licensing.
 
 Run catalog, route, sitemap, asset and notification tests, TypeScript checks, and client/SSR builds before release.
