@@ -7,7 +7,8 @@ export default {
         "screenshot-phone": "Espacio para captura de iPhone",
         "screenshot-ipad": "Espacio para captura de iPad",
         "diagram": "Espacio para diagrama",
-        "illustration": "Espacio para ilustración"
+        "illustration": "Espacio para ilustración",
+        "video": "Espacio para vídeo"
     },
     "accessibleName": "{type}: {description}"
 } satisfies Messages['assets'];

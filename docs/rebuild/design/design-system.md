@@ -1150,9 +1150,9 @@ The fields that affect what a visitor sees (names exactly as in architecture §1
 
 | Field | Value | Visual effect |
 |---|---|---|
-| `kind` | `window`, `mobile-crop`, `detail`, `phone`, `ipad`, `diagram`, `illustration`, `figure`, `og-card` | Geometry from §6.3 |
+| `kind` | `window`, `mobile-crop`, `detail`, `phone`, `ipad`, `diagram`, `illustration`, `figure`, `video`, `og-card` | Geometry from §6.3 |
 | `type` | One of the §6.2 types, equal to the kind's type (a `figure` takes the type of its source image) | The visible type label and icon |
-| `aspect` | `null` (the kind's), or an override on a 1:1 `mobile-crop` or a `figure` only | Reserves the box before and after supply |
+| `aspect` | `null` (the kind's), or an override on a 1:1 `mobile-crop`, a `figure` or a `video` only | Reserves the box before and after supply |
 | `priority` | Boolean, `true` only for `mac-hero-window` and its crop | Eager loading and a head preload once supplied |
 | `theme` | `both` or `single` | Two class-switched pictures, or one (§7.3) |
 | `locale` | `shared` or `per-locale` | One capture for both sites, or one per locale |
@@ -1205,6 +1205,7 @@ Handoff-only fields (`family`, `ownerRepo`, `slot`, `handoffPriority`, `replacem
 | `screenshot-ipad` | `ipad` | iPad | `tablet` | iPad screenshot placeholder | Ảnh chụp iPad (sẽ bổ sung) |
 | `diagram` | `diagram` | diagram | `workflow` | Diagram placeholder | Sơ đồ (sẽ bổ sung) |
 | `illustration` | `illustration` | composite | `shapes` | Illustration placeholder | Hình minh họa (sẽ bổ sung) |
+| `video` | `video` | video | `video` | Video placeholder | Video (sẽ bổ sung) |
 
 - **Release-post figures** (`figure`, `blog-{slug}-{n}`) take `screenshot` or `detail`, matching the existing source image.
 - **`og-card` entries** (`slot: false`) are handoff-only bespoke social art. The live cards come from `og:generate`, so these entries never render in an `AssetSlot`.
@@ -1256,6 +1257,7 @@ These are the values that architecture's `kinds` pin:
 | `device` (home hero layers) | the device's own | each layer's place in the hero: Mac 640 wide at 1280 | 2× its desktop width, transparent edge |
 | `window-whole` (home feature tabs) | 16:9 | as `window`, and the whole window below 768 too (no crop, owner 2026-11-07) | 2432 × 1368 (2×) |
 | `figure` (release posts) | from the source image | `text` width: 704 / 704 / 343 | 1408 wide (2×) |
+| `video` (post clips) | from the recording | `text` width: 704 / 704 / 343 | 1408 wide (2×): a VP9 WebM and an H.264 MP4 up to 8 MB each, a WebP poster up to 200 KB |
 | `og-card` | 1200:630 | not a slot | 1200 × 630 |
 
 **One detail aspect.** Every detail crop is 4:3, the shape that also holds the taller subjects (forms, sheets and pickers such as `mac-fk-picker` and `mac-connection-ssh-form`). The 3:2 crops sitemap §A.8 first proposed are re-framed to 4:3. One aspect means one column height, one export size and one handoff rule.
@@ -1281,6 +1283,7 @@ When `status` is `supplied`:
 - **Hide the type label, the ID and the description** (spec §9.1).
 - Priority images are eager with `fetchpriority="high"`. A separate block in `app.blade.php`, after the theme partial, preloads the variant for the *resolved* theme (architecture §1.9). All other images are `loading="lazy"`.
 - The slot's geometry equals the image's geometry, so replacing a placeholder causes no layout shift.
+- A `video` renders `<video muted loop playsinline controls preload="none">` per theme, with its `width`, `height`, `aspect-ratio`, the WebP `poster`, the alt text as `aria-label`, and a WebM then an MP4 `<source>`. It plays while half of it is on screen and pauses when it leaves (§7.1). No link, no `<picture>`, never a priority.
 
 ---
 
@@ -1332,6 +1335,8 @@ The ceiling drops from 320ms to 240ms, and `--dur-row` goes with the row bar.
 - **A plan-table row under the pointer is tinted** (`.plan-row`).
 
 Still not allowed there: gradient blobs, animated glows, sparkles, confetti, entrances on scroll, anything that loops or auto-advances.
+
+**Post clips** (the `video` kind, 2026-11-21): a muted clip in a blog post plays and loops while half of it is on screen, and pauses when it leaves. Never under reduced motion, where it stays on its poster until the reader presses play. It keeps the native controls, so a reader can always pause it (WCAG 2.2.2), and a reader's pause holds until they press play again.
 
 **Reduced motion.** Keep the existing global block (`app.css:350-365`), including `animation-delay`, `animation-timeline` and `transition-delay`. Theme switches also suppress transitions for one frame (§2.8).
 

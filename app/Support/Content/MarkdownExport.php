@@ -100,7 +100,9 @@ final class MarkdownExport
 
         [$themed, $fileLocale] = $sources;
         $light = $themed['light'];
-        $format = $light['formats'][array_key_last($light['formats'])];
+        $clips = array_values(array_intersect($light['formats'], AssetManifest::CLIP_FORMATS));
+        $formats = array_values(array_diff($light['formats'], AssetManifest::CLIP_FORMATS));
+        $format = $formats[array_key_last($formats)];
         $width = $light['widths'] === [] ? null : max($light['widths']);
         $url = LocalizedUrl::base() . $this->assets->fileUrl($id, 'light', $fileLocale, $width, $format);
 
@@ -109,6 +111,11 @@ final class MarkdownExport
         $caption = is_array($text['caption'] ?? null) ? (string) reset($text['caption']) : '';
 
         $image = '![' . str_replace(['[', ']'], ['\[', '\]'], $alt) . '](' . $url . ')';
+
+        // A video exports as its poster, linking the clip every browser plays.
+        if ($clips !== []) {
+            $image = '[' . $image . '](' . LocalizedUrl::base() . $this->assets->fileUrl($id, 'light', $fileLocale, null, $clips[array_key_last($clips)]) . ')';
+        }
 
         return $caption === '' ? $image : $image . "\n\n" . $caption;
     }

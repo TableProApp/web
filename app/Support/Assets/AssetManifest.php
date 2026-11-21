@@ -17,13 +17,13 @@ use RuntimeException;
  * so the owner activates final art with one manifest edit and the files.
  *
  * Files are named `{replacement.dir}/{base}-{light|dark}[-{locale}]-{width}.{format}`.
- * A vector drops the width; a social card is `{base}-{locale}.png`. The same
+ * A vector and a video clip drop the width; a social card is `{base}-{locale}.png`. The same
  * rule lives in `resources/js/lib/data/asset-model.ts`, and both are held to
  * `tests/Fixtures/assets/manifest.json`.
  *
  * @phpstan-type Source array{widths: list<int>, formats: list<string>, width: int, height: int}
  * @phpstan-type ThemedSources array{light: Source, dark?: Source|null}
- * @phpstan-type Kind array{type: string, aspect: ?string, rendered: ?array<string, ?array{0: int, 1: ?int}>, exportPx: ?array{0: int, 1: ?int}, vector: bool, density: ?int, format: array{master: string, delivered: list<string>}, transparency: bool|string, maxBytes: int, widths: list<int>, sizes: ?string, note?: string}
+ * @phpstan-type Kind array{type: string, aspect: ?string, rendered: ?array<string, ?array{0: int, 1: ?int}>, exportPx: ?array{0: int, 1: ?int}, vector: bool, density: ?int, format: array{master: string, delivered: list<string>}, transparency: bool|string, maxBytes: int, posterMaxBytes?: int, widths: list<int>, sizes: ?string, note?: string}
  * @phpstan-type Entry array{kind: string, type: string, family: string, ownerRepo: string, slot: bool, handoffPriority: string, usedOn: list<array{path: string, section: string}>, aspect: ?string, priority: bool, theme: string, locale: string, mobile: ?string, description: array<string, ?string>, alt: array<string, ?string>, caption: ?array<string, ?string>, replacement: array{dir: string, base: string}, status: string, src: ?array<string, mixed>, legacySource: string|list<string>|null}
  * @phpstan-type Preload array{srcset: string, sizes: string, type: string, media?: string}
  *
@@ -33,6 +33,11 @@ use RuntimeException;
 final class AssetManifest
 {
     public const STATUSES = ['placeholder', 'supplied'];
+
+    // A video entry's other formats are its poster's.
+    public const CLIP_FORMATS = ['webm', 'mp4'];
+
+    private const CLIP_CODECS = ['webm' => ['webm', ['V_VP9'], 'a VP9 WebM'], 'mp4' => ['mp4', ['avc1', 'avc3'], 'an H.264 MP4']];
 
     /**
      * Where a window shows itself rather than its phone crop. Equal to
@@ -450,14 +455,15 @@ final class AssetManifest
                 }
 
                 foreach ($source['formats'] ?? [] as $format) {
-                    if ($format === 'svg') {
+                    if ($format === 'svg' || in_array($format, self::CLIP_FORMATS, true)) {
+                        $clip = $format !== 'svg';
                         $files[] = [
                             'url' => $this->fileUrl($id, $variant, $locale, null, $format),
                             'variant' => $variant,
                             'locale' => $locale,
                             'format' => $format,
-                            'width' => null,
-                            'height' => null,
+                            'width' => $clip ? (int) $source['width'] : null,
+                            'height' => $clip ? (int) $source['height'] : null,
                         ];
 
                         continue;
@@ -573,12 +579,20 @@ final class AssetManifest
             }
 
             $bytes = (int) filesize($absolute);
+            $clip = in_array($file['format'], self::CLIP_FORMATS, true);
+            $budget = $clip ? $kind['maxBytes'] : ($kind['posterMaxBytes'] ?? $kind['maxBytes']);
 
-            if ($bytes > $kind['maxBytes']) {
-                $problems[] = "{$id}: {$file['url']} is {$bytes} bytes, over the {$kind['maxBytes']} budget.";
+            if ($bytes > $budget) {
+                $problems[] = "{$id}: {$file['url']} is {$bytes} bytes, over the {$budget} budget.";
             }
 
             if ($file['width'] === null) {
+                continue;
+            }
+
+            if ($clip) {
+                $problems = [...$problems, ...$this->clipProblems($id, $file, $absolute)];
+
                 continue;
             }
 
@@ -599,6 +613,32 @@ final class AssetManifest
     }
 
     /**
+     * @param  array{url: string, format: string, width: ?int, height: ?int}  $file
+     * @return list<string>
+     */
+    private function clipProblems(string $id, array $file, string $absolute): array
+    {
+        [$container, $codecs, $name] = self::CLIP_CODECS[$file['format']];
+        $clip = VideoFile::probe($absolute);
+
+        if ($clip === null || $clip['container'] !== $container || ! in_array($clip['codec'], $codecs, true)) {
+            return ["{$id}: {$file['url']} is not {$name}."];
+        }
+
+        $problems = [];
+
+        if ([$clip['width'], $clip['height']] !== [$file['width'], $file['height']]) {
+            $problems[] = "{$id}: {$file['url']} is {$clip['width']}x{$clip['height']}, not {$file['width']}x{$file['height']}.";
+        }
+
+        if (! $clip['faststart']) {
+            $problems[] = "{$id}: {$file['url']} keeps its index after the media; export it with -movflags +faststart.";
+        }
+
+        return $problems;
+    }
+
+    /**
      * @param  array<string, mixed>  $source
      * @param  Kind  $kind
      * @return list<string>
@@ -611,6 +651,10 @@ final class AssetManifest
 
         if (! is_array($formats) || $formats === [] || array_diff($formats, $kind['format']['delivered']) !== []) {
             $problems[] = "{$label} lists formats its kind does not deliver.";
+        }
+
+        if ($kind['type'] === 'video' && is_array($formats) && array_diff($kind['format']['delivered'], $formats) !== []) {
+            $problems[] = "{$label} needs every format its kind delivers: " . implode(', ', $kind['format']['delivered']) . '.';
         }
 
         if (! is_int($source['width'] ?? null) || ! is_int($source['height'] ?? null) || $source['width'] <= 0 || $source['height'] <= 0) {

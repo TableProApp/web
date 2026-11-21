@@ -7,7 +7,8 @@ export default {
         "screenshot-phone": "iPhone 螢幕截圖預留圖",
         "screenshot-ipad": "iPad 螢幕截圖預留圖",
         "diagram": "圖表預留圖",
-        "illustration": "插圖預留圖"
+        "illustration": "插圖預留圖",
+        "video": "影片預留圖"
     },
     "accessibleName": "{type}：{description}"
 } satisfies Messages['assets'];

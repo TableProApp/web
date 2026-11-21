@@ -132,12 +132,12 @@ test('a page can load a placement with priority that the manifest loads lazily',
 });
 
 test('a supplied slot hides the id, the type label and the brief', () => {
-    for (const id of ['fixture-hero', 'fixture-detail', 'fixture-phone', 'fixture-diagram']) {
+    for (const id of ['fixture-hero', 'fixture-detail', 'fixture-phone', 'fixture-diagram', 'fixture-video']) {
         const entry = fixture.assets[id];
 
         for (const locale of locales) {
             const markup = html(fixture, id, locale);
-            const visible = markup.replace(/(src|srcSet|href)="[^"]*"/gi, '');
+            const visible = markup.replace(/(src|srcSet|href|poster)="[^"]*"/gi, '');
 
             assert.ok(!visible.includes(id), `${id} (${locale}) shows its id`);
             assert.ok(!markup.includes('data-asset-id'), `${id} (${locale}) keeps a data-asset-id`);
@@ -193,8 +193,8 @@ test('a themed capture hides the link of the other theme', () => {
     assert.match(markup, /<a href="\/images\/fixture\/fixture-hero-dark-64\.webp" class="[^"]*hidden dark:block/);
 });
 
-test('a window, a phone, a diagram and a placeholder are not links, nor is a detail cut to read on a phone', () => {
-    for (const id of ['fixture-hero', 'fixture-phone', 'fixture-diagram', 'fixture-placeholder', 'fixture-figure']) {
+test('a window, a phone, a diagram, a video and a placeholder are not links, nor is a detail cut to read on a phone', () => {
+    for (const id of ['fixture-hero', 'fixture-phone', 'fixture-diagram', 'fixture-video', 'fixture-placeholder', 'fixture-figure']) {
         assert.ok(!html(fixture, id).includes('<a'), `${id} is a link`);
     }
 
@@ -220,6 +220,48 @@ test('every supplied post figure links a file that exists', () => {
     }
 
     assert.ok(figures > 0);
+});
+
+test('a supplied video is a muted, looping, inline clip per theme that loads nothing until it plays', () => {
+    const entry = fixture.assets['fixture-video'];
+    const markup = html(fixture, 'fixture-video');
+    const videos = markup.match(/<video\b[^>]*>/g) ?? [];
+
+    assert.match(markup, /^<figure [^>]*data-asset-status="supplied"/);
+    assert.equal(videos.length, 2);
+    assert.ok(!/<picture\b|<img\b|<a\b/.test(markup));
+    assert.ok(!/\bautoplay/i.test(markup), 'playback starts from the page, only in view');
+
+    for (const [index, theme] of (['light', 'dark'] as const).entries()) {
+        const tag = videos[index];
+
+        for (const attribute of ['muted=""', 'loop=""', 'playsInline=""', 'controls=""', 'preload="none"', 'width="64"', 'height="36"', 'style="aspect-ratio:16 / 9"']) {
+            assert.ok(tag.includes(attribute), `${theme}: no ${attribute}`);
+        }
+
+        assert.ok(tag.includes(`aria-label="${escapeHtml(entry.alt.en)}"`), `${theme}: no accessible label`);
+        assert.ok(tag.includes(`poster="${fileUrl(entry, theme, null, 64, 'webp')}"`), `${theme}: no poster`);
+        assert.match(tag, theme === 'light' ? /class="block dark:hidden / : /class="hidden dark:block /);
+        assert.ok(
+            markup.includes(`<source src="${fileUrl(entry, theme, null, null, 'webm')}" type="video/webm; codecs=&quot;vp9&quot;"/><source src="${fileUrl(entry, theme, null, null, 'mp4')}" type="video/mp4"/>`),
+            `${theme}: the WebM and then the MP4`,
+        );
+    }
+
+    assert.equal(fileUrl(entry, 'dark', null, null, 'mp4'), '/images/fixture/fixture-video-dark.mp4');
+    assert.ok(markup.includes(`${escapeHtml(entry.caption.en)}</figcaption>`));
+});
+
+test('a video placeholder is labelled as a video and requests nothing', () => {
+    const flipped: AssetManifestData = structuredClone(fixture);
+    flipped.assets['fixture-video'].status = 'placeholder';
+    flipped.assets['fixture-video'].src = null;
+
+    const markup = html(flipped, 'fixture-video');
+
+    assert.ok(markup.includes(`aria-label="${en.types.video}: ${flipped.assets['fixture-video'].description.en}"`));
+    assert.ok(!/<video\b|<source\b|poster=/.test(markup));
+    assert.equal(html(flipped, 'fixture-video', 'en', { placeholders: false }), '');
 });
 
 test('caption={false} suppresses the manifest caption', () => {

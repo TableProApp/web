@@ -19,6 +19,12 @@ function assetFixturePath(): string
     return dirname(__DIR__, 2) . '/Fixtures/assets/manifest.json';
 }
 
+// Tiny ffmpeg clips at 64 x 36, the shape fixture-video promises.
+function assetClipPath(string $format, string $name = 'fixture-clip'): string
+{
+    return dirname(assetFixturePath()) . "/{$name}.{$format}";
+}
+
 function assetManifestData(string $path): array
 {
     return json_decode((string) file_get_contents($path), true, 512, JSON_THROW_ON_ERROR);
@@ -70,6 +76,12 @@ function assetDrawImage(string $path, int $width, int $height, string $format): 
 {
     if (! is_dir(dirname($path))) {
         mkdir(dirname($path), 0755, true);
+    }
+
+    if (in_array($format, AssetManifest::CLIP_FORMATS, true)) {
+        copy(assetClipPath($format), $path);
+
+        return;
     }
 
     if ($format === 'svg') {
@@ -172,7 +184,9 @@ describe('the manifest', function (): void {
 
             Assert::assertTrue($kind['vector'] || is_array($kind['exportPx']), "kind {$name} needs exportPx or vector: true");
             Assert::assertSame($kind['vector'], $kind['format']['delivered'] === ['svg'], "kind {$name}: vector and SVG delivery disagree");
-            Assert::assertSame([], array_diff($kind['format']['delivered'], ['avif', 'webp', 'png', 'svg']), "kind {$name} delivers an unknown format");
+            Assert::assertSame([], array_diff($kind['format']['delivered'], ['avif', 'webp', 'png', 'svg', ...AssetManifest::CLIP_FORMATS]), "kind {$name} delivers an unknown format");
+            Assert::assertSame($kind['type'] === 'video', array_intersect(AssetManifest::CLIP_FORMATS, $kind['format']['delivered']) !== [], "kind {$name}: only a video delivers clips");
+            Assert::assertSame($kind['type'] === 'video', is_int($kind['posterMaxBytes'] ?? null), "kind {$name}: only a video has a poster budget");
             Assert::assertIsInt($kind['maxBytes'], "kind {$name} has no byte budget");
             Assert::assertGreaterThan(0, $kind['maxBytes']);
 
@@ -186,12 +200,12 @@ describe('the manifest', function (): void {
                 Assert::assertLessThanOrEqual($kind['exportPx'][0], max($widths), "kind {$name} offers a width beyond its export");
             }
 
-            Assert::assertSame($name === 'og-card', $kind['sizes'] === null, "kind {$name}: only the social card has no sizes");
+            Assert::assertSame(in_array($name, ['og-card', 'video'], true), $kind['sizes'] === null, "kind {$name}: only the social card and a video, which take no srcset, have no sizes");
         }
     });
 
-    it('gives every entry the fields the renderer reads', function (): void {
-        $manifest = new AssetManifest();
+    it('gives every entry the fields the renderer reads', function (?string $path): void {
+        $manifest = new AssetManifest($path);
         $kinds = $manifest->kinds();
         $fields = ['kind', 'type', 'family', 'ownerRepo', 'slot', 'handoffPriority', 'usedOn', 'aspect', 'priority', 'theme', 'locale', 'mobile', 'description', 'alt', 'caption', 'replacement', 'status', 'src', 'legacySource'];
 
@@ -205,6 +219,10 @@ describe('the manifest', function (): void {
             if ($entry['kind'] === 'figure') {
                 Assert::assertContains($entry['type'], ['screenshot', 'detail'], "{$id}: a figure is a screenshot or a detail");
                 Assert::assertMatchesRegularExpression('/^\d+:\d+$/', (string) $entry['aspect'], "{$id}: a figure takes its source's aspect");
+            } elseif ($entry['kind'] === 'video') {
+                Assert::assertSame($kinds[$entry['kind']]['type'], $entry['type'], "{$id}: its type must be its kind's");
+                Assert::assertMatchesRegularExpression('/^\d+:\d+$/', (string) $entry['aspect'], "{$id}: a video takes its recording's aspect");
+                Assert::assertFalse($entry['priority'], "{$id}: a video never loads with priority");
             } elseif ($entry['kind'] === 'framed-device') {
                 Assert::assertSame($kinds[$entry['kind']]['type'], $entry['type'], "{$id}: its type must be its kind's");
                 Assert::assertMatchesRegularExpression('/^\d+:\d+$/', (string) $entry['aspect'], "{$id}: a framed device takes its frame's aspect");
@@ -238,7 +256,7 @@ describe('the manifest', function (): void {
 
             Assert::assertTrue($entry['caption'] === null || is_string($entry['caption']['en'] ?? null), "{$id}: a caption needs English text");
         }
-    });
+    })->with(['the manifest' => [null], 'the test fixture' => [assetFixturePath()]]);
 
     it('writes native text for every entry a localized page shows', function (string $locale): void {
         foreach ((new AssetManifest())->assets() as $id => $entry) {
@@ -422,6 +440,14 @@ describe('the supplied path, on an isolated fixture', function (): void {
         $manifest = assetInstalledFixture(assetScratchDirectory());
 
         expect($manifest->expectedFiles('fixture-hero'))->toHaveCount(8);
+        expect(array_column($manifest->expectedFiles('fixture-video'), 'url'))->toBe([
+            '/images/fixture/fixture-video-light-64.webp',
+            '/images/fixture/fixture-video-light.webm',
+            '/images/fixture/fixture-video-light.mp4',
+            '/images/fixture/fixture-video-dark-64.webp',
+            '/images/fixture/fixture-video-dark.webm',
+            '/images/fixture/fixture-video-dark.mp4',
+        ]);
         expect($manifest->problems())->toBe([]);
     });
 
@@ -431,6 +457,7 @@ describe('the supplied path, on an isolated fixture', function (): void {
         expect($manifest->fileUrl('fixture-hero', 'dark', null, 64, 'avif'))->toBe('/images/fixture/fixture-hero-dark-64.avif');
         expect($manifest->fileUrl('fixture-diagram', 'light', 'vi', null, 'svg'))->toBe('/images/fixture/fixture-diagram-light-vi.svg');
         expect($manifest->fileUrl('fixture-og', 'light', 'vi', 1200, 'png'))->toBe('/og/fixture/fixture-og-vi.png');
+        expect($manifest->fileUrl('fixture-video', 'dark', null, null, 'mp4'))->toBe('/images/fixture/fixture-video-dark.mp4');
         expect($manifest->srcset('fixture-hero', ['widths' => [64, 32], 'formats' => ['avif'], 'width' => 64, 'height' => 36], 'light', null, 'avif'))
             ->toBe('/images/fixture/fixture-hero-light-32.avif 32w, /images/fixture/fixture-hero-light-64.avif 64w');
     });
@@ -525,7 +552,74 @@ describe('the supplied path, on an isolated fixture', function (): void {
             }),
             'fixture-detail (shared, light) lists formats its kind does not deliver.',
         ],
+        'a missing clip' => [
+            function (string $root): AssetManifest {
+                unlink("{$root}/public/images/fixture/fixture-video-dark.webm");
+
+                return assetSuppliedFixture($root);
+            },
+            'fixture-video: /images/fixture/fixture-video-dark.webm is missing.',
+        ],
+        'a clip in another codec' => [
+            function (string $root): AssetManifest {
+                copy(assetClipPath('webm'), "{$root}/public/images/fixture/fixture-video-light.mp4");
+
+                return assetSuppliedFixture($root);
+            },
+            'fixture-video: /images/fixture/fixture-video-light.mp4 is not an H.264 MP4.',
+        ],
+        'a clip of another size than its poster' => [
+            fn(string $root): AssetManifest => assetSuppliedFixture($root, function (array $data): array {
+                foreach (['light', 'dark'] as $variant) {
+                    $data['assets']['fixture-video']['src'][$variant] = [...$data['assets']['fixture-video']['src'][$variant], 'widths' => [128], 'width' => 128, 'height' => 72];
+                }
+
+                return $data;
+            }),
+            'fixture-video: /images/fixture/fixture-video-light.webm is 64x36, not 128x72.',
+        ],
+        'a clip that cannot start before it downloads' => [
+            function (string $root): AssetManifest {
+                copy(assetClipPath('mp4', 'fixture-clip-moov-last'), "{$root}/public/images/fixture/fixture-video-dark.mp4");
+
+                return assetSuppliedFixture($root);
+            },
+            'fixture-video: /images/fixture/fixture-video-dark.mp4 keeps its index after the media; export it with -movflags +faststart.',
+        ],
+        'a video without one of its formats' => [
+            fn(string $root): AssetManifest => assetSuppliedFixture($root, function (array $data): array {
+                $data['assets']['fixture-video']['src']['light']['formats'] = ['webp', 'mp4'];
+
+                return $data;
+            }),
+            'fixture-video (shared, light) needs every format its kind delivers: webp, webm, mp4.',
+        ],
     ]);
+
+    it('holds a clip to its kind budget and a poster to the poster budget', function (): void {
+        $root = assetScratchDirectory();
+        assetInstalledFixture($root);
+
+        $over = fn(string $budget): array => array_values(array_map(
+            fn(string $problem): string => explode(' ', $problem)[1],
+            array_filter(
+                assetSuppliedFixture($root, function (array $data) use ($budget): array {
+                    $data['kinds']['video'][$budget] = 10;
+
+                    return $data;
+                })->problems(),
+                fn(string $problem): bool => str_ends_with($problem, 'over the 10 budget.'),
+            ),
+        ));
+
+        expect($over('maxBytes'))->toBe([
+            '/images/fixture/fixture-video-light.webm',
+            '/images/fixture/fixture-video-light.mp4',
+            '/images/fixture/fixture-video-dark.webm',
+            '/images/fixture/fixture-video-dark.mp4',
+        ]);
+        expect($over('posterMaxBytes'))->toBe(['/images/fixture/fixture-video-light-64.webp', '/images/fixture/fixture-video-dark-64.webp']);
+    });
 
     // Otherwise a phone downloads the window it never paints and loads its crop late.
     it('preloads the window above 768px and its phone crop below, per theme', function (): void {

@@ -7,7 +7,8 @@ export default {
         "screenshot-phone": "Platzhalter für iPhone-Screenshot",
         "screenshot-ipad": "Platzhalter für iPad-Screenshot",
         "diagram": "Platzhalter für Diagramm",
-        "illustration": "Platzhalter für Illustration"
+        "illustration": "Platzhalter für Illustration",
+        "video": "Platzhalter für Video"
     },
     "accessibleName": "{type}: {description}"
 } satisfies Messages['assets'];
