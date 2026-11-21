@@ -30,7 +30,7 @@ function html(manifest: SlotManifestData, id: string, locale = 'en', extra: { si
     return renderToStaticMarkup(renderAssetSlot(manifest, id, { locale, labels: labels[locale], ...extra }));
 }
 
-test('every real slot renders as a labelled placeholder that requests nothing, or as a picture once supplied', () => {
+test('every real slot renders as a labelled placeholder that requests nothing, or as a picture or a video once supplied', () => {
     let rendered = 0;
 
     for (const [id, entry] of Object.entries(real.assets)) {
@@ -43,7 +43,8 @@ test('every real slot renders as a labelled placeholder that requests nothing, o
 
             if (entry.status !== 'placeholder') {
                 assert.match(markup, /^<figure [^>]*data-asset-status="supplied"/, `${id} (${locale}) is not marked as supplied`);
-                assert.ok(/<picture\b/.test(markup), `${id} (${locale}) renders no <picture>`);
+                const element = entry.kind === 'video' ? 'video' : 'picture';
+                assert.ok(new RegExp(`<${element}\\b`).test(markup), `${id} (${locale}) renders no <${element}>`);
                 assert.ok(!markup.includes('data-asset-id') && !markup.includes('role="img"'), `${id} (${locale}) keeps the placeholder box`);
                 rendered++;
                 continue;

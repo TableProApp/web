@@ -515,7 +515,8 @@ The browser loads `resources/js/lib/data/asset-slots.json` for shared geometry
 and one `asset-locales/{locale}.json` catalog for the active language's text.
 The page resolver waits for that catalog before client or SSR rendering;
 the cache is keyed by locale so concurrent SSR requests cannot share the wrong
-language. English editorial figures retain their English text.
+language. A blog figure shows English in every language its text is not
+written in, and a per-locale one has files only in the languages it is written in.
 
 `php artisan assets:handoff` writes these files and the owner's brief,
 `docs/visual-assets.md`, from the manifest and the per-family fragments in

@@ -170,7 +170,7 @@ final class AssetManifest
 
     /**
      * Only the active language's rendering text, loaded separately from geometry.
-     * English editorial assets keep their English text in every locale bundle.
+     * A blog figure keeps its English text in every language its text is not written in.
      *
      * @return array<string, array<string, array<string, string>|null>>
      */
@@ -187,7 +187,7 @@ final class AssetManifest
                 continue;
             }
 
-            $englishOnly = collect($entry['usedOn'])->every(fn(array $use): bool => str_starts_with($use['path'], '/blog/'));
+            $inPosts = self::onlyInPosts($entry);
             $fields = $entry['status'] === 'supplied' ? ['alt', 'caption'] : ['description'];
             $text = [];
 
@@ -198,7 +198,7 @@ final class AssetManifest
                     continue;
                 }
 
-                $language = $englishOnly ? Locales::default() : $locale;
+                $language = $inPosts && ! is_string($entry[$field][$locale] ?? null) ? Locales::default() : $locale;
                 $line = $entry[$field][$language] ?? null;
 
                 if (! is_string($line) || trim($line) === '') {
@@ -534,7 +534,12 @@ final class AssetManifest
         $sets = $entry['locale'] === 'per-locale' ? $src : ['shared' => $src];
 
         if ($entry['locale'] === 'per-locale') {
-            foreach (Locales::codes() as $code) {
+            // A blog figure needs files only in the languages of its alt text; the rest of the site needs every language.
+            $codes = self::onlyInPosts($entry)
+                ? array_values(array_intersect(Locales::codes(), array_keys(array_filter($entry['alt'], 'is_string'))))
+                : Locales::codes();
+
+            foreach ($codes as $code) {
                 if (! is_array($src[$code] ?? null)) {
                     $problems[] = "{$id} is per-locale but has no {$code} sources.";
                 }
@@ -680,6 +685,11 @@ final class AssetManifest
         }
 
         return $problems;
+    }
+
+    private static function onlyInPosts(array $entry): bool
+    {
+        return collect($entry['usedOn'])->every(fn(array $use): bool => str_starts_with($use['path'], '/blog/'));
     }
 
     public static function mimeType(string $format): string

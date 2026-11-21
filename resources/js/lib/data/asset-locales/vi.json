@@ -853,5 +853,45 @@
         "caption": {
             "en": "The connection dialog keeps TLS and SSH tunnel settings together."
         }
+    },
+    "blog-tablepro-0-88-performance-1": {
+        "alt": {
+            "vi": "Biểu đồ cột sáu thao tác đo trên TablePro 0.87.0 màu xám và 0.88 beta màu cam, từ import một bản dump PostgreSQL, 137.5 s so với 8.59 s, tới mở một bảng PostgreSQL, 2114 ms so với 1287 ms, với mức nhanh hơn của từng dòng, từ 16x tới 1.6x, ở bên phải."
+        },
+        "caption": {
+            "vi": "Thao tác nào cũng nhanh hơn trên 0.88, từ 1.6 lần khi mở một bảng PostgreSQL tới 16 lần khi import dump."
+        }
+    },
+    "blog-tablepro-0-88-performance-2": {
+        "alt": {
+            "vi": "Sơ đồ lượt đi về của SELECT * FROM orders trên MySQL ở xa 200 ms, trong đó 0.87.0 bên trái gửi lần lượt SET SQL_SELECT_LIMIT, USE `shop`, SET SQL_SELECT_LIMIT = 10001 rồi câu SELECT, tốn 4 lượt và 830 ms, còn 0.88 beta bên phải gửi giới hạn và câu SELECT cùng lúc, 1 lượt và 214 ms."
+        },
+        "caption": {
+            "vi": "Không còn USE, giới hạn và query đi chung một lượt thay vì bốn lượt."
+        }
+    },
+    "blog-tablepro-0-88-performance-3": {
+        "alt": {
+            "vi": "Hai cửa sổ TablePro đặt cạnh nhau trên bảng orders của connection MySQL tên Shop, 0.87.0 bên trái và 0.88 beta bên phải, mỗi bên mở bảng rồi sang từ trang 1 tới trang 4 trên 100, mỗi trang 1.000 dòng."
+        },
+        "caption": {
+            "vi": "Mỗi lần sang trang chỉ còn một lượt đi về thay vì hai, nên 0.88 beta tới mỗi trang trước."
+        }
+    },
+    "blog-tablepro-0-88-performance-4": {
+        "alt": {
+            "vi": "Hai sheet import của TablePro đặt cạnh nhau cho file src-dump.sql, 59 KB và 642 câu lệnh, với Wrap in transaction đang bật, 0.87.0 bên trái và 0.88 beta bên phải dưới một đồng hồ tua nhanh 8x, trong đó 0.88 beta báo Import completed sau 4.39 giây còn 0.87.0 đứng ở 0 of 642 statements cho tới khi xong sau 131.97 giây."
+        },
+        "caption": {
+            "vi": "Cùng một bản dump 642 câu lệnh, ở xa 200 ms: 0.88 xong trong vài giây, còn 0.87 mất hơn hai phút."
+        }
+    },
+    "blog-tablepro-0-88-performance-5": {
+        "alt": {
+            "vi": "Hai sheet export của TablePro đặt cạnh nhau, export bảng events 200.000 dòng từ SQLite ra CSV, 0.87.0 bên trái và 0.88 beta bên phải, trong đó 0.88 beta đã báo Export completed khi 0.87.0 vẫn đang đếm dòng, rồi cả hai cùng báo Export completed."
+        },
+        "caption": {
+            "vi": "0.88 xong cùng một lần export 200.000 dòng trong khi 0.87 vẫn đang ghi."
+        }
     }
 }

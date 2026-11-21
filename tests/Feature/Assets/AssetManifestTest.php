@@ -114,6 +114,24 @@ function assetSuppliedFixture(string $root, ?callable $mutate = null): AssetMani
     return new AssetManifest($path, $root);
 }
 
+// fixture-diagram as a figure in a post written in English and Vietnamese only.
+function assetPostDiagram(array $data): array
+{
+    $entry = $data['assets']['fixture-diagram'];
+    $entry['usedOn'] = [['path' => '/blog/tablepro-0-77', 'section' => 'figure-1']];
+
+    foreach (['description', 'alt'] as $field) {
+        $entry[$field] = array_map(fn(?string $text): ?string => null, $entry[$field]);
+        $entry[$field]['en'] = $data['assets']['fixture-diagram'][$field]['en'];
+        $entry[$field]['vi'] = $data['assets']['fixture-diagram'][$field]['vi'];
+    }
+
+    $entry['src'] = ['en' => $entry['src']['en'], 'vi' => $entry['src']['vi']];
+    $data['assets']['fixture-diagram'] = $entry;
+
+    return $data;
+}
+
 function assetInstallFiles(AssetManifest $manifest): void
 {
     foreach (array_keys($manifest->assets()) as $id) {
@@ -280,6 +298,22 @@ describe('the manifest', function (): void {
             }
         }
     })->with('locales');
+
+    it('shows every slot of a translated post in the post’s language', function (): void {
+        $manifest = new AssetManifest();
+
+        foreach (assetReferences() as $id => $paths) {
+            foreach ($paths as $path) {
+                if (preg_match('#^resources/blog/([A-Za-z-]+)/#', $path, $match) !== 1) {
+                    continue;
+                }
+
+                foreach ($manifest->slotTextProjection($match[1])[$id] as $field => $text) {
+                    Assert::assertTrue($text === null || array_keys($text) === [$match[1]], "{$id} shows its {$field} in another language in {$path}");
+                }
+            }
+        }
+    });
 
     it('places every entry on a page the site serves', function (): void {
         $routes = Route::getRoutes();
@@ -451,6 +485,16 @@ describe('the supplied path, on an isolated fixture', function (): void {
         expect($manifest->problems())->toBe([]);
     });
 
+    it('needs a blog figure only in the languages its text is written in, and shows English in the others', function (): void {
+        $root = assetScratchDirectory();
+        assetInstalledFixture($root);
+        $manifest = assetSuppliedFixture($root, fn(array $data): array => assetPostDiagram($data));
+
+        expect($manifest->problems())->toBe([])
+            ->and($manifest->slotTextProjection('vi')['fixture-diagram'])->toBe(['alt' => ['vi' => 'Một sơ đồ mẫu'], 'caption' => null])
+            ->and($manifest->slotTextProjection('de')['fixture-diagram'])->toBe(['alt' => ['en' => 'A fixture diagram'], 'caption' => null]);
+    });
+
     it('names files the way the page renders them', function (): void {
         $manifest = new AssetManifest(assetFixturePath());
 
@@ -522,6 +566,15 @@ describe('the supplied path, on an isolated fixture', function (): void {
         ],
         'a per-locale entry missing a locale' => [
             fn(string $root): AssetManifest => assetSuppliedFixture($root, function (array $data): array {
+                unset($data['assets']['fixture-diagram']['src']['vi']);
+
+                return $data;
+            }),
+            'fixture-diagram is per-locale but has no vi sources.',
+        ],
+        'a blog figure without the files of a language it is written in' => [
+            fn(string $root): AssetManifest => assetSuppliedFixture($root, function (array $data): array {
+                $data = assetPostDiagram($data);
                 unset($data['assets']['fixture-diagram']['src']['vi']);
 
                 return $data;
