@@ -4,7 +4,7 @@ title: "TablePro 0.88 nhanh hơn ở đâu"
 description: "Ít lượt đi về hơn với MySQL và PostgreSQL, cửa sổ SSH rộng hơn, import theo lô và export gọn hơn, đo so với 0.87 trên cùng một máy Mac."
 date: 2026-11-21
 kind: news
-author: Ngo Quoc Dat
+author: Ngô Quốc Đạt
 tags: [mysql, postgresql, ssh, export, import]
 ogPunchline: "Import dump PostgreSQL nhanh gấp 16 lần. SSH tunnel chở được gấp 13 lần mỗi giây."
 ---
@@ -17,13 +17,13 @@ Mọi con số trong bài đều so 0.87.0 với 0.88.0-beta.2 trên cùng một
 
 | Thao tác | 0.87.0 | 0.88 beta | Nhanh hơn |
 |---|---|---|---|
-| Import dump PostgreSQL, 642 câu lệnh * | 137.5 s | 8.6 s | 16x |
-| Đọc kết quả 66 MB qua SSH tunnel * | 8.9 s | 0.68 s | 13x |
-| Export 200.000 dòng ra CSV | 0.98 s | 0.12 s | 8x |
-| `SELECT * FROM orders` trên MySQL, có giới hạn dòng * | 830 ms | 214 ms | 3.9x |
-| Query MySQL có sẵn `LIMIT` * | 411 ms | 204 ms | 2x |
-| Sang trang tiếp của bảng MySQL * | 413 ms | 206 ms | 2x |
-| Mở một bảng PostgreSQL * | 2.11 s | 1.29 s | 1.6x |
+| Import dump PostgreSQL, 642 câu lệnh * | 137.5 s | 8.6 s | 16x |
+| Đọc kết quả 66 MB qua SSH tunnel * | 8.9 s | 0.68 s | 13x |
+| Export 200.000 dòng ra CSV | 0.98 s | 0.12 s | 8x |
+| `SELECT * FROM orders` trên MySQL, có giới hạn dòng * | 830 ms | 214 ms | 3.9x |
+| Query MySQL có sẵn `LIMIT` * | 411 ms | 204 ms | 2x |
+| Sang trang tiếp của bảng MySQL * | 413 ms | 206 ms | 2x |
+| Mở một bảng PostgreSQL * | 2.11 s | 1.29 s | 1.6x |
 
 \* Ở xa 200 ms, qua một proxy làm trễ mọi gói tin.
 
@@ -82,7 +82,7 @@ PQsendPipelineSync(conn)
 // rồi đọc một kết quả cho mỗi câu lệnh
 ```
 
-Câu lệnh lỗi đầu tiên vẫn dừng import đúng dòng và rollback transaction. Cùng file đó giờ chỉ tốn 37 lượt đi về và 8.6 giây thay vì 137.5 giây. Import MySQL thì vẫn gửi từng câu một.
+Câu lệnh lỗi đầu tiên vẫn dừng import đúng dòng và rollback transaction. Cùng file đó giờ chỉ tốn 37 lượt đi về và 8.6 giây thay vì 137.5 giây. Hộp thoại import của TablePro báo 133 và 4.5 giây. Thời gian trong bài tính cả lượt làm mới sidebar chạy sau khi import. Import MySQL thì vẫn gửi từng câu một.
 
 <asset-slot id="blog-tablepro-0-88-performance-4"></asset-slot>
 

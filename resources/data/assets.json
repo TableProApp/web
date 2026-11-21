@@ -9594,8 +9594,8 @@
       "legacySource": null
     },
     "blog-tablepro-0-88-performance-2": {
-      "kind": "diagram",
-      "type": "diagram",
+      "kind": "figure",
+      "type": "detail",
       "family": "blog",
       "ownerRepo": "web",
       "slot": true,
@@ -9606,14 +9606,14 @@
           "section": "figure-2"
         }
       ],
-      "aspect": null,
+      "aspect": "1216:684",
       "priority": false,
       "theme": "both",
       "locale": "per-locale",
       "mobile": null,
       "description": {
-        "en": "Diagram: the round trips 0.87.0 and 0.88 beta make for one MySQL SELECT with the row limit on.",
-        "vi": "Sơ đồ: số lượt đi về của 0.87.0 và 0.88 beta cho một câu SELECT trên MySQL khi bật giới hạn dòng."
+        "en": "Round-trip diagram: what 0.87.0 and 0.88 beta send to MySQL for one SELECT with the row limit on.",
+        "vi": "Sơ đồ lượt đi về: những gì 0.87.0 và 0.88 beta gửi cho MySQL với một câu SELECT khi bật giới hạn dòng."
       },
       "alt": {
         "en": "A round-trip diagram of SELECT * FROM orders on MySQL 200 ms away, where 0.87.0 on the left sends SET SQL_SELECT_LIMIT, USE `shop`, SET SQL_SELECT_LIMIT = 10001 and the SELECT one at a time for 4 round trips and 830 ms, and 0.88 beta on the right sends the limit and the SELECT together for 1 round trip and 214 ms.",
@@ -9631,38 +9631,54 @@
       "src": {
         "en": {
           "light": {
-            "widths": [],
-            "formats": [
-              "svg"
+            "widths": [
+              704,
+              1408
             ],
-            "width": 1216,
-            "height": 684
+            "formats": [
+              "avif",
+              "webp"
+            ],
+            "width": 1408,
+            "height": 792
           },
           "dark": {
-            "widths": [],
-            "formats": [
-              "svg"
+            "widths": [
+              704,
+              1408
             ],
-            "width": 1216,
-            "height": 684
+            "formats": [
+              "avif",
+              "webp"
+            ],
+            "width": 1408,
+            "height": 792
           }
         },
         "vi": {
           "light": {
-            "widths": [],
-            "formats": [
-              "svg"
+            "widths": [
+              704,
+              1408
             ],
-            "width": 1216,
-            "height": 684
+            "formats": [
+              "avif",
+              "webp"
+            ],
+            "width": 1408,
+            "height": 792
           },
           "dark": {
-            "widths": [],
-            "formats": [
-              "svg"
+            "widths": [
+              704,
+              1408
             ],
-            "width": 1216,
-            "height": 684
+            "formats": [
+              "avif",
+              "webp"
+            ],
+            "width": 1408,
+            "height": 792
           }
         }
       },

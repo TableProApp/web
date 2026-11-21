@@ -4,7 +4,7 @@ title: "Where TablePro 0.88 got faster"
 description: "Fewer round trips to MySQL and PostgreSQL, a wider SSH window, batched imports and leaner exports, measured against 0.87 on the same Mac."
 date: 2026-11-21
 kind: news
-author: Ngo Quoc Dat
+author: Ngô Quốc Đạt
 tags: [mysql, postgresql, ssh, export, import]
 ogPunchline: "A PostgreSQL dump imports 16 times faster. An SSH tunnel moves 13 times more per second."
 ---
@@ -17,13 +17,13 @@ Every number here compares 0.87.0 with 0.88.0-beta.2 on the same Mac and the sam
 
 | What you do | 0.87.0 | 0.88 beta | Faster |
 |---|---|---|---|
-| Import a PostgreSQL dump, 642 statements * | 137.5 s | 8.6 s | 16x |
-| Read a 66 MB result through an SSH tunnel * | 8.9 s | 0.68 s | 13x |
-| Export 200,000 rows to CSV | 0.98 s | 0.12 s | 8x |
-| `SELECT * FROM orders` on MySQL, row limit on * | 830 ms | 214 ms | 3.9x |
-| A MySQL query with its own `LIMIT` * | 411 ms | 204 ms | 2x |
-| Next page of a MySQL table * | 413 ms | 206 ms | 2x |
-| Open a PostgreSQL table * | 2.11 s | 1.29 s | 1.6x |
+| Import a PostgreSQL dump, 642 statements * | 137.5 s | 8.6 s | 16x |
+| Read a 66 MB result through an SSH tunnel * | 8.9 s | 0.68 s | 13x |
+| Export 200,000 rows to CSV | 0.98 s | 0.12 s | 8x |
+| `SELECT * FROM orders` on MySQL, row limit on * | 830 ms | 214 ms | 3.9x |
+| A MySQL query with its own `LIMIT` * | 411 ms | 204 ms | 2x |
+| Next page of a MySQL table * | 413 ms | 206 ms | 2x |
+| Open a PostgreSQL table * | 2.11 s | 1.29 s | 1.6x |
 
 \* 200 ms away, through a proxy that delays every packet.
 
@@ -82,7 +82,7 @@ PQsendPipelineSync(conn)
 // then read one result per statement
 ```
 
-The first failure still stops the import at the right line and rolls the transaction back. The same file now takes 37 round trips and 8.6 seconds instead of 137.5. MySQL imports still go one statement at a time.
+The first failure still stops the import at the right line and rolls the transaction back. The same file now takes 37 round trips and 8.6 seconds instead of 137.5. TablePro's own import dialog says 133 and 4.5 seconds. The times here also count the sidebar refresh that runs after an import. MySQL imports still go one statement at a time.
 
 <asset-slot id="blog-tablepro-0-88-performance-4"></asset-slot>
 
