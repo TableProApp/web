@@ -11,7 +11,7 @@
  * without the `@/` alias.
  */
 import { createElement, Fragment, type ReactElement, type ReactNode } from 'react';
-import { Crop, ImageIcon, Shapes, Smartphone, Tablet, Workflow, type LucideIcon } from 'lucide-react';
+import { Crop, ImageIcon, Shapes, Smartphone, Tablet, Video, Workflow, type LucideIcon } from 'lucide-react';
 import { interpolate } from '../../i18n/core.ts';
 import {
     slotModel,
@@ -21,8 +21,10 @@ import {
     type PlaceholderPart,
     type SlotType,
     type SuppliedPart,
+    type VideoPart,
 } from '../../lib/data/asset-model.ts';
 import { cn } from '../../lib/utils.ts';
+import { AssetVideo } from './asset-video.ts';
 
 /** The `assets` UI catalog (resources/js/i18n/messages/{locale}/assets.ts). */
 export interface AssetSlotLabels {
@@ -50,6 +52,7 @@ const ICONS: Record<SlotType, LucideIcon> = {
     'screenshot-ipad': Tablet,
     diagram: Workflow,
     illustration: Shapes,
+    video: Video,
 };
 
 /** Phone slots are a fixed width, centred: 240px below 768, 280px above (design-system §6.2). */
@@ -194,7 +197,7 @@ function picture(model: PictureModel, part: SuppliedPart, visibility: Visibility
 }
 
 function part(
-    model: PlaceholderPart | SuppliedPart,
+    model: PlaceholderPart | SuppliedPart | VideoPart,
     labels: AssetSlotLabels,
     visibility: Visibility,
     key: string,
@@ -202,6 +205,20 @@ function part(
 ): ReactNode {
     if (model.mode === 'placeholder') {
         return createElement(Fragment, { key }, placeholderBox(model, labels, visibility));
+    }
+
+    if (model.mode === 'video') {
+        return createElement(
+            Fragment,
+            { key },
+            ...model.videos.map((video, index) =>
+                createElement(AssetVideo, {
+                    key: `${key}-${index}`,
+                    model: video,
+                    className: cn(video.theme ? THEME_CLASS[video.theme] : 'block', 'h-auto w-full object-contain', VISIBILITY[visibility]),
+                }),
+            ),
+        );
     }
 
     return createElement(
@@ -243,7 +260,7 @@ export function renderAssetSlot(manifest: SlotManifestData, id: string, options:
      */
     const status = modes.every((mode) => mode === 'placeholder')
         ? 'placeholder'
-        : modes.every((mode) => mode === 'supplied')
+        : modes.every((mode) => mode !== 'placeholder')
           ? 'supplied'
           : 'partial';
     const mainVisibility: Visibility = model.mobile ? 'desktop' : 'always';

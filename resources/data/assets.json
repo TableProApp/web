@@ -1,5 +1,5 @@
 {
-  "$comment": "The public site's visual asset manifest (architecture §1.9). `kinds` pins geometry and export rules (design-system §6.3); `assets` holds one entry per id. `status` is the only render switch: placeholder renders the visible brief, supplied renders <picture> from `src`. Files: {replacement.dir}/{base}-{light|dark}[-{locale}]-{width}.{format}; vector kinds drop the width; og-card files are {base}-{locale}.png. Frontend catalogs are generated from this file by `php artisan assets:generate`.",
+  "$comment": "The public site's visual asset manifest (architecture §1.9). `kinds` pins geometry and export rules (design-system §6.3); `assets` holds one entry per id. `status` is the only render switch: placeholder renders the visible brief, supplied renders <picture> from `src`, or <video> for the video kind. Files: {replacement.dir}/{base}-{light|dark}[-{locale}]-{width}.{format}; vector kinds and video clips drop the width; og-card files are {base}-{locale}.png. Frontend catalogs are generated from this file by `php artisan assets:generate`.",
   "kinds": {
     "window": {
       "type": "screenshot",
@@ -433,6 +433,46 @@
       ],
       "sizes": "(min-width: 752px) 704px, (min-width: 640px) calc(100vw - 48px), calc(100vw - 32px)",
       "note": "A release-post figure at the 704 px text width. Its aspect is the source image's, set on the entry. The type is screenshot or detail, matching the source."
+    },
+    "video": {
+      "type": "video",
+      "aspect": null,
+      "rendered": {
+        "desktop": [
+          704,
+          null
+        ],
+        "tablet": [
+          704,
+          null
+        ],
+        "phone": [
+          343,
+          null
+        ]
+      },
+      "exportPx": [
+        1408,
+        null
+      ],
+      "vector": false,
+      "density": 2,
+      "format": {
+        "master": "mov",
+        "delivered": [
+          "webp",
+          "webm",
+          "mp4"
+        ]
+      },
+      "transparency": false,
+      "maxBytes": 8000000,
+      "posterMaxBytes": 200000,
+      "widths": [
+        1408
+      ],
+      "sizes": null,
+      "note": "A short screen recording in a post, at the 704 px text width. Its aspect is the recording's, set on the entry. Muted and looped, with no audio track: a VP9 WebM and an H.264 MP4 with fast start, each at most 8 MB, and a WebP poster of the first frame at most 200 KB. A clip drops the width from its file name: {base}-{variant}.webm, {base}-{variant}.mp4 and {base}-{variant}-1408.webp. A light and dark pair loads both posters, so a clip is usually single-theme."
     },
     "og-card": {
       "type": "og-card",

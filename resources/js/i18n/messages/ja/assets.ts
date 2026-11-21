@@ -7,7 +7,8 @@ export default {
         "screenshot-phone": "iPhone スクリーンショットの仮表示",
         "screenshot-ipad": "iPad スクリーンショットの仮表示",
         "diagram": "図の仮表示",
-        "illustration": "イラストの仮表示"
+        "illustration": "イラストの仮表示",
+        "video": "動画の仮表示"
     },
     "accessibleName": "{type}：{description}"
 } satisfies Messages['assets'];

@@ -1,5 +1,5 @@
 {
-  "$comment": "An isolated asset manifest for tests only: tests/Feature/Assets/AssetManifestTest.php (PHP validation, the LCP descriptor) and tests/js/asset-slot.test.ts (rendering). It exercises the supplied path without installing real art: the PHP test draws tiny images into a temporary directory, the JS test only builds markup. Widths are deliberately tiny; the shapes follow each kind's aspect.",
+  "$comment": "An isolated asset manifest for tests only: tests/Feature/Assets/AssetManifestTest.php (PHP validation, the LCP descriptor) and tests/js/asset-slot.test.ts (rendering). It exercises the supplied path without installing real art: the PHP test draws tiny images into a temporary directory and copies the tiny clips beside this file, the JS test only builds markup. Widths are deliberately tiny; the shapes follow each kind's aspect.",
   "kinds": {
     "window": {
       "type": "screenshot",
@@ -214,6 +214,45 @@
         1408
       ],
       "sizes": "(min-width: 752px) 704px, 100vw"
+    },
+    "video": {
+      "type": "video",
+      "aspect": null,
+      "rendered": {
+        "desktop": [
+          704,
+          null
+        ],
+        "tablet": [
+          704,
+          null
+        ],
+        "phone": [
+          343,
+          null
+        ]
+      },
+      "exportPx": [
+        64,
+        null
+      ],
+      "vector": false,
+      "density": 2,
+      "format": {
+        "master": "mov",
+        "delivered": [
+          "webp",
+          "webm",
+          "mp4"
+        ]
+      },
+      "transparency": false,
+      "maxBytes": 8000000,
+      "posterMaxBytes": 200000,
+      "widths": [
+        64
+      ],
+      "sizes": null
     },
     "og-card": {
       "type": "og-card",
@@ -996,6 +1035,69 @@
       },
       "status": "placeholder",
       "src": null,
+      "legacySource": null
+    },
+    "fixture-video": {
+      "kind": "video",
+      "type": "video",
+      "family": "fixture",
+      "ownerRepo": "web",
+      "slot": true,
+      "handoffPriority": "P3",
+      "usedOn": [
+        {
+          "path": "/blog/tablepro-0-77",
+          "section": "video-1"
+        }
+      ],
+      "aspect": "16:9",
+      "priority": false,
+      "theme": "both",
+      "locale": "shared",
+      "mobile": null,
+      "description": {
+        "en": "A fixture clip.",
+        "vi": null
+      },
+      "alt": {
+        "en": "A fixture clip of a query running",
+        "vi": null
+      },
+      "caption": {
+        "en": "The fixture clip's caption.",
+        "vi": null
+      },
+      "replacement": {
+        "dir": "public/images/fixture",
+        "base": "fixture-video"
+      },
+      "status": "supplied",
+      "src": {
+        "light": {
+          "widths": [
+            64
+          ],
+          "formats": [
+            "webp",
+            "webm",
+            "mp4"
+          ],
+          "width": 64,
+          "height": 36
+        },
+        "dark": {
+          "widths": [
+            64
+          ],
+          "formats": [
+            "webp",
+            "webm",
+            "mp4"
+          ],
+          "width": 64,
+          "height": 36
+        }
+      },
       "legacySource": null
     },
     "fixture-og": {

@@ -49,6 +49,7 @@ Every asset takes its geometry from its kind (design-system §6.3), unless the a
 | `diagram` | diagram | 16:9 | desktop 1216×684 · tablet 720×405 · phone 343×193 | vector (SVG) | SVG | alpha as needed | 60 KB | — |
 | `illustration` | illustration | 16:9 | desktop 1216×684 · tablet 720×405 · phone 343×193 | 2432×1368 px (2×) | PNG master → AVIF, WebP | alpha as needed | 250 KB | 720, 1216, 2432 |
 | `figure` | per-figure | from the source | desktop 704 wide · tablet 704 wide · phone 343 wide | 1408 px wide (2×) | PNG master → AVIF, WebP | alpha as the source | 200 KB | 704, 1408 |
+| `video` | video | from the recording | desktop 704 wide · tablet 704 wide · phone 343 wide | 1408 px wide (2×) | MOV master → WebM (VP9), MP4 (H.264), WebP poster | opaque | 8 MB per clip, 200 KB poster | 1408 (poster) |
 | `og-card` | og-card | 1200:630 | — | 1200×630 px (1×) | PNG | opaque | 300 KB | 1200 |
 
 - `window`: A full Mac window, 1216 x 684 pt on a 2x display, captured with screencapture -w -o (docs/screenshots.md). Below 768px the page shows the entry's mobile crop; 343 x 193 is only the placeholder fallback. A window never reaches supplied without its crop.
@@ -59,6 +60,14 @@ Every asset takes its geometry from its kind (design-system §6.3), unless the a
 - `diagram`: Vector, drawn to read at 343 px wide. One file per locale when it holds words. It invents no product function and draws no app chrome.
 - `illustration`: A composite of real captures (for example a Mac Dock and an iPhone screen). No invented UI. A 16:9 composite is 343 x 193 on a phone; one whose details must read there names a mobile crop, recomposed from the same captures.
 - `figure`: A release-post figure at the 704 px text width. Its aspect is the source image's, set on the entry. The type is screenshot or detail, matching the source.
+- `video`: A short screen recording in a post, at the 704 px text width. Its aspect is the recording's, set on the entry. Muted and looped, with no audio track: a VP9 WebM and an H.264 MP4 with fast start, each at most 8 MB, and a WebP poster of the first frame at most 200 KB. A clip drops the width from its file name: {base}-{variant}.webm, {base}-{variant}.mp4 and {base}-{variant}-1408.webp. A light and dark pair loads both posters, so a clip is usually single-theme. The page plays it while half of it is on screen, never under reduced motion, and always shows the native controls. From the master, at the same 1408 px width so the poster and the clips share one shape:
+
+  ```sh
+  ffmpeg -i clip.mov -an -vf scale=1408:-2 -c:v libvpx-vp9 -crf 34 -b:v 0 -row-mt 1 {base}-light.webm
+  ffmpeg -i clip.mov -an -vf scale=1408:-2 -c:v libx264 -crf 23 -preset slow -pix_fmt yuv420p -movflags +faststart {base}-light.mp4
+  ffmpeg -i clip.mov -frames:v 1 -vf scale=1408:-2 {base}-light-poster.png
+  magick {base}-light-poster.png -quality 80 {base}-light-1408.webp
+  ```
 - `og-card`: Bespoke social art, never a slot. Delivered as {base}-{locale}.png at exactly 1200 x 630.
 
 ## Production order

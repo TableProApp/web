@@ -499,7 +499,10 @@ and a `status`, the only render switch. `<AssetSlot id>`
 (`resources/js/components/ui/asset-slot.tsx`) renders a `placeholder` as a
 labelled, described box of the final aspect ratio, with no `<img>` and no
 request, and a `supplied` entry as `<picture>` sources with light and dark
-variants. Markdown places a slot with `<asset-slot id="…"></asset-slot>`. A
+variants. A `video` entry renders a muted, looping `<video>` with its WebP
+poster and a WebM and an MP4 source, which plays only in view and never under
+reduced motion (`asset-video.ts`). Markdown places a slot with
+`<asset-slot id="…"></asset-slot>`. A
 supplied `priority` asset gets a head preload through the `lcpAsset` page prop.
 
 The placeholder is for the owner, so it shows only outside production.

@@ -24,14 +24,29 @@ export type AssetKindName =
     | 'device'
     | 'framed-device'
     | 'figure'
+    | 'video'
     | 'og-card';
 
 /** The type vocabulary of design-system §6.2. `og-card` entries are never slots. */
-export type SlotType = 'screenshot' | 'detail' | 'screenshot-phone' | 'screenshot-ipad' | 'diagram' | 'illustration';
+export type SlotType = 'screenshot' | 'detail' | 'screenshot-phone' | 'screenshot-ipad' | 'diagram' | 'illustration' | 'video';
 
 export type AssetType = SlotType | 'og-card';
 
 export type ImageFormat = 'avif' | 'webp' | 'png' | 'svg';
+
+// What a video entry plays; its other formats are its poster's. Equal to `AssetManifest::CLIP_FORMATS`.
+export type ClipFormat = 'webm' | 'mp4';
+
+export type AssetFormat = ImageFormat | ClipFormat;
+
+const CLIP_TYPES: Record<ClipFormat, string> = {
+    webm: 'video/webm; codecs="vp9"',
+    mp4: 'video/mp4',
+};
+
+export function isClipFormat(format: AssetFormat): format is ClipFormat {
+    return Object.hasOwn(CLIP_TYPES, format);
+}
 
 export type ThemeVariant = 'light' | 'dark';
 
@@ -41,7 +56,7 @@ export type LocalizedText = Record<string, string | null>;
 /** One delivered image: every width in every format, all sharing one shape. */
 export interface AssetSource {
     widths: number[];
-    formats: ImageFormat[];
+    formats: AssetFormat[];
     /** The pixel size of the widest file. Only the ratio matters to layout. */
     width: number;
     height: number;
@@ -62,9 +77,10 @@ export interface AssetKind {
     exportPx: [number, number | null] | null;
     vector: boolean;
     density: number | null;
-    format: { master: ImageFormat; delivered: ImageFormat[] };
+    format: { master: AssetFormat | 'mov'; delivered: AssetFormat[] };
     transparency: boolean | 'as-needed' | 'as-source';
     maxBytes: number;
+    posterMaxBytes?: number;
     widths: number[];
     sizes: string | null;
     note?: string;
@@ -156,7 +172,11 @@ export function localized(text: LocalizedText, locale: string): string {
     return line;
 }
 
-export function mimeType(format: ImageFormat): string {
+export function mimeType(format: AssetFormat): string {
+    if (isClipFormat(format)) {
+        return CLIP_TYPES[format];
+    }
+
     return format === 'svg' ? 'image/svg+xml' : `image/${format}`;
 }
 
@@ -174,7 +194,7 @@ export function fileUrl(
     variant: ThemeVariant,
     locale: string | null,
     width: number | null,
-    format: ImageFormat,
+    format: AssetFormat,
 ): string {
     const dir = publicUrl(entry.replacement.dir);
     const base = entry.replacement.base;
@@ -202,7 +222,7 @@ export function srcSet(
     source: AssetSource,
     variant: ThemeVariant,
     locale: string | null,
-    format: ImageFormat,
+    format: AssetFormat,
 ): string {
     if (format === 'svg') {
         return fileUrl(entry, variant, locale, null, format);
@@ -275,11 +295,27 @@ export interface SuppliedPart {
     phoneCrop: boolean;
 }
 
+export interface VideoModel {
+    theme: ThemeVariant | null;
+    poster: string;
+    sources: { src: string; type: string }[];
+    width: number;
+    height: number;
+    aspect: string;
+    label: string;
+}
+
+export interface VideoPart {
+    mode: 'video';
+    kind: AssetKindName;
+    videos: VideoModel[];
+}
+
 export interface SlotModel {
     id: string;
     kind: AssetKindName;
     /** The main entry as a placeholder, or every supplied image (art-directed with the crop when both are supplied). */
-    main: PlaceholderPart | SuppliedPart;
+    main: PlaceholderPart | SuppliedPart | VideoPart;
     /** The phone crop, when it renders separately from the main image (one or both still placeholders). */
     mobile: PlaceholderPart | SuppliedPart | null;
     caption: string | null;
@@ -456,6 +492,41 @@ function supplied(
     return { mode: 'supplied', kind: entry.kind, pictures, phoneCrop: crop !== null && cropSources !== null };
 }
 
+// `poster` takes one URL, so it is the widest file in the most compatible image format.
+function video(id: string, entry: SlotEntry, kind: SlotKind, locale: string): VideoPart {
+    const main = themedSources(entry, locale);
+
+    if (main === null) {
+        throw new Error('video() needs a supplied entry.');
+    }
+
+    const label = localized(required(entry.alt, id, 'alt text'), locale);
+    const aspect = cssAspect(entryAspect(entry, kind));
+    const variants: (ThemeVariant | null)[] = entry.theme === 'both' ? ['light', 'dark'] : [null];
+
+    const videos = variants.map((theme): VideoModel => {
+        const variant: ThemeVariant = theme ?? 'light';
+        const source = (variant === 'dark' ? main.sources.dark : main.sources.light) ?? main.sources.light;
+        const poster = source.formats.filter((format) => !isClipFormat(format)).at(-1);
+
+        if (poster === undefined) {
+            throw new Error(`Asset "${id}" has no poster format.`);
+        }
+
+        return {
+            theme,
+            poster: fileUrl(entry, variant, main.locale, Math.max(...source.widths, 0) || null, poster),
+            sources: source.formats.filter(isClipFormat).map((format) => ({ src: fileUrl(entry, variant, main.locale, null, format), type: mimeType(format) })),
+            width: source.width,
+            height: source.height,
+            aspect,
+            label,
+        };
+    });
+
+    return { mode: 'video', kind: entry.kind, videos };
+}
+
 /**
  * Everything `<AssetSlot id>` needs to render, decided by the manifest's
  * `status` fields alone.
@@ -476,10 +547,12 @@ export function slotModel(manifest: SlotManifestData, id: string, options: SlotO
     const mainSupplied = themedSources(entry, locale) !== null;
     const cropSupplied = cropEntry !== null && themedSources(cropEntry, locale) !== null;
 
-    let main: PlaceholderPart | SuppliedPart;
+    let main: PlaceholderPart | SuppliedPart | VideoPart;
     let mobile: PlaceholderPart | SuppliedPart | null = null;
 
-    if (mainSupplied && cropEntry && cropKind && cropSupplied) {
+    if (mainSupplied && entry.kind === 'video') {
+        main = video(id, entry, kind, locale);
+    } else if (mainSupplied && cropEntry && cropKind && cropSupplied) {
         main = supplied(id, entry, kind, locale, sizes, { entry: cropEntry, kind: cropKind }, priority);
     } else {
         main = mainSupplied ? supplied(id, entry, kind, locale, sizes, null, priority) : placeholder(id, entry, kind, locale);
@@ -491,7 +564,7 @@ export function slotModel(manifest: SlotManifestData, id: string, options: SlotO
         }
     }
 
-    const caption = main.mode === 'supplied' && entry.caption ? localized(entry.caption, locale) : null;
+    const caption = main.mode !== 'placeholder' && entry.caption ? localized(entry.caption, locale) : null;
 
     return { id, kind: entry.kind, main, mobile, caption };
 }

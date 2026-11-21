@@ -93,6 +93,13 @@ it('renders a supplied image as an image and drops a placeholder', function (): 
     expect($body)->toMatch('#^Before\.\n\n!\[[^\n]+\]\(https://tablepro\.app/images/[^)]+\)\n\n(?:[^\n]+\n\n)?Middle\.\n\nAfter\.$#');
 });
 
+it('renders a supplied video as its poster, linking the MP4', function (): void {
+    $export = new MarkdownExport(new AssetManifest(base_path('tests/Fixtures/assets/manifest.json')));
+
+    expect($export->body("Before.\n\n<asset-slot id=\"fixture-video\"></asset-slot>\n\nAfter.", 'en'))
+        ->toBe("Before.\n\n[![A fixture clip of a query running](https://tablepro.app/images/fixture/fixture-video-light-64.webp)](https://tablepro.app/images/fixture/fixture-video-light.mp4)\n\nThe fixture clip's caption.\n\nAfter.");
+});
+
 it('advertises the markdown version in the head', function (): void {
     $post = app(BlogService::class)->all('en')[0];
 

@@ -8,6 +8,7 @@ export default {
         'screenshot-ipad': 'Ảnh chụp iPad (sẽ bổ sung)',
         diagram: 'Sơ đồ (sẽ bổ sung)',
         illustration: 'Hình minh họa (sẽ bổ sung)',
+        video: 'Video (sẽ bổ sung)',
     },
     accessibleName: '{type}: {description}',
 } satisfies Messages['assets'];

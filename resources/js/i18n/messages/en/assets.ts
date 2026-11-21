@@ -12,6 +12,7 @@ export default {
         'screenshot-ipad': 'iPad screenshot placeholder',
         diagram: 'Diagram placeholder',
         illustration: 'Illustration placeholder',
+        video: 'Video placeholder',
     },
     /** The placeholder's accessible name. The asset id is left out: it is for the owner, not for a screen reader. */
     accessibleName: '{type}: {description}',

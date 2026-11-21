@@ -7,7 +7,8 @@ export default {
         "screenshot-phone": "Segnaposto per schermata iPhone",
         "screenshot-ipad": "Segnaposto per schermata iPad",
         "diagram": "Segnaposto per diagramma",
-        "illustration": "Segnaposto per illustrazione"
+        "illustration": "Segnaposto per illustrazione",
+        "video": "Segnaposto per video"
     },
     "accessibleName": "{type}: {description}"
 } satisfies Messages['assets'];
