@@ -41,6 +41,9 @@ export default {
         badge: '{version}',
         badgeLabel: 'Added in TablePro {version} for Mac. Homebrew may still install an earlier version.',
     },
+    windows: {
+        requirement: '{systems} {version} version {releaseName} or later',
+    },
     linux: {
         // `{distributions}`: "Ubuntu 26.04+, Fedora 44+ or any distribution via Flatpak".
         requirement: {

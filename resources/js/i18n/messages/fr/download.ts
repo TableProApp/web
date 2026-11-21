@@ -3,6 +3,7 @@ import type { Messages } from '../../types.ts';
 export default {
     "macCta": "Télécharger pour Mac",
     "linuxCta": "Installer sur Linux",
+    "windowsCta": "Télécharger pour Windows",
     "release": {
         "notes": "Notes de version (anglais)"
     },

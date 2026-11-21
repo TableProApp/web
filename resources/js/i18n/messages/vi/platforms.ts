@@ -33,6 +33,9 @@ export default {
         badge: '{version}',
         badgeLabel: 'Có từ TablePro {version} cho Mac. Homebrew có thể vẫn cài bản cũ hơn.',
     },
+    windows: {
+        requirement: '{systems} {version} phiên bản {releaseName} trở lên',
+    },
     linux: {
         requirement: {
             beta: '{name} (bản beta): {distributions}',

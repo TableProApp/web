@@ -109,7 +109,7 @@
                 {
                     "id": "windows-linux",
                     "question": "有 Windows 或 Linux 版本嗎？",
-                    "answer": "有 Linux 版：<downloadLinux>Linux 版 TablePro</downloadLinux> 是 Beta 版，支援 {linuxDistributions}，其他發行版可透過 Flatpak 安裝，有自己的一套引擎和功能。沒有 Windows 版本，也沒有它的發佈日期。"
+                    "answer": "都有。Windows 版 TablePro 可在 {windowsRequirement} 上執行，<downloadLinux>Linux 版 TablePro</downloadLinux> 是 Beta 版，支援 {linuxDistributions}，其他發行版可透過 Flatpak 安裝，兩者各有自己的一套引擎和功能。"
                 },
                 {
                     "id": "iphone-ipad",
@@ -119,7 +119,7 @@
                 {
                     "id": "languages",
                     "question": "App 支援哪些語言？",
-                    "answer": "Mac App 支援 {macLanguages}，但部分介面仍顯示英文；Linux App 支援 {linuxLanguages}；iPhone 與 iPad App 支援 {iosLanguages}。網站支援更多語言，<docs>文件</docs>為英文。"
+                    "answer": "Mac App 支援 {macLanguages}，但部分介面仍顯示英文；Windows App 支援 {windowsLanguages}；Linux App 支援 {linuxLanguages}；iPhone 與 iPad App 支援 {iosLanguages}。網站支援更多語言，<docs>文件</docs>為英文。"
                 }
             ]
         },

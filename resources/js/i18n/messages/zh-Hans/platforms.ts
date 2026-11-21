@@ -33,6 +33,9 @@ export default {
         "badge": "{version}",
         "badgeLabel": "在 Mac 版 TablePro {version} 中加入。Homebrew 可能仍会安装旧版本。"
     },
+    "windows": {
+        "requirement": "{systems} {version} 版本 {releaseName} 或更新版本"
+    },
     "linux": {
         "requirement": {
             "beta": "{name}（Beta 版）：{distributions}",

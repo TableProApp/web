@@ -41,6 +41,27 @@ function downloadReleaseLinux(): array
     return $linux;
 }
 
+function downloadWindowsRecord(array $release = []): array
+{
+    $windows = collect(json_decode((string) file_get_contents(resource_path('data/platforms.json')), true)['platforms'])->firstWhere('id', 'windows');
+
+    return [...$windows, 'status' => 'released', ...$release];
+}
+
+function downloadReleaseWindows(array $release = []): array
+{
+    $windows = downloadWindowsRecord($release);
+    bindReleaseFixturePlatforms(['windows' => $windows]);
+
+    return $windows;
+}
+
+// Every desktop platform released at once; each helper alone binds a fixture with only its own.
+function downloadReleaseDesktops(): void
+{
+    bindReleaseFixturePlatforms(['windows' => downloadWindowsRecord(), 'linux' => downloadLinuxRecord()]);
+}
+
 function downloadDocument(string $path = '/download'): Dom\HTMLDocument
 {
     requireSsr();
@@ -172,6 +193,40 @@ it('sends the Linux install methods and release once Linux is released', functio
         ->where('unreleased', ['windows']));
 });
 
+it('sends nothing about Windows while it is not released', function (): void {
+    downloadFakeRelease();
+
+    get('/download')->assertInertia(fn(AssertableInertia $page) => $page
+        ->where('windows', null)
+        ->where('unreleased', fn($platforms): bool => in_array('windows', $platforms->all(), true)));
+});
+
+it('sends the App Installer files, winget and the releases once Windows is released, with no version until one is recorded', function (): void {
+    $windows = downloadReleaseWindows();
+    downloadFakeRelease();
+    $installers = collect($windows['destinations'])->where('kind', 'appinstaller')->pluck('url', 'channel');
+
+    get('/download')->assertInertia(fn(AssertableInertia $page) => $page
+        ->where('windows.appInstaller', $installers['stable'])
+        ->where('windows.betaAppInstaller', $installers['beta'])
+        ->where('windows.winget.command', 'winget install TablePro.TablePro')
+        ->where('windows.architectures', ['x64', 'Arm64'])
+        ->where('windows.releasesUrl', 'https://github.com/TableProApp/TablePro/releases')
+        ->where('windows.release', null)
+        ->where('unreleased', ['linux']));
+});
+
+it('names the Windows release platforms.json records, and its tag on GitHub', function (): void {
+    downloadReleaseWindows(['release' => ['version' => '0.1.0', 'build' => '0.1.0.99', 'publishedAt' => '2026-11-21']]);
+    downloadFakeRelease();
+
+    get('/download')->assertInertia(fn(AssertableInertia $page) => $page
+        ->where('windows.release.version', '0.1.0')
+        ->where('windows.release.shortVersion', '0.1')
+        ->where('windows.release.publishedOn', 'November 21, 2026')
+        ->where('windows.release.releaseUrl', 'https://github.com/TableProApp/TablePro/releases/tag/windows-v0.1.0'));
+});
+
 it('takes the Linux release from the newest GitHub release', function (): void {
     downloadReleaseLinux();
     Http::fake([
@@ -253,13 +308,44 @@ it('hides every hero variant but the reader’s machine before first paint, a Ma
     $css = File::get(resource_path('css/app.css'));
     $head = File::get(resource_path('views/app.blade.php'));
 
-    expect($css)->toContain("html:not(.ios, .linux, .other-device) [data-device]:not([data-device~='mac'])");
+    expect($css)->toContain("html:not(.ios, .windows, .linux, .other-device) [data-device]:not([data-device~='mac'])");
 
-    foreach (['ios' => 'ios', 'linux' => 'linux', 'other-device' => 'other'] as $class => $device) {
+    foreach (['ios' => 'ios', 'windows' => 'windows', 'linux' => 'linux', 'other-device' => 'other'] as $class => $device) {
         expect($css)->toContain("html.{$class} [data-device]:not([data-device~='{$device}'])")
             ->and($head)->toContain("classList.add('{$class}')");
     }
 });
+
+it('gives a Windows reader the App Installer file, the band between the Mac and Linux, and the Windows app in the structured data', function (): void {
+    downloadReleaseDesktops();
+    downloadFakeRelease();
+    $document = downloadDocument();
+    $windows = downloadHeroFor($document, 'windows');
+    $sections = array_map(fn(Dom\Element $section): string => (string) $section->getAttribute('id'), iterator_to_array($document->querySelectorAll('main > section')));
+
+    expect(count($windows['title']) + count($windows['lead']) + count($windows['action']))->toBe(3)
+        ->and(downloadText($windows['title'][0]))->toBe('Download TablePro')
+        ->and($windows['action'][0]->querySelector('a')?->getAttribute('href'))->toBe('https://updates.tablepro.app/windows/TablePro.appinstaller')
+        ->and(downloadText($windows['action'][0]))->toContain('Download for Windows')
+        ->and(downloadText($windows['action'][0]))->toContain('Requires Windows 10 version 1809 or later.')
+        ->and($sections)->toBe(['top', 'mac', 'windows', 'linux', 'ios', 'older-versions'])
+        ->and(downloadText($document->querySelector('#windows h2')))->toBe('Windows')
+        ->and(downloadText($document->querySelector('#windows p')))->toBe('Requires Windows 10 version 1809 or later, on x64 or Arm64. TablePro updates itself.')
+        ->and(downloadText($document->querySelector('#windows pre code')))->toBe('winget install TablePro.TablePro')
+        ->and($document->querySelector('#windows a[href="https://updates.tablepro.app/windows/TablePro-Beta.appinstaller"]'))->not->toBeNull()
+        ->and($document->querySelector('#windows a[href="https://github.com/TableProApp/TablePro/releases"]'))->not->toBeNull()
+        ->and(downloadText(downloadHeroFor($document, 'other')['action'][0] ?? null))->toBe('TablePro runs on Mac, Windows, Linux, iPhone and iPad.')
+        ->and(collect(downloadJsonLdIds($document))->filter(fn(string $id): bool => str_ends_with($id, '#windows-app')))->toHaveCount(1);
+})->group('ssr');
+
+it('gives a Windows reader the sentence while Windows is not released', function (): void {
+    downloadFakeRelease();
+    $document = downloadDocument();
+
+    expect($document->getElementById('windows'))->toBeNull()
+        ->and(downloadText(downloadHeroFor($document, 'windows')['action'][0] ?? null))->toBe('TablePro runs on Mac, iPhone and iPad.')
+        ->and(collect(downloadJsonLdIds($document))->filter(fn(string $id): bool => str_ends_with($id, '#windows-app')))->toBeEmpty();
+})->group('ssr');
 
 it('gives a Linux reader the sentence while Linux is not released, and renders no Linux band or structured data', function (): void {
     downloadFakeRelease();
@@ -344,14 +430,14 @@ it('puts the App Store badge, a QR code for desktop readers and the requirement 
 
     expect($document->querySelector('#ios a[href="https://apps.apple.com/app/tablepro/id6761621829"] img'))->not->toBeNull()
         ->and($qr)->not->toBeNull()
-        ->and($qr?->parentElement?->getAttribute('data-device'))->toBe('mac linux other')
+        ->and($qr?->parentElement?->getAttribute('data-device'))->toBe('mac windows linux other')
         ->and($qr?->querySelector('path')?->getAttribute('d'))->toStartWith('M4 4h7v1h-7z')
         ->and(downloadText($document->getElementById('ios')))->toContain('Free. Requires iOS and iPadOS 18 or later.')
         ->and($document->querySelector('#ios a[href="/ios"]'))->not->toBeNull();
 })->group('ssr');
 
 it('lands every link into /download on an id of the page', function (): void {
-    downloadReleaseLinux();
+    downloadReleaseDesktops();
     downloadFakeRelease();
     $document = downloadDocument();
     $ids = array_map(fn(Dom\Element $element): string => (string) $element->getAttribute('id'), iterator_to_array($document->querySelectorAll('[id]')));
@@ -376,7 +462,7 @@ it('lands every link into /download on an id of the page', function (): void {
         expect(isset($fragments[$known]))->toBeTrue("nothing links /download#{$known} any more; drop it from this list");
     }
 
-    foreach (['mac', 'linux', 'ios', 'updates', 'release-notes', 'older-versions', 'other-platforms', ...array_keys($fragments)] as $fragment) {
+    foreach (['mac', 'windows', 'linux', 'ios', 'updates', 'release-notes', 'older-versions', 'other-platforms', ...array_keys($fragments)] as $fragment) {
         expect(in_array($fragment, $ids, true))->toBeTrue("/download#{$fragment} lands nowhere (" . implode(', ', array_unique($fragments[$fragment] ?? ['kept id'])) . ')');
     }
 })->group('ssr');

@@ -1,7 +1,7 @@
 {
     "seo": {
         "title": "下载 TablePro",
-        "description": "下载 Mac 版 TablePro，也可通过 Homebrew 安装。Linux Beta 版可通过 Ubuntu、Fedora 或 Flatpak 安装，iPhone 和 iPad App 在 App Store 提供。"
+        "description": "下载 Mac 版或 Windows 版 TablePro。Linux Beta 版可通过 Ubuntu、Fedora 或 Flatpak 安装，iPhone 和 iPad App 在 App Store 提供。"
     },
     "og": {
         "kicker": "下载",
@@ -31,6 +31,13 @@
     "mac": {
         "text": "需要 {requirement}，支持 {architectures}。TablePro 会自动更新。",
         "homebrew": "Homebrew"
+    },
+    "windows": {
+        "text": "需要 {requirement}，支持 {architectures}。TablePro 会自动更新。",
+        "open": "打开下载的文件，即可通过 App Installer 安装 TablePro。",
+        "winget": "winget",
+        "beta": "Beta 版 App Installer 文件",
+        "packages": "GitHub 上的软件包"
     },
     "linux": {
         "distribution": "{name} {versions}",

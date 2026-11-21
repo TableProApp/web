@@ -16,6 +16,9 @@ export default {
     linuxApp: {
         alternateName: 'TablePro cho Linux',
     },
+    windowsApp: {
+        alternateName: 'TablePro cho Windows',
+    },
     breadcrumbs: {
         features: 'Tính năng',
         databases: 'Cơ sở dữ liệu',

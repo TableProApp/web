@@ -4,7 +4,7 @@ import type { Messages } from '@/i18n';
 import { joinList } from '@/i18n/format';
 import { connectionImportFor, FACTS } from '@/lib/data/facts';
 import { examplesText, PAID_FEATURES } from '@/lib/data/paid-features';
-import { iosPlatform, isReleased, macPlatform, PLATFORMS, requirementText } from '@/lib/data/platforms';
+import { iosPlatform, isReleased, macPlatform, PLATFORMS, requirementText, windowsPlatform } from '@/lib/data/platforms';
 import { PRICING } from '@/lib/data/pricing';
 import type { TableProFacts } from './model';
 import type { TableProProp } from './types';
@@ -13,13 +13,14 @@ import type { TableProProp } from './types';
 export function tableproFacts(productId: string | null, tablepro: Pick<TableProProp, 'featuredEngines' | 'linux'>, m: Messages): TableProFacts {
     const mac = macPlatform();
     const ios = PLATFORMS.platforms.some((platform) => platform.id === 'ios' && isReleased(platform)) ? iosPlatform() : null;
+    const windows = PLATFORMS.platforms.some((platform) => platform.id === 'windows' && isReleased(platform)) ? windowsPlatform() : null;
     const sync = PAID_FEATURES.find((feature) => feature.id === 'icloud-sync') ?? null;
     const importer = productId === null ? null : connectionImportFor(productId);
     const { featuredEngines, linux } = tablepro;
 
     return {
         // Joined as the homepage and JSON-LD join them.
-        devices: joinList([...mac.deviceNames, ...(linux?.deviceNames ?? []), ...(ios?.deviceNames ?? [])], m.common.list),
+        devices: joinList([...mac.deviceNames, ...(windows?.deviceNames ?? []), ...(linux?.deviceNames ?? []), ...(ios?.deviceNames ?? [])], m.common.list),
         macRequirement: requirementText(mac, m.platforms),
         iosRequirement: ios !== null ? requirementText(ios, m.platforms) : null,
         linuxRequirement: linux !== null ? linuxRequirement(linux, m) : null,

@@ -69,6 +69,18 @@ export interface LinuxProp {
     release: { version: string; shortVersion: string; publishedOn: string | null; releaseUrl: string; releasesUrl: string } | null;
 }
 
+// Null until a release is recorded in platforms.json; the App Installer file installs the newest either way.
+export interface WindowsProp {
+    deviceNames: string[];
+    requirements: Requirements | null;
+    architectures: string[];
+    appInstaller: string | null;
+    betaAppInstaller: string | null;
+    winget: { command: string; update: string } | null;
+    releasesUrl: string;
+    release: { version: string; shortVersion: string; publishedOn: string | null; releaseUrl: string } | null;
+}
+
 // What a page outside /download says about Linux: `PlatformCatalog::linuxSummary`, null until Linux is released.
 export type LinuxSummary = Pick<LinuxProp, 'deviceNames' | 'channel' | 'distributions'>;
 
@@ -79,13 +91,14 @@ export interface LinksProp {
 }
 
 // What the head script in app.blade.php calls the reader's machine; a Mac carries no class.
-export type DeviceKey = 'mac' | 'linux' | 'ios' | 'other';
+export type DeviceKey = 'mac' | 'windows' | 'linux' | 'ios' | 'other';
 
 export interface DownloadPageProps {
     content: DownloadContent;
     release: ReleaseProp;
     mac: MacProp;
     ios: IosProp | null;
+    windows: WindowsProp | null;
     linux: LinuxProp | null;
     // Platform ids with nothing to install.
     unreleased: string[];

@@ -103,8 +103,8 @@ it('labels a link to the platform chooser Download, not Download for Mac, once L
 
 it('gives a released platform everything a page needs and an unreleased one nothing', function (): void {
     foreach (platformsJson()['platforms'] as $platform) {
-        // Linux carries its record before it ships, so the pages can be built against it; its status alone shows it.
-        if ($platform['status'] !== 'released' && $platform['id'] !== 'linux') {
+        // Linux and Windows carry their records before they ship, so the pages can be built against them; status alone shows them.
+        if ($platform['status'] !== 'released' && ! in_array($platform['id'], ['linux', 'windows'], true)) {
             expect(array_keys($platform))->toBe(['id', 'status'], "{$platform['id']} is not released, so it carries nothing else");
 
             continue;
@@ -112,6 +112,12 @@ it('gives a released platform everything a page needs and an unreleased one noth
 
         if ($platform['id'] === 'linux') {
             expect($platform)->toHaveKeys(['channel', 'deviceNames', 'page', 'distributions', 'architectures', 'destinations', 'release', 'appLanguages']);
+
+            continue;
+        }
+
+        if ($platform['id'] === 'windows') {
+            expect($platform)->toHaveKeys(['channel', 'deviceNames', 'page', 'requirements', 'architectures', 'destinations', 'release', 'appLanguages']);
 
             continue;
         }
@@ -183,6 +189,31 @@ it('installs Linux from a repository on its channel, or from a release file of a
     foreach ($destinations['packages']['assets'] as $asset) {
         expect($asset['template'])->toContain('{version}')->toContain('{arch}')
             ->and(array_keys($asset['arch']))->toBe($linux['architectures']);
+    }
+});
+
+it('installs Windows from an App Installer file per channel, winget for releases, or a release bundle', function (): void {
+    $windows = platformsEntry('windows');
+    $destinations = collect($windows['destinations']);
+    $installers = $destinations->where('kind', 'appinstaller')->pluck('url', 'channel')->all();
+    $winget = $destinations->firstWhere('kind', 'winget');
+
+    expect($windows['channel'])->toBe('stable')
+        ->and($windows['architectures'])->toBe(['x64', 'Arm64'])
+        // Windows 10 1809, the package's MinVersion 10.0.17763.0.
+        ->and($windows['requirements'])->toBe(['systems' => ['Windows'], 'minVersion' => '10.0.17763', 'displayVersion' => '10', 'releaseName' => '1809'])
+        ->and($destinations->pluck('kind')->all())->toBe(['appinstaller', 'appinstaller', 'winget', 'releases'])
+        ->and($installers)->toBe([
+            'stable' => 'https://updates.tablepro.app/windows/TablePro.appinstaller',
+            'beta' => 'https://updates.tablepro.app/windows/TablePro-Beta.appinstaller',
+        ])
+        ->and($winget['command'])->toBe("winget install {$winget['packageId']}")
+        ->and($winget['update'])->toBe("winget upgrade {$winget['packageId']}")
+        ->and($destinations->firstWhere('kind', 'releases')['tagPrefix'])->toBe('windows-v');
+
+    if ($windows['release'] !== null) {
+        expect($windows['release']['version'])->toMatch('/^\d+\.\d+\.\d+(-beta\.\d+)?$/')
+            ->and($windows['release']['publishedAt'] <= now()->toDateString())->toBeTrue('Windows is released in the future');
     }
 });
 

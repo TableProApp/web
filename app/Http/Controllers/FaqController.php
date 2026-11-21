@@ -21,7 +21,9 @@ class FaqController extends Controller
             'platforms' => [
                 'mac' => $platforms->summary('mac'),
                 'ios' => $platforms->summary('ios'),
+                'windows' => $platforms->summary('windows'),
                 'macLanguages' => $this->stringList($platforms->find('mac')['appLanguages'] ?? []),
+                'windowsLanguages' => $this->stringList($platforms->find('windows')['appLanguages'] ?? []),
                 'linuxLanguages' => $this->stringList($platforms->find('linux')['appLanguages'] ?? []),
                 'linuxDistributions' => $this->stringList(array_column($platforms->find('linux')['distributions'] ?? [], 'name')),
                 'iosLanguages' => $this->stringList($ios['appLanguages'] ?? []),

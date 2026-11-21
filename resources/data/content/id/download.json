@@ -1,7 +1,7 @@
 {
     "seo": {
         "title": "Unduh TablePro",
-        "description": "Unduh TablePro untuk Mac atau instal dengan Homebrew. Instal versi beta Linux di Ubuntu, Fedora, atau Flatpak, dan aplikasi iPhone dan iPad dari App Store."
+        "description": "Unduh TablePro untuk Mac atau Windows. Instal versi beta Linux di Ubuntu, Fedora, atau Flatpak, dan aplikasi iPhone dan iPad dari App Store."
     },
     "og": {
         "kicker": "Unduh",
@@ -31,6 +31,13 @@
     "mac": {
         "text": "Memerlukan {requirement}, di {architectures}. TablePro memperbarui dirinya sendiri.",
         "homebrew": "Homebrew"
+    },
+    "windows": {
+        "text": "Memerlukan {requirement}, di {architectures}. TablePro memperbarui dirinya sendiri.",
+        "open": "Buka file yang diunduh untuk menginstal TablePro dengan App Installer.",
+        "winget": "winget",
+        "beta": "File App Installer versi beta",
+        "packages": "Paket di GitHub"
     },
     "linux": {
         "distribution": "{name} {versions}",

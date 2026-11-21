@@ -74,6 +74,10 @@ export function linuxAppId(baseUrl: string): string {
     return `${origin(baseUrl)}/#linux-app`;
 }
 
+export function windowsAppId(baseUrl: string): string {
+    return `${origin(baseUrl)}/#windows-app`;
+}
+
 export function websiteId(baseUrl: string): string {
     return `${origin(baseUrl)}/#website`;
 }
@@ -263,9 +267,9 @@ export function iosAppNode(context: PageContext, input: IosAppInput): JsonLdNode
     };
 }
 
-export interface LinuxAppInput {
+export interface DesktopAppInput {
     alternateName: string;
-    // "Linux": schema.org has no list of distributions, so they go in softwareRequirements.
+    // "Linux" or "Windows": schema.org has no list of distributions or builds, so they go in softwareRequirements.
     operatingSystem: string;
     requirements: string;
     installUrl: string;
@@ -275,11 +279,19 @@ export interface LinuxAppInput {
     version?: string | null;
 }
 
-// Free to install and use; a license adds nothing on Linux yet, so it carries only the zero-price offer.
-export function linuxAppNode(context: PageContext, input: LinuxAppInput): JsonLdNode {
+// Free to install and use; a license adds nothing on Linux or Windows yet, so each carries only the zero-price offer.
+export function linuxAppNode(context: PageContext, input: DesktopAppInput): JsonLdNode {
+    return desktopAppNode(linuxAppId(context.baseUrl), context, input);
+}
+
+export function windowsAppNode(context: PageContext, input: DesktopAppInput): JsonLdNode {
+    return desktopAppNode(windowsAppId(context.baseUrl), context, input);
+}
+
+function desktopAppNode(id: string, context: PageContext, input: DesktopAppInput): JsonLdNode {
     return {
         '@type': 'SoftwareApplication',
-        '@id': linuxAppId(context.baseUrl),
+        '@id': id,
         name: 'TablePro',
         alternateName: input.alternateName,
         ...(input.description ? { description: input.description } : {}),

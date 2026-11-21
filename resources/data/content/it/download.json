@@ -1,7 +1,7 @@
 {
     "seo": {
         "title": "Scarica TablePro",
-        "description": "Scarica TablePro per Mac o installalo con Homebrew. Installa la beta per Linux su Ubuntu, Fedora o con Flatpak, e l’app per iPhone e iPad dall’App Store."
+        "description": "Scarica TablePro per Mac o Windows. Installa la beta per Linux su Ubuntu, Fedora o con Flatpak, e l’app per iPhone e iPad dall’App Store."
     },
     "og": {
         "kicker": "Download",
@@ -31,6 +31,13 @@
     "mac": {
         "text": "Richiede {requirement}, su {architectures}. TablePro si aggiorna da solo.",
         "homebrew": "Homebrew"
+    },
+    "windows": {
+        "text": "Richiede {requirement}, su {architectures}. TablePro si aggiorna da solo.",
+        "open": "Apri il file scaricato per installare TablePro con App Installer.",
+        "winget": "winget",
+        "beta": "File App Installer della beta",
+        "packages": "Pacchetti su GitHub"
     },
     "linux": {
         "distribution": "{name} {versions}",

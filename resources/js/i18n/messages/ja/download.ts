@@ -3,6 +3,7 @@ import type { Messages } from '../../types.ts';
 export default {
     "macCta": "Mac 版をダウンロード",
     "linuxCta": "Linux にインストール",
+    "windowsCta": "Windows 版をダウンロード",
     "release": {
         "notes": "リリースノート（英語）"
     },

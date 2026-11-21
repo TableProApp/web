@@ -2,11 +2,12 @@ import { usePage } from '@inertiajs/react';
 import { BAND_NOTES, BAND_TEXT } from '@/components/databases/engine-band';
 import CommandBlock from '@/components/download/command-block';
 import DownloadHero, { IosAction } from '@/components/download/download-hero';
-import { requirementLine } from '@/components/download/format';
+import { requirementLine, windowsRequirementLine } from '@/components/download/format';
 import { distributionFloor } from '@/components/download/linux-text';
 import MacDownload from '@/components/download/mac-download';
 import QrCode from '@/components/download/qr-code';
-import type { DownloadPageProps, LinuxMethod, LinuxProp } from '@/components/download/types';
+import type { DownloadPageProps, LinuxMethod, LinuxProp, WindowsProp } from '@/components/download/types';
+import WindowsDownload from '@/components/download/windows-download';
 import { BandFrame } from '@/components/features/feature-band';
 import { AlsoAnchors } from '@/components/features/feature-part';
 import SEOHead from '@/components/seo/seo-head';
@@ -20,7 +21,7 @@ import { joinList } from '@/i18n/format';
 import { trackDownload } from '@/lib/analytics';
 import { architecturesText } from '@/lib/data/platforms';
 import { PRICING } from '@/lib/data/pricing';
-import { absoluteUrl, graph, iosAppNode, linuxAppNode, macAppId, macAppNode, webPageNode, type JsonLdGraph } from '@/lib/structured-data';
+import { absoluteUrl, graph, iosAppNode, linuxAppNode, macAppId, macAppNode, webPageNode, windowsAppNode, type JsonLdGraph } from '@/lib/structured-data';
 import LandingLayout from '@/layouts/landing-layout';
 
 type PlatformName = keyof Messages['platforms']['names'];
@@ -29,12 +30,18 @@ const METHOD_TITLE = 'text-[0.9375rem] leading-[1.35] font-semibold tracking-[-0
 
 const SMALL_TITLE = 'text-sm leading-[1.3] font-medium tracking-[-0.006em] text-muted-foreground md:col-span-4 lg:col-span-3';
 
-interface JsonLdInput extends Pick<DownloadPageProps, 'content' | 'release' | 'mac' | 'ios' | 'linux' | 'links' | 'featuredEngines'> {
+interface JsonLdInput extends Pick<DownloadPageProps, 'content' | 'release' | 'mac' | 'ios' | 'windows' | 'linux' | 'links' | 'featuredEngines'> {
     baseUrl: string;
     inLanguage: string;
     m: Messages;
     fmt: (template: string, values: Record<string, string>) => string;
     path: (path: string) => string;
+}
+
+function windowsRequirements(windows: WindowsProp, m: Messages): string {
+    const requirement = windows.requirements !== null ? windowsRequirementLine(windows.requirements, m.platforms) : (windows.deviceNames[0] ?? 'Windows');
+
+    return `${requirement}; ${windows.architectures.join(', ')}`;
 }
 
 function linuxRequirements(linux: LinuxProp, m: Messages): string {
@@ -43,10 +50,10 @@ function linuxRequirements(linux: LinuxProp, m: Messages): string {
 
 // `softwareVersion` only from a release source that answered. No `offers` on the Mac app (this page shows no price),
 // no file size, and no BreadcrumbList, because the page shows no breadcrumbs.
-function downloadJsonLd({ baseUrl, inLanguage, m, fmt, path, content, release, mac, ios, linux, links, featuredEngines }: JsonLdInput): JsonLdGraph {
+function downloadJsonLd({ baseUrl, inLanguage, m, fmt, path, content, release, mac, ios, windows, linux, links, featuredEngines }: JsonLdInput): JsonLdGraph {
     const context = { baseUrl, inLanguage };
     const pageUrl = absoluteUrl(baseUrl, path('/download'));
-    const deviceNames = [...mac.deviceNames, ...(linux?.deviceNames ?? []), ...(ios?.deviceNames ?? [])];
+    const deviceNames = [...mac.deviceNames, ...(windows?.deviceNames ?? []), ...(linux?.deviceNames ?? []), ...(ios?.deviceNames ?? [])];
     const live = release.source !== 'unavailable' && release.version !== null;
 
     return graph([
@@ -71,6 +78,18 @@ function downloadJsonLd({ baseUrl, inLanguage, m, fmt, path, content, release, m
                 licenseUrl: links.license,
                 version: live ? release.version : null,
                 downloadUrl: pageUrl,
+            }),
+        windows !== null &&
+            windows.appInstaller !== null &&
+            links.license !== null &&
+            windowsAppNode(context, {
+                alternateName: m.seo.windowsApp.alternateName,
+                operatingSystem: windows.deviceNames[0] ?? 'Windows',
+                requirements: windowsRequirements(windows, m),
+                installUrl: `${pageUrl}#windows`,
+                licenseUrl: links.license,
+                currency: PRICING.currency,
+                version: windows.release?.version ?? null,
             }),
         linux !== null &&
             links.license !== null &&
@@ -98,9 +117,9 @@ function downloadJsonLd({ baseUrl, inLanguage, m, fmt, path, content, release, m
 }
 
 // `/download` in every locale (sitemap §A.1, §E.5; design-system §8.7): the release and the one action for the reader's
-// machine, then a band per platform with everything shown, Windows in one line, and the older releases. Every download is
-// a server-rendered link; nothing starts on its own.
-export default function Download({ content, release, mac, ios, linux, unreleased, links, featuredEngines }: DownloadPageProps) {
+// machine, then a band per platform with everything shown, any platform not yet released in one line, and the older
+// releases. Every download is a server-rendered link; nothing starts on its own.
+export default function Download({ content, release, mac, ios, windows, linux, unreleased, links, featuredEngines }: DownloadPageProps) {
     const { canonicalBaseUrl } = usePage().props;
     const { locale, m, fmt, path } = useI18n();
     useRevealOnScroll('main > section:not(#top)');
@@ -132,13 +151,14 @@ export default function Download({ content, release, mac, ios, linux, unreleased
                     release,
                     mac,
                     ios,
+                    windows,
                     linux,
                     links,
                     featuredEngines,
                 })}
             />
 
-            <DownloadHero content={content} release={release} mac={mac} linux={linux} ios={ios} />
+            <DownloadHero content={content} release={release} mac={mac} windows={windows} linux={linux} ios={ios} />
 
             {/* Security's "Download and updates" lands here; each band says how its platform updates. */}
             <BandFrame id="mac" also={['updates']} title={mac.deviceNames[0] ?? 'Mac'}>
@@ -163,6 +183,55 @@ export default function Download({ content, release, mac, ios, linux, unreleased
                     </div>
                 )}
             </BandFrame>
+
+            {windows !== null && windows.appInstaller !== null && (
+                // `#other-platforms` said "Windows is coming later"; once every platform ships, its links land here.
+                <BandFrame id="windows" also={unreleasedNames.length === 0 ? ['other-platforms'] : []} title={windows.deviceNames[0] ?? 'Windows'}>
+                    {windows.requirements !== null && (
+                        <p className={BAND_TEXT}>
+                            {fmt(content.windows.text, {
+                                requirement: windowsRequirementLine(windows.requirements, m.platforms),
+                                architectures: joinList(windows.architectures, m.download.orList),
+                            })}
+                        </p>
+                    )}
+                    <div className="mt-6">
+                        <WindowsDownload href={windows.appInstaller} variant="secondary" location="download-page-appinstaller" caption={content.windows.open} />
+                    </div>
+                    {windows.winget !== null && (
+                        <div className="mt-10">
+                            <h3 className={METHOD_TITLE}>{content.windows.winget}</h3>
+                            <CommandBlock
+                                className="mt-3"
+                                lines={[windows.winget.command]}
+                                title={m.download.homebrew.terminal}
+                                label={fmt(m.download.linux.commands, { method: content.windows.winget })}
+                                onCopied={() => trackDownload('download-page-winget', 'windows')}
+                            />
+                        </div>
+                    )}
+                    <ul className={`mt-8 space-y-3 ${BAND_NOTES}`}>
+                        {windows.betaAppInstaller !== null && (
+                            <li>
+                                <TextLink href={windows.betaAppInstaller} kind="standalone" onClick={() => trackDownload('download-page-appinstaller-beta', 'windows')}>
+                                    {content.windows.beta}
+                                </TextLink>
+                            </li>
+                        )}
+                        <li>
+                            <TextLink
+                                href={windows.release?.releaseUrl ?? windows.releasesUrl}
+                                kind="standalone"
+                                external
+                                hrefLang="en"
+                                onClick={() => trackDownload('download-page-files', 'windows')}
+                            >
+                                {content.windows.packages}
+                            </TextLink>
+                        </li>
+                    </ul>
+                </BandFrame>
+            )}
 
             {linux !== null && (
                 <BandFrame
@@ -225,7 +294,7 @@ export default function Download({ content, release, mac, ios, linux, unreleased
                         </div>
                         {/* For a desktop reader with a phone at hand; never on the phone itself. */}
                         {store !== null && (
-                            <div data-device="mac linux other" className="hidden sm:block">
+                            <div data-device="mac windows linux other" className="hidden sm:block">
                                 <QrCode value={store} className="size-28" />
                             </div>
                         )}
