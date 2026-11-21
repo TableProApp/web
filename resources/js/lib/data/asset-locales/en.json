@@ -853,5 +853,45 @@
         "caption": {
             "en": "The connection dialog keeps TLS and SSH tunnel settings together."
         }
+    },
+    "blog-tablepro-0-88-performance-1": {
+        "alt": {
+            "en": "A bar chart of six tasks timed on TablePro 0.87.0 in gray and 0.88 beta in orange, from a PostgreSQL dump import at 137.5 s against 8.59 s down to opening a PostgreSQL table at 2,114 ms against 1,287 ms, with the speedup of each row, from 16x to 1.6x, on the right."
+        },
+        "caption": {
+            "en": "Every task is faster on 0.88, from 1.6 times for opening a PostgreSQL table to 16 times for a dump import."
+        }
+    },
+    "blog-tablepro-0-88-performance-2": {
+        "alt": {
+            "en": "A round-trip diagram of SELECT * FROM orders on MySQL 200 ms away, where 0.87.0 on the left sends SET SQL_SELECT_LIMIT, USE `shop`, SET SQL_SELECT_LIMIT = 10001 and the SELECT one at a time for 4 round trips and 830 ms, and 0.88 beta on the right sends the limit and the SELECT together for 1 round trip and 214 ms."
+        },
+        "caption": {
+            "en": "Without the USE, the limit and the query share one round trip instead of taking four."
+        }
+    },
+    "blog-tablepro-0-88-performance-3": {
+        "alt": {
+            "en": "Two TablePro windows side by side on the orders table of a MySQL connection named Shop, 0.87.0 on the left and 0.88 beta on the right, each opening the table and paging from page 1 to page 4 of 100, 1,000 rows at a time."
+        },
+        "caption": {
+            "en": "With one round trip per page instead of two, 0.88 beta gets to each page first."
+        }
+    },
+    "blog-tablepro-0-88-performance-4": {
+        "alt": {
+            "en": "Two TablePro import sheets side by side for src-dump.sql, 59 KB and 642 statements, with Wrap in transaction on, 0.87.0 on the left and 0.88 beta on the right under a timer at 8x speed, where 0.88 beta shows Import completed after 4.39 seconds while 0.87.0 stays at 0 of 642 statements until it completes after 131.97 seconds."
+        },
+        "caption": {
+            "en": "The same 642-statement dump, 200 ms away: 0.88 finishes in seconds, and 0.87 takes over two minutes."
+        }
+    },
+    "blog-tablepro-0-88-performance-5": {
+        "alt": {
+            "en": "Two TablePro export sheets side by side exporting the events table of 200,000 rows from SQLite to CSV, 0.87.0 on the left and 0.88 beta on the right, where 0.88 beta shows Export completed while 0.87.0 is still counting rows, and then both show Export completed."
+        },
+        "caption": {
+            "en": "0.88 finishes the same 200,000-row export while 0.87 is still writing rows."
+        }
     }
 }
