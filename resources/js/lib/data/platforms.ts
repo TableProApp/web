@@ -93,7 +93,7 @@ export interface MacPlatform extends ApplePlatformBase {
     id: 'mac';
     architectures: MacArchitecture[];
     universalBinary: boolean;
-    // The DMG file name, with `{version}` for the release version.
+    // The DMG file name, with `{version}` and `{arch}`.
     assetTemplate: string;
     // The oldest version any channel still serves.
     floorVersion: string;

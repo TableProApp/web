@@ -79,7 +79,7 @@ function downloadHeroFor(Dom\HTMLDocument $document, string $device): array
     return ['title' => $shown('h1'), 'lead' => $shown('h1 + p'), 'action' => $shown('h1 + p + div')];
 }
 
-it('renders the stored release with its universal DMG, named by major and minor', function (): void {
+it('renders the stored release with a DMG per architecture, named by major and minor', function (): void {
     downloadFakeRelease();
 
     get('/download')
@@ -90,12 +90,27 @@ it('renders the stored release with its universal DMG, named by major and minor'
             ->where('release.version', '0.77.0')
             ->where('release.shortVersion', '0.77')
             ->where('release.publishedAtFormatted', 'October 2, 2026')
-            ->where('release.asset.name', 'TablePro-0.77.0.dmg')
-            ->where('release.asset.url', 'https://github.com/TableProApp/TablePro/releases/download/v0.77.0/TablePro-0.77.0.dmg')
-            ->where('mac.universal', true)
+            ->where('release.assets.arm64.name', 'TablePro-0.77.0-arm64.dmg')
+            ->where('release.assets.arm64.url', 'https://github.com/TableProApp/TablePro/releases/download/v0.77.0/TablePro-0.77.0-arm64.dmg')
+            ->where('release.assets.x86_64.name', 'TablePro-0.77.0-x86_64.dmg')
+            ->where('release.assets.x86_64.url', 'https://github.com/TableProApp/TablePro/releases/download/v0.77.0/TablePro-0.77.0-x86_64.dmg')
+            ->missing('release.assets.universal')
             ->where('mac.homebrewCommand', 'brew install --cask tablepro')
             ->where('ios.shortVersion', '1.0')
             ->where('ios.publishedAtFormatted', 'September 22, 2026'));
+});
+
+it('offers the universal DMG alone for a release that carries none per architecture', function (): void {
+    downloadFakeRelease(githubUniversalReleasePayload());
+
+    get('/download')
+        ->assertOk()
+        ->assertInertia(fn(AssertableInertia $page) => $page
+            ->where('release.version', '0.77.0')
+            ->where('release.assets.universal.name', 'TablePro-0.77.0.dmg')
+            ->where('release.assets.universal.url', 'https://github.com/TableProApp/TablePro/releases/download/v0.77.0/TablePro-0.77.0.dmg')
+            ->missing('release.assets.arm64')
+            ->missing('release.assets.x86_64'));
 });
 
 it('answers without waiting on GitHub when nothing is stored, and the next page has the release', function (): void {
@@ -122,7 +137,8 @@ it('falls back to the latest-release page, with no version, when no source answe
             ->where('release.source', 'unavailable')
             ->where('release.version', null)
             ->where('release.shortVersion', null)
-            ->where('release.asset.url', 'https://github.com/TableProApp/TablePro/releases/latest'));
+            ->where('release.assets', [])
+            ->where('release.releaseUrl', 'https://github.com/TableProApp/TablePro/releases/latest'));
 });
 
 it('lists a platform as unreleased until it ships', function (): void {
@@ -235,8 +251,8 @@ it('shows each machine its own release and one action, and any other machine a s
         ->and(array_map(fn(array $hero): int => count($hero['title']) + count($hero['lead']) + count($hero['action']), [$mac, $linux, $ios, $other]))->toBe([3, 3, 3, 3])
         ->and(downloadText($mac['title'][0]))->toBe('TablePro 0.77')
         ->and(downloadText($mac['lead'][0]))->toStartWith('Released October 2, 2026.')
-        ->and($mac['action'][0]->querySelector('a')?->getAttribute('href'))->toBe('https://github.com/TableProApp/TablePro/releases/download/v0.77.0/TablePro-0.77.0.dmg')
-        ->and(downloadText($mac['action'][0]))->toContain('Universal app. Requires macOS 13 Ventura or later.')
+        ->and($mac['action'][0]->querySelector('a')?->getAttribute('href'))->toBe('https://github.com/TableProApp/TablePro/releases/download/v0.77.0/TablePro-0.77.0-arm64.dmg')
+        ->and(downloadText($mac['action'][0]))->toContain('Requires macOS 13 Ventura or later.')->not->toContain('Universal app')
         ->and(downloadText($linux['title'][0]))->toBe('TablePro 0.1 Beta')
         ->and(downloadText($linux['lead'][0]))->toStartWith('Released November 7, 2026.')
         ->and($linux['action'][0]->querySelector('a')?->getAttribute('href'))->toBe('#linux')
@@ -247,6 +263,30 @@ it('shows each machine its own release and one action, and any other machine a s
         ->and($other['action'][0]->querySelector('a'))->toBeNull()
         ->and(downloadText($other['action'][0]))->toBe('TablePro runs on Mac, Linux, iPhone and iPad.')
         ->and((string) $document->querySelector('main')?->textContent)->not->toContain('Your download has started');
+})->group('ssr');
+
+it('asks for the Mac’s chip, Apple silicon first, when a release carries a DMG per architecture', function (): void {
+    downloadFakeRelease();
+    $document = downloadDocument();
+
+    foreach ([downloadHeroFor($document, 'mac')['action'][0], $document->getElementById('mac')] as $action) {
+        $chips = iterator_to_array($action->querySelectorAll('fieldset input[type="radio"]'));
+
+        expect(array_map(fn(Dom\Element $chip): array => [$chip->getAttribute('value'), $chip->hasAttribute('checked'), downloadText($chip->parentElement)], $chips))
+            ->toBe([['arm64', true, 'Apple silicon'], ['x86_64', false, 'Intel']])
+            ->and($action->querySelector('a[href$=".dmg"]')?->getAttribute('href'))->toEndWith('/TablePro-0.77.0-arm64.dmg');
+    }
+})->group('ssr');
+
+it('shows one button and the Universal caption for a release with a universal DMG', function (): void {
+    downloadFakeRelease(githubUniversalReleasePayload());
+    $document = downloadDocument();
+    $mac = downloadHeroFor($document, 'mac');
+
+    expect($mac['action'][0]->querySelector('a')?->getAttribute('href'))->toBe('https://github.com/TableProApp/TablePro/releases/download/v0.77.0/TablePro-0.77.0.dmg')
+        ->and(downloadText($mac['action'][0]))->toContain('Universal app. Requires macOS 13 Ventura or later.')
+        ->and($document->querySelector('main fieldset'))->toBeNull()
+        ->and($document->querySelector('#mac a[href$="TablePro-0.77.0.dmg"]'))->not->toBeNull();
 })->group('ssr');
 
 it('hides every hero variant but the reader’s machine before first paint, a Mac with no class', function (): void {
@@ -303,7 +343,7 @@ it('offers the DMG and Homebrew on the Mac band, and no checksum anywhere', func
     downloadFakeRelease(githubReleasePayloadWithDigest(str_repeat('a1', 32)));
     $document = downloadDocument();
 
-    expect($document->querySelector('#mac a[href$="TablePro-0.77.0.dmg"]'))->not->toBeNull()
+    expect($document->querySelector('#mac a[href$="TablePro-0.77.0-arm64.dmg"]'))->not->toBeNull()
         ->and(downloadText($document->querySelector('#mac pre code')))->toBe('brew install --cask tablepro')
         ->and(downloadText($document->querySelector('#mac p')))->toBe('Requires macOS 13 Ventura or later, on Apple silicon or Intel. TablePro updates itself.')
         ->and((string) $document->querySelector('main')?->textContent)->not->toContain('SHA-256')

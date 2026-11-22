@@ -1,14 +1,12 @@
 // The props DownloadController sends. The copy's shape is the English file's; TranslationsTest holds the other locales to it.
-import type { Requirements } from '@/lib/data/platforms';
+import type { MacArchitecture, Requirements } from '@/lib/data/platforms';
 
-export type { Requirements };
+export type { MacArchitecture, Requirements };
 
 export type DownloadContent = typeof import('@data/content/en/download.json');
 
 export interface ReleaseAsset {
-    // Null when no release source answered.
-    name: string | null;
-    // GitHub's latest-release page when no release source answered.
+    name: string;
     url: string;
     bytes: number | null;
     sha256: string | null;
@@ -21,7 +19,9 @@ export interface ReleaseProp {
     publishedAt: string | null;
     // Formatted in PHP, so SSR and the browser agree.
     publishedAtFormatted: string | null;
-    asset: ReleaseAsset;
+    // A DMG per architecture, or `universal` alone for a release that shipped one DMG for both. Empty when no release
+    // source answered, and the button opens `releaseUrl`, GitHub's latest-release page.
+    assets: Partial<Record<MacArchitecture | 'universal', ReleaseAsset>>;
     releaseUrl: string;
     releasesUrl: string;
     source: 'github' | 'appcast' | 'unavailable';
@@ -30,8 +30,6 @@ export interface ReleaseProp {
 export interface MacProp {
     deviceNames: string[];
     requirements: Requirements | null;
-    // One DMG for Apple silicon and Intel.
-    universal: boolean;
     homebrewCommand: string | null;
 }
 

@@ -10,9 +10,10 @@ use JsonException;
  *
  * The file is edited by hand (architecture §1.8); this class only reads it,
  * for the release service, `release:check` and the download page. It never
- * types a fact of its own except the DMG naming pattern, which is a fallback
- * for a file that names none: since 0.82.0 the app's release workflow uploads
- * one universal `TablePro-{version}.dmg`.
+ * types a fact of its own except the DMG naming patterns: a DMG per
+ * architecture, `TablePro-{version}-{arch}.dmg`, for a file that names none,
+ * and the single universal `TablePro-{version}.dmg` that 0.82.0 started
+ * shipping instead.
  *
  * A missing or unreadable file reads as empty rather than throwing, so a
  * broken data file degrades the download page to its GitHub fallback instead
@@ -24,7 +25,9 @@ use JsonException;
  */
 class PlatformCatalog
 {
-    private const DEFAULT_ASSET_TEMPLATE = 'TablePro-{version}.dmg';
+    private const DEFAULT_ASSET_TEMPLATE = 'TablePro-{version}-{arch}.dmg';
+
+    private const UNIVERSAL_ASSET_TEMPLATE = 'TablePro-{version}.dmg';
 
     /**
      * @var list<array<string, mixed>>|null
@@ -121,21 +124,14 @@ class PlatformCatalog
         return null;
     }
 
-    /**
-     * The DMG file name for one Mac version.
-     */
-    public function macAssetName(string $version): string
+    public function macAssetName(string $version, string $arch): string
     {
         $template = $this->find('mac')['assetTemplate'] ?? null;
 
-        return strtr(is_string($template) && $template !== '' ? $template : self::DEFAULT_ASSET_TEMPLATE, ['{version}' => $version]);
+        return strtr(is_string($template) && $template !== '' ? $template : self::DEFAULT_ASSET_TEMPLATE, ['{version}' => $version, '{arch}' => $arch]);
     }
 
-    /**
-     * The DMG's download URL for one Mac version, from the `dmg` destination's
-     * `urlTemplate`, or null when the file names none.
-     */
-    public function macAssetUrl(string $version): ?string
+    public function macAssetUrl(string $version, string $arch): ?string
     {
         $template = $this->destination('mac', 'dmg')['urlTemplate'] ?? null;
 
@@ -143,7 +139,28 @@ class PlatformCatalog
             return null;
         }
 
-        return strtr($template, ['{version}' => $version]);
+        return strtr($template, ['{version}' => $version, '{arch}' => $arch]);
+    }
+
+    /**
+     * @return array<string, string>
+     */
+    public function macAssetNames(string $version): array
+    {
+        $names = [];
+
+        foreach ($this->find('mac')['architectures'] ?? [] as $arch) {
+            if (is_string($arch) && $arch !== '') {
+                $names[$arch] = $this->macAssetName($version, $arch);
+            }
+        }
+
+        return $names;
+    }
+
+    public function macUniversalAssetName(string $version): string
+    {
+        return strtr(self::UNIVERSAL_ASSET_TEMPLATE, ['{version}' => $version]);
     }
 
     /**

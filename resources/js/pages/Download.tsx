@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { usePage } from '@inertiajs/react';
 import { BAND_NOTES, BAND_TEXT } from '@/components/databases/engine-band';
 import CommandBlock from '@/components/download/command-block';
@@ -6,7 +7,7 @@ import { requirementLine } from '@/components/download/format';
 import { distributionFloor } from '@/components/download/linux-text';
 import MacDownload from '@/components/download/mac-download';
 import QrCode from '@/components/download/qr-code';
-import type { DownloadPageProps, LinuxMethod, LinuxProp } from '@/components/download/types';
+import type { DownloadPageProps, LinuxMethod, LinuxProp, MacArchitecture } from '@/components/download/types';
 import { BandFrame } from '@/components/features/feature-band';
 import { AlsoAnchors } from '@/components/features/feature-part';
 import SEOHead from '@/components/seo/seo-head';
@@ -103,6 +104,8 @@ function downloadJsonLd({ baseUrl, inLanguage, m, fmt, path, content, release, m
 export default function Download({ content, release, mac, ios, linux, unreleased, links, featuredEngines }: DownloadPageProps) {
     const { canonicalBaseUrl } = usePage().props;
     const { locale, m, fmt, path } = useI18n();
+    // One choice for the page, so the hero and the Mac band never offer different files.
+    const [architecture, setArchitecture] = useState<MacArchitecture>('arm64');
     useRevealOnScroll('main > section:not(#top)');
 
     const store = ios !== null ? ios.appStoreUrl : null;
@@ -138,7 +141,15 @@ export default function Download({ content, release, mac, ios, linux, unreleased
                 })}
             />
 
-            <DownloadHero content={content} release={release} mac={mac} linux={linux} ios={ios} />
+            <DownloadHero
+                content={content}
+                release={release}
+                mac={mac}
+                linux={linux}
+                ios={ios}
+                architecture={architecture}
+                onArchitectureChange={setArchitecture}
+            />
 
             {/* Security's "Download and updates" lands here; each band says how its platform updates. */}
             <BandFrame id="mac" also={['updates']} title={mac.deviceNames[0] ?? 'Mac'}>
@@ -148,7 +159,14 @@ export default function Download({ content, release, mac, ios, linux, unreleased
                     </p>
                 )}
                 <div className="mt-6">
-                    <MacDownload content={content} release={release} variant="secondary" location="download-page-dmg" />
+                    <MacDownload
+                        content={content}
+                        release={release}
+                        variant="secondary"
+                        location="download-page-dmg"
+                        architecture={architecture}
+                        onArchitectureChange={setArchitecture}
+                    />
                 </div>
                 {mac.homebrewCommand !== null && (
                     <div className="mt-10">
