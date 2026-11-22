@@ -1081,7 +1081,7 @@ against the limit, so ETags would save nothing; the cost is one call an hour bes
 
 **`php artisan release:check`** (new command, `make:command`, run by hand). It compares the GitHub latest release,
 the appcast top item, `formulae.brew.sh/api/cask/tablepro.json` and the iTunes lookup against `platforms.json`
-(`release`, `floorVersion`, `ios.release`). It prints any drift and exits
+(`release`, `floorVersion`, `ios.release`), and the GitHub release's DMGs against `universalBinary`. It prints any drift and exits
 non-zero on a mismatch. It is never scheduled. It runs at final verification because spec §0 says to re-check the
 release state. Its tests use `Http::fake`.
 
