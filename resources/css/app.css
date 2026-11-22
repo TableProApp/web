@@ -481,6 +481,12 @@ html.other-device [data-device]:not([data-device~='other']) {
   display: none;
 }
 
+/* /download's DMG link for the chip checked beside it (components/download/mac-download.tsx), before hydration too. */
+.mac-download:has(input[value='arm64']:checked) [data-arch]:not([data-arch='arm64']),
+.mac-download:has(input[value='x86_64']:checked) [data-arch]:not([data-arch='x86_64']) {
+  display: none;
+}
+
 /* The DMG action giving way to the install steps after a click. */
 @media (prefers-reduced-motion: no-preference) {
   .download-started {

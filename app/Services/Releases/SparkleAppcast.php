@@ -17,8 +17,10 @@ use SimpleXMLElement;
  * Stable and beta share the feed; a beta item carries `sparkle:channel`. The
  * current release is the item with no channel and the highest
  * `sparkle:version` (the build number), wherever it sits in the feed. The
- * enclosures are the update archives, never the DMG, so the DMG name comes
- * from `platforms.json` rather than from the feed.
+ * enclosures are the update archives, never the DMG. Their names still tell
+ * the release's shape: a build per architecture has an item per architecture
+ * at the same build (`TablePro-0.88.0-arm64.tar.xz`, `-x86_64.tar.xz`), a
+ * universal build one item (`TablePro-0.87.0.tar.xz`).
  */
 class SparkleAppcast
 {
@@ -36,7 +38,7 @@ class SparkleAppcast
     /**
      * The current stable item of the live feed, or null when it cannot be read.
      *
-     * @return array{version: string, publishedAt: string|null, minimumSystemVersion: string|null}|null
+     * @return array{version: string, publishedAt: string|null, minimumSystemVersion: string|null, archives: list<string>}|null
      */
     public function latest(): ?array
     {
@@ -55,9 +57,10 @@ class SparkleAppcast
 
     /**
      * The stable item with the highest build in a feed document, or null when
-     * it holds none.
+     * it holds none. `archives` are the enclosure file names of every stable
+     * item at that build.
      *
-     * @return array{version: string, publishedAt: string|null, minimumSystemVersion: string|null}|null
+     * @return array{version: string, publishedAt: string|null, minimumSystemVersion: string|null, archives: list<string>}|null
      */
     public static function parse(string $xml): ?array
     {
@@ -80,6 +83,7 @@ class SparkleAppcast
 
         $latest = null;
         $latestBuild = -1;
+        $archives = [];
 
         foreach ($document->channel->item as $item) {
             $sparkle = $item->children(self::SPARKLE_NAMESPACE);
@@ -95,12 +99,23 @@ class SparkleAppcast
                 $version = trim((string) $item->title);
             }
 
-            if (preg_match('/^\d+$/', $build) !== 1 || preg_match('/^\d+(\.\d+)*$/', $version) !== 1 || (int) $build <= $latestBuild) {
+            if (preg_match('/^\d+$/', $build) !== 1 || preg_match('/^\d+(\.\d+)*$/', $version) !== 1 || (int) $build < $latestBuild) {
+                continue;
+            }
+
+            $archive = self::archive($item);
+
+            if ((int) $build === $latestBuild) {
+                if ($archive !== null && $latest !== null && $latest['version'] === $version) {
+                    $archives[] = $archive;
+                }
+
                 continue;
             }
 
             $minimum = trim((string) $sparkle->minimumSystemVersion);
             $latestBuild = (int) $build;
+            $archives = $archive !== null ? [$archive] : [];
             $latest = [
                 'version' => $version,
                 'publishedAt' => self::date(trim((string) $item->pubDate)),
@@ -108,7 +123,15 @@ class SparkleAppcast
             ];
         }
 
-        return $latest;
+        return $latest !== null ? [...$latest, 'archives' => $archives] : null;
+    }
+
+    private static function archive(SimpleXMLElement $item): ?string
+    {
+        $path = parse_url(trim((string) $item->enclosure['url']), PHP_URL_PATH);
+        $name = is_string($path) ? rawurldecode(basename($path)) : '';
+
+        return $name !== '' ? $name : null;
     }
 
     /**

@@ -508,7 +508,8 @@ positioning tokens are derived from these values, never typed:
 - Linux's repositories match its channel (`-beta` names on beta), every command starts with `sudo` or `flatpak`, and
   every package template names `{version}` and `{arch}`.
 - The Mac `minVersion` is `13.0` with `releaseName` Ventura. Nothing in the file says 14 or Sonoma.
-- `universalBinary` is false.
+- The Mac DMG templates name `{version}` and `{arch}`. `universalBinary` describes the recorded `release` and flips in
+  the same edit that records the first release with a DMG per architecture.
 - The `iosEngines` ids exist in `engines.json` with `ios.inPicker`.
 - The App Store URL has no country segment.
 - `floorVersion` ≤ `release.version`.
@@ -1065,8 +1066,8 @@ The values are design-system §3.1-3.3. This section only places the files.
 
 | Step | Behaviour |
 |---|---|
-| Primary | `GET https://api.github.com/repos/{services.github.repo}/releases/latest`. Plugin releases are published with `--latest=false` (`build-plugin.yml:325`), so "latest" is always the app. Accept the release only if it has both `TablePro-{v}-arm64.dmg` and `-x86_64.dmg` and is neither draft nor prerelease. Output: `{version, publishedAt (Y-m-d), publishedAtFormatted (isoFormat LL in the request locale), assets: {arm64: {url, bytes}, x86_64: {url, bytes}}, releasesUrl, source: 'github'}` |
-| Fallback | `GET https://raw.githubusercontent.com/TableProApp/TablePro/main/appcast.xml` (not subject to the API rate limit). Parse the top `<item>` (`sparkle:shortVersionString`, `pubDate`, `minimumSystemVersion`). The DMG URLs come from `platforms.json` `assetTemplate`; the naming has been stable from 0.73 to 0.77 and is enforced by `build.yml:254-270`. `source: 'appcast'`, `bytes: null` |
+| Primary | `GET https://api.github.com/repos/{services.github.repo}/releases/latest`. Plugin releases are published with `--latest=false` (`build-plugin.yml:325`), so "latest" is always the app. Accept the release only if it has both `TablePro-{v}-arm64.dmg` and `-x86_64.dmg`, or else the universal `TablePro-{v}.dmg` that 0.82.0 to 0.87.0 shipped, and is neither draft nor prerelease. Output: `{version, publishedAt (Y-m-d), publishedAtFormatted (isoFormat LL in the request locale), assets: {arm64: {url, bytes}, x86_64: {url, bytes}} or {universal: {url, bytes}}, releasesUrl, source: 'github'}` |
+| Fallback | `GET https://updates.tablepro.app/appcast.xml` (not subject to the API rate limit). Take the stable item with the highest `sparkle:version` (`sparkle:shortVersionString`, `pubDate`, `minimumSystemVersion`). For the last good copy's version, its DMGs. Otherwise the update archives of that build's items give the shape, since a DMG and its archive share a name up to the extension: `TablePro-{v}-arm64.tar.xz` and `-x86_64.tar.xz` mean a DMG per architecture, built from `platforms.json` `assetTemplate`; `TablePro-{v}.tar.xz` the universal DMG. Archives matching neither count as no answer. `source: 'appcast'`, `bytes: null` |
 | Caching | A fresh value is cached for 15 minutes under `releases:mac`. Every success also writes `releases:mac:last-good` with `Cache::forever`. On failure, serve last-good and cache a failure marker for 5 minutes, so a broken API is not retried on every request. Laravel's `remember` never stores `null` (`Repository.php:585-590`), which is today's retry storm. With no last-good copy the result is `source: 'unavailable'`, both buttons go to `https://github.com/TableProApp/TablePro/releases/latest`, and no version is shown |
 | Rate | At most 4 GitHub calls per hour (today the worst case is 61 per hour against the unauthenticated limit of 60) |
 | Dropped | `countLast30Days` and the windowed download total (it reported floors of a shrinking window). Any stats come back only with a stated method |
@@ -1080,7 +1081,7 @@ against the limit, so ETags would save nothing; the cost is one call an hour bes
 
 **`php artisan release:check`** (new command, `make:command`, run by hand). It compares the GitHub latest release,
 the appcast top item, `formulae.brew.sh/api/cask/tablepro.json` and the iTunes lookup against `platforms.json`
-(`release`, `floorVersion`, `ios.release`). It prints any drift and exits
+(`release`, `floorVersion`, `ios.release`), and the GitHub release's DMGs against `universalBinary`. It prints any drift and exits
 non-zero on a mismatch. It is never scheduled. It runs at final verification because spec §0 says to re-check the
 release state. Its tests use `Http::fake`.
 

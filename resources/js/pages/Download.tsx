@@ -1,12 +1,14 @@
+import { useEffect, useRef, useState } from 'react';
 import { usePage } from '@inertiajs/react';
 import { BAND_NOTES, BAND_TEXT } from '@/components/databases/engine-band';
 import CommandBlock from '@/components/download/command-block';
 import DownloadHero, { IosAction } from '@/components/download/download-hero';
 import { requirementLine } from '@/components/download/format';
 import { distributionFloor } from '@/components/download/linux-text';
+import { reportedArchitecture, type ArchitectureHints } from '@/components/download/mac-asset';
 import MacDownload from '@/components/download/mac-download';
 import QrCode from '@/components/download/qr-code';
-import type { DownloadPageProps, LinuxMethod, LinuxProp } from '@/components/download/types';
+import type { DownloadPageProps, LinuxMethod, LinuxProp, MacArchitecture } from '@/components/download/types';
 import { BandFrame } from '@/components/features/feature-band';
 import { AlsoAnchors } from '@/components/features/feature-part';
 import SEOHead from '@/components/seo/seo-head';
@@ -103,7 +105,24 @@ function downloadJsonLd({ baseUrl, inLanguage, m, fmt, path, content, release, m
 export default function Download({ content, release, mac, ios, linux, unreleased, links, featuredEngines }: DownloadPageProps) {
     const { canonicalBaseUrl } = usePage().props;
     const { locale, m, fmt, path } = useI18n();
+    // One choice for the page, so the hero and the Mac band never offer different files.
+    const [architecture, setArchitecture] = useState<MacArchitecture>('arm64');
+    const picked = useRef(false);
+    const pick = (choice: MacArchitecture): void => {
+        picked.current = true;
+        setArchitecture(choice);
+    };
     useRevealOnScroll('main > section:not(#top)');
+
+    // An Intel Mac on the Apple silicon DMG gets an app that will not open. The report arrives after hydration, so a
+    // chip the reader already picked wins.
+    useEffect(() => {
+        void reportedArchitecture((navigator as Navigator & { userAgentData?: ArchitectureHints }).userAgentData).then((reported) => {
+            if (reported !== null && !picked.current) {
+                setArchitecture(reported);
+            }
+        });
+    }, []);
 
     const store = ios !== null ? ios.appStoreUrl : null;
     const unreleasedNames = unreleased.filter((id): id is PlatformName => Object.hasOwn(m.platforms.names, id)).map((id) => m.platforms.names[id]);
@@ -138,7 +157,15 @@ export default function Download({ content, release, mac, ios, linux, unreleased
                 })}
             />
 
-            <DownloadHero content={content} release={release} mac={mac} linux={linux} ios={ios} />
+            <DownloadHero
+                content={content}
+                release={release}
+                mac={mac}
+                linux={linux}
+                ios={ios}
+                architecture={architecture}
+                onArchitectureChange={pick}
+            />
 
             {/* Security's "Download and updates" lands here; each band says how its platform updates. */}
             <BandFrame id="mac" also={['updates']} title={mac.deviceNames[0] ?? 'Mac'}>
@@ -148,7 +175,14 @@ export default function Download({ content, release, mac, ios, linux, unreleased
                     </p>
                 )}
                 <div className="mt-6">
-                    <MacDownload content={content} release={release} variant="secondary" location="download-page-dmg" />
+                    <MacDownload
+                        content={content}
+                        release={release}
+                        variant="secondary"
+                        location="download-page-dmg"
+                        architecture={architecture}
+                        onArchitectureChange={pick}
+                    />
                 </div>
                 {mac.homebrewCommand !== null && (
                     <div className="mt-10">

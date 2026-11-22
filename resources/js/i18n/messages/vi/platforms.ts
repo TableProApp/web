@@ -12,6 +12,7 @@ export default {
         x86_64: 'Intel',
         joiner: ' hoặc ',
     },
+    chip: 'Chip trên máy Mac của bạn',
     app: {
         mac: 'ứng dụng Mac',
         ios: 'ứng dụng cho iPhone và iPad',

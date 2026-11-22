@@ -34,7 +34,6 @@ class DownloadController extends Controller
             'release' => [...$release->toProps($locale), 'shortVersion' => $this->shortVersion($release->version)],
             'mac' => [
                 ...($platforms->summary('mac') ?? ['deviceNames' => [], 'requirements' => null]),
-                'universal' => ($platforms->find('mac')['universalBinary'] ?? false) === true,
                 'homebrewCommand' => $this->string($platforms->destination('mac', 'homebrew')['command'] ?? null),
             ],
             'ios' => $this->ios($platforms, $facts, $locale),

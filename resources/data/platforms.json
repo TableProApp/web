@@ -21,11 +21,11 @@
                 "x86_64"
             ],
             "universalBinary": true,
-            "assetTemplate": "TablePro-{version}.dmg",
+            "assetTemplate": "TablePro-{version}-{arch}.dmg",
             "destinations": [
                 {
                     "kind": "dmg",
-                    "urlTemplate": "https://github.com/TableProApp/TablePro/releases/download/v{version}/TablePro-{version}.dmg"
+                    "urlTemplate": "https://github.com/TableProApp/TablePro/releases/download/v{version}/TablePro-{version}-{arch}.dmg"
                 },
                 {
                     "kind": "homebrew",

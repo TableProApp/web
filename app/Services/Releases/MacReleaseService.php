@@ -15,14 +15,19 @@ use function Illuminate\Support\defer;
  * Primary source: GitHub's `releases/latest` for the app repository. Older
  * plugin releases share that repository but were published with
  * `--latest=false`, so "latest" is the app; a release is still accepted only
- * when it is neither a draft nor a prerelease and carries the DMG, named for
- * its own version. That rejects a plugin release that slipped through, and an
- * app release caught halfway through its upload.
+ * when it is neither a draft nor a prerelease and carries its DMGs, named for
+ * its own version: one per architecture, or else the one universal DMG a
+ * release shipped from 0.82.0. That rejects a plugin release that slipped
+ * through, and an app release caught halfway through its upload.
  *
- * Fallback: the current stable item of the Sparkle appcast, with the DMG name
- * and URL built from `platforms.json` (`assetTemplate`, and the `dmg`
- * destination's `urlTemplate`). Never the first item of the full releases
- * list, which plugin releases crowd.
+ * Fallback: the current stable item of the Sparkle appcast. Its DMGs are the
+ * ones the last good copy holds for the same version. Otherwise the item's
+ * update archives say which DMGs the release shipped, since a DMG and its
+ * archive share a name up to the extension: a DMG per architecture, built
+ * from `platforms.json` (`assetTemplate`, and the `dmg` destination's
+ * `urlTemplate`), or the universal one. An item whose archives match neither
+ * counts as no answer. Never the first item of the full releases list, which
+ * plugin releases crowd.
  *
  * **A request never waits for GitHub.** `release:refresh`, scheduled every 15
  * minutes (routes/console.php), calls the sources; a page only reads what it
@@ -227,9 +232,9 @@ class MacReleaseService
             return null;
         }
 
-        $asset = $this->findAsset($release['assets'] ?? [], $this->platforms->macAssetName($version));
+        $assets = $this->assets($release['assets'] ?? [], $version);
 
-        if ($asset === null) {
+        if ($assets === []) {
             return null;
         }
 
@@ -238,18 +243,13 @@ class MacReleaseService
         return new MacRelease(
             version: $version,
             publishedAt: $this->date($release['published_at'] ?? null),
-            asset: $asset,
+            assets: $assets,
             releaseUrl: is_string($htmlUrl) && str_starts_with($htmlUrl, 'https://') ? $htmlUrl : $this->tagUrl($version),
             releasesUrl: $this->releasesUrl(),
             source: MacRelease::SOURCE_GITHUB,
         );
     }
 
-    /**
-     * The release from the Sparkle appcast's current stable item, or null.
-     * Sizes and checksums are not in the feed (its enclosures are the update
-     * archives), so they stay null.
-     */
     public function fromAppcast(): ?MacRelease
     {
         $item = $this->appcast->latest();
@@ -259,18 +259,18 @@ class MacReleaseService
         }
 
         $version = $item['version'];
-        $name = $this->platforms->macAssetName($version);
+        $known = $this->lastGood();
+        // The last good copy has the sizes and checksums the feed lacks.
+        $assets = $known !== null && $known->version === $version ? $known->assets : $this->appcastAssets($version, $item['archives']);
+
+        if ($assets === []) {
+            return null;
+        }
 
         return new MacRelease(
             version: $version,
             publishedAt: $item['publishedAt'],
-            asset: [
-                'name' => $name,
-                'url' => $this->platforms->macAssetUrl($version)
-                    ?? 'https://github.com/' . $this->repo() . "/releases/download/v{$version}/" . rawurlencode($name),
-                'bytes' => null,
-                'sha256' => null,
-            ],
+            assets: $assets,
             releaseUrl: $this->tagUrl($version),
             releasesUrl: $this->releasesUrl(),
             source: MacRelease::SOURCE_APPCAST,
@@ -297,40 +297,82 @@ class MacReleaseService
     }
 
     /**
-     * The uploaded asset with exactly this name.
-     *
-     * @return array{name: string, url: string, bytes: int|null, sha256: string|null}|null
+     * @return array<string, array{name: string, url: string, bytes: int|null, sha256: string|null}>
      */
-    private function findAsset(mixed $assets, string $name): ?array
+    private function assets(mixed $assets, string $version): array
     {
-        if (! is_array($assets)) {
-            return null;
-        }
+        $byName = [];
 
-        foreach ($assets as $asset) {
-            if (! is_array($asset) || ($asset['name'] ?? null) !== $name) {
+        foreach (is_array($assets) ? $assets : [] as $asset) {
+            if (! is_array($asset) || ! is_string($asset['name'] ?? null) || ($asset['state'] ?? 'uploaded') !== 'uploaded') {
                 continue;
             }
 
             $url = $asset['browser_download_url'] ?? null;
-            $state = $asset['state'] ?? 'uploaded';
 
-            if (! is_string($url) || ! str_starts_with($url, 'https://') || $state !== 'uploaded') {
-                return null;
+            if (! is_string($url) || ! str_starts_with($url, 'https://')) {
+                continue;
             }
 
             $bytes = $asset['size'] ?? null;
             $digest = $asset['digest'] ?? null;
 
-            return [
-                'name' => $name,
+            $byName[$asset['name']] = [
+                'name' => $asset['name'],
                 'url' => $url,
                 'bytes' => is_int($bytes) && $bytes > 0 ? $bytes : null,
                 'sha256' => is_string($digest) && preg_match('/^sha256:([0-9a-f]{64})$/', $digest, $matches) === 1 ? $matches[1] : null,
             ];
         }
 
-        return null;
+        $names = $this->platforms->macAssetNames($version);
+        $found = array_filter(array_map(fn(string $name): ?array => $byName[$name] ?? null, $names));
+
+        // One architecture's DMG alone is a release still uploading, not one to offer.
+        if ($names !== [] && count($found) === count($names)) {
+            return $found;
+        }
+
+        $universal = $byName[$this->platforms->macUniversalAssetName($version)] ?? null;
+
+        return $universal !== null ? [MacRelease::UNIVERSAL => $universal] : [];
+    }
+
+    /**
+     * @param  list<string>  $archives
+     * @return array<string, array{name: string, url: string, bytes: null, sha256: null}>
+     */
+    private function appcastAssets(string $version, array $archives): array
+    {
+        $shipped = fn(string $dmg): bool => array_any($archives, fn(string $archive): bool => str_starts_with($archive, pathinfo($dmg, PATHINFO_FILENAME) . '.'));
+        $names = $this->platforms->macAssetNames($version);
+
+        if ($names !== [] && array_all($names, $shipped)) {
+            $assets = [];
+
+            foreach ($names as $arch => $name) {
+                $assets[$arch] = $this->builtAsset($version, $name, $this->platforms->macAssetUrl($version, $arch));
+            }
+
+            return $assets;
+        }
+
+        $universal = $this->platforms->macUniversalAssetName($version);
+
+        return $shipped($universal) ? [MacRelease::UNIVERSAL => $this->builtAsset($version, $universal, null)] : [];
+    }
+
+    /**
+     * @return array{name: string, url: string, bytes: null, sha256: null}
+     */
+    private function builtAsset(string $version, string $name, ?string $url): array
+    {
+        return [
+            'name' => $name,
+            'url' => $url ?? 'https://github.com/' . $this->repo() . "/releases/download/v{$version}/" . rawurlencode($name),
+            'bytes' => null,
+            'sha256' => null,
+        ];
     }
 
     private function date(mixed $timestamp): ?string

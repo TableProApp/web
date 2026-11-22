@@ -139,10 +139,13 @@ it('keeps the oldest Mac build served at or below the current release', function
         ->and(version_compare($mac['floorVersion'], $mac['release']['version'], '<='))->toBeTrue();
 });
 
-it('builds the DMG link from the version alone', function (): void {
-    $dmg = collect(platformsEntry('mac')['destinations'])->firstWhere('kind', 'dmg');
+it('builds a DMG link per architecture from the version', function (): void {
+    $mac = platformsEntry('mac');
+    $dmg = collect($mac['destinations'])->firstWhere('kind', 'dmg');
 
-    expect($dmg['urlTemplate'])->toContain('{version}')->not->toContain('{arch}');
+    expect($mac['architectures'])->toBe(['arm64', 'x86_64'])
+        ->and($mac['assetTemplate'])->toContain('{version}')->toContain('{arch}')
+        ->and($dmg['urlTemplate'])->toContain('/v{version}/')->toEndWith('/' . $mac['assetTemplate']);
 });
 
 it('links the App Store without a country segment', function (): void {

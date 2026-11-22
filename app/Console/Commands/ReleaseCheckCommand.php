@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Services\Releases\LinuxReleaseService;
+use App\Services\Releases\MacRelease;
 use App\Services\Releases\MacReleaseService;
 use App\Services\Releases\PlatformCatalog;
 use App\Services\Releases\SparkleAppcast;
@@ -19,7 +20,8 @@ use Illuminate\Support\Facades\Http;
  * (spec §0: "re-check before final verification"). It reads, bypassing every
  * cache:
  *
- * - GitHub `releases/latest` against `mac.release.version` and `publishedAt`,
+ * - GitHub `releases/latest` against `mac.release.version`, `publishedAt`
+ *   and `universalBinary` (one DMG for both architectures, or one each),
  *   and the Sparkle appcast against `mac.release.version` and
  *   `mac.requirements.minVersion`;
  * - the Homebrew cask API, and the lowest version of the three channels against
@@ -66,6 +68,7 @@ class ReleaseCheckCommand extends Command
         $github = $releases->fromGitHub();
         $this->compare('GitHub releases/latest', 'version', $expectedVersion, $github?->version);
         $this->compare('GitHub releases/latest', 'published', $this->string($mac['release']['publishedAt'] ?? null), $github?->publishedAt);
+        $this->compare('GitHub releases/latest', 'universalBinary', is_bool($mac['universalBinary'] ?? null) ? json_encode($mac['universalBinary']) : null, $github !== null ? json_encode(isset($github->assets[MacRelease::UNIVERSAL])) : null);
         $channelVersions[] = $github?->version;
 
         $item = $appcast->latest();

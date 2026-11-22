@@ -17,8 +17,8 @@ function bindReleaseFixturePlatforms(array $overrides = []): array
             'deviceNames' => ['Mac'],
             'requirements' => ['systems' => ['macOS'], 'minVersion' => '13.0', 'displayVersion' => '13', 'releaseName' => 'Ventura'],
             'architectures' => ['arm64', 'x86_64'],
-            'universalBinary' => true,
-            'assetTemplate' => 'TablePro-{version}.dmg',
+            'universalBinary' => false,
+            'assetTemplate' => 'TablePro-{version}-{arch}.dmg',
             'destinations' => [
                 ['kind' => 'dmg'],
                 ['kind' => 'homebrew', 'command' => 'brew install --cask tablepro'],
@@ -84,12 +84,28 @@ function githubReleasePayload(string $tag = 'v0.77.0', array $overrides = [], ?a
         'published_at' => '2026-10-02T04:15:45Z',
         'assets' => $assets ?? [
             githubAsset("OracleDriver-{$version}.zip", 10_224_221, $tag),
-            githubAsset("TablePro-{$version}-dSYMs.zip", 182_735_436, $tag),
-            githubAsset("TablePro-{$version}.dmg", 65_432_179, $tag),
-            githubAsset("TablePro-{$version}.tar.xz", 41_754_460, $tag),
+            githubAsset("TablePro-{$version}-arm64-dSYMs.zip", 91_367_718, $tag),
+            githubAsset("TablePro-{$version}-arm64.dmg", 32_943_352, $tag),
+            githubAsset("TablePro-{$version}-arm64.tar.xz", 20_877_230, $tag),
+            githubAsset("TablePro-{$version}-x86_64-dSYMs.zip", 91_367_718, $tag),
+            githubAsset("TablePro-{$version}-x86_64.dmg", 36_202_607, $tag),
+            githubAsset("TablePro-{$version}-x86_64.tar.xz", 20_877_230, $tag),
         ],
         ...$overrides,
     ];
+}
+
+// A release from before the DMG per architecture: one DMG for both.
+function githubUniversalReleasePayload(string $tag = 'v0.77.0', array $overrides = []): array
+{
+    $version = ltrim($tag, 'v');
+
+    return githubReleasePayload($tag, $overrides, [
+        githubAsset("OracleDriver-{$version}.zip", 10_224_221, $tag),
+        githubAsset("TablePro-{$version}-dSYMs.zip", 182_735_436, $tag),
+        githubAsset("TablePro-{$version}.dmg", 65_432_179, $tag),
+        githubAsset("TablePro-{$version}.tar.xz", 41_754_460, $tag),
+    ]);
 }
 
 function githubAsset(string $name, int $size, string $tag = 'v0.77.0', ?string $digest = null): array
@@ -106,7 +122,8 @@ function githubAsset(string $name, int $size, string $tag = 'v0.77.0', ?string $
 function githubReleasePayloadWithDigest(string $sha256): array
 {
     return githubReleasePayload(assets: [
-        githubAsset('TablePro-0.77.0.dmg', 65_432_179, digest: "sha256:{$sha256}"),
+        githubAsset('TablePro-0.77.0-arm64.dmg', 32_943_352, digest: "sha256:{$sha256}"),
+        githubAsset('TablePro-0.77.0-x86_64.dmg', 36_202_607, digest: "sha256:{$sha256}"),
     ]);
 }
 
@@ -117,9 +134,23 @@ function appcastBuild(string $version): int
     return (($major * 1000 + $minor) * 100 + $patch) * 100 + 99;
 }
 
-function appcastXml(string $version = '0.77.0', string $pubDate = 'Fri, 02 Oct 2026 04:15:25 +0000', string $minimum = '13.0'): string
+// `$universal`: the release shipped one build for both architectures, as 0.82.0 to 0.87.0 did, so it has one item.
+function appcastXml(string $version = '0.77.0', string $pubDate = 'Fri, 02 Oct 2026 04:15:25 +0000', string $minimum = '13.0', bool $universal = false): string
 {
     $build = appcastBuild($version);
+    $item = fn(string $archive, string $extra = ''): string => <<<XML
+                <item>
+                    <title>{$version}</title>
+                    <pubDate>{$pubDate}</pubDate>
+                    <sparkle:version>{$build}</sparkle:version>
+                    <sparkle:shortVersionString>{$version}</sparkle:shortVersionString>
+                    <sparkle:minimumSystemVersion>{$minimum}</sparkle:minimumSystemVersion>{$extra}
+                    <enclosure url="https://github.com/TableProApp/TablePro/releases/download/v{$version}/{$archive}" length="20877230" type="application/octet-stream"/>
+                </item>
+        XML;
+    $items = $universal
+        ? $item("TablePro-{$version}.tar.xz")
+        : $item("TablePro-{$version}-arm64.tar.xz", "\n                <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>") . "\n" . $item("TablePro-{$version}-x86_64.tar.xz");
 
     return <<<XML
         <?xml version="1.0" standalone="yes"?>
@@ -135,14 +166,7 @@ function appcastXml(string $version = '0.77.0', string $pubDate = 'Fri, 02 Oct 2
                     <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
                     <enclosure url="https://github.com/TableProApp/TablePro/releases/download/v0.99.0-beta.1/TablePro-0.99.0-beta.1.tar.xz" length="41754460" type="application/octet-stream"/>
                 </item>
-                <item>
-                    <title>{$version}</title>
-                    <pubDate>{$pubDate}</pubDate>
-                    <sparkle:version>{$build}</sparkle:version>
-                    <sparkle:shortVersionString>{$version}</sparkle:shortVersionString>
-                    <sparkle:minimumSystemVersion>{$minimum}</sparkle:minimumSystemVersion>
-                    <enclosure url="https://github.com/TableProApp/TablePro/releases/download/v{$version}/TablePro-{$version}.tar.xz" length="41754460" type="application/octet-stream"/>
-                </item>
+        {$items}
                 <item>
                     <title>0.76.1</title>
                     <pubDate>Mon, 28 Sep 2026 22:46:49 +0000</pubDate>

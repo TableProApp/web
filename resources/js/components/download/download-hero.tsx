@@ -10,10 +10,10 @@ import { trackDownload } from '@/lib/analytics';
 import AppStoreBadge from './app-store-badge';
 import { requirementLine } from './format';
 import { distributionsText } from './linux-text';
-import MacDownload from './mac-download';
+import MacDownload, { type ArchitectureChoice } from './mac-download';
 import type { DeviceKey, DownloadContent, IosProp, LinuxProp, MacProp, ReleaseProp } from './types';
 
-interface DownloadHeroProps {
+interface DownloadHeroProps extends ArchitectureChoice {
     content: DownloadContent;
     release: ReleaseProp;
     mac: MacProp;
@@ -53,7 +53,7 @@ export function IosAction({ content, ios, store, location }: { content: Download
 // on an iPhone or iPad. Any other machine gets the Mac's release and a sentence naming where TablePro runs, never a
 // guessed download. The server renders every variant with the Mac's showing, and the head script's class picks before
 // first paint, so nothing moves.
-export default function DownloadHero({ content, release, mac, linux, ios }: DownloadHeroProps) {
+export default function DownloadHero({ content, release, mac, linux, ios, architecture, onArchitectureChange }: DownloadHeroProps) {
     const { m, fmt } = useI18n();
     const store = ios !== null ? ios.appStoreUrl : null;
     const noApp: DeviceKey[] = ['other', ...(linux === null ? (['linux'] as const) : []), ...(store === null ? (['ios'] as const) : [])];
@@ -114,9 +114,13 @@ export default function DownloadHero({ content, release, mac, linux, ios }: Down
                     release={release}
                     variant="primary"
                     location="download-page"
+                    architecture={architecture}
+                    onArchitectureChange={onArchitectureChange}
                     caption={
                         mac.requirements !== null
-                            ? fmt(mac.universal ? content.hero.universal : content.hero.requires, { requirement: requirementLine(mac.requirements, m.platforms) })
+                            ? fmt(release.assets.universal !== undefined ? content.hero.universal : content.hero.requires, {
+                                  requirement: requirementLine(mac.requirements, m.platforms),
+                              })
                             : undefined
                     }
                 />

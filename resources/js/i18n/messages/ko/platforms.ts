@@ -12,6 +12,7 @@ export default {
         "x86_64": "Intel",
         "joiner": " 또는 "
     },
+    "chip": "Mac의 칩",
     "app": {
         "mac": "Mac 앱",
         "ios": "iPhone 및 iPad 앱"

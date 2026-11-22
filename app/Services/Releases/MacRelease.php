@@ -10,16 +10,19 @@ use Illuminate\Support\Carbon;
  * `source` says where: `github` (the releases API, with file sizes and
  * SHA-256 digests), `appcast` (the Sparkle feed, with neither) or
  * `unavailable` (neither answered and there is no earlier good copy). An
- * unavailable release has no version, and its asset URL is GitHub's "latest
- * release" page, so the button still leads somewhere real while the page
- * states no version it cannot stand behind.
+ * unavailable release has no version and no DMG, and its release URL is
+ * GitHub's "latest release" page, so the button still leads somewhere real
+ * while the page states no version it cannot stand behind.
+ *
+ * `assets` holds a DMG per architecture (`arm64`, `x86_64`), or `universal`
+ * alone for a release that shipped one DMG for both, as 0.82.0 first did.
  *
  * `toArray()` is the cached, locale-neutral form. `toProps()` adds the date
  * formatted for the reader's locale, which is why the date is never cached
  * pre-formatted.
  *
- * @phpstan-type Asset array{name: string|null, url: string, bytes: int|null, sha256: string|null}
- * @phpstan-type Cached array{version: string|null, publishedAt: string|null, asset: Asset, releaseUrl: string, releasesUrl: string, source: string}
+ * @phpstan-type Asset array{name: string, url: string, bytes: int|null, sha256: string|null}
+ * @phpstan-type Cached array{version: string|null, publishedAt: string|null, assets: array<string, Asset>, releaseUrl: string, releasesUrl: string, source: string}
  */
 final readonly class MacRelease
 {
@@ -29,62 +32,68 @@ final readonly class MacRelease
 
     public const SOURCE_UNAVAILABLE = 'unavailable';
 
+    public const UNIVERSAL = 'universal';
+
     /**
      * @param  string|null  $version  e.g. `0.77.0`, without the `v`
      * @param  string|null  $publishedAt  `Y-m-d`
-     * @param  array{name: string|null, url: string, bytes: int|null, sha256: string|null}  $asset  the universal DMG
+     * @param  array<string, array{name: string, url: string, bytes: int|null, sha256: string|null}>  $assets
      * @param  string  $releaseUrl  this release's page (notes and every asset), or the latest-release page
      * @param  string  $releasesUrl  every release
      */
     public function __construct(
         public ?string $version,
         public ?string $publishedAt,
-        public array $asset,
+        public array $assets,
         public string $releaseUrl,
         public string $releasesUrl,
         public string $source,
     ) {}
 
-    /**
-     * No release data at all: the button goes to GitHub's latest-release page.
-     */
     public static function unavailable(string $repo, string $releasesUrl): self
     {
-        $latest = "https://github.com/{$repo}/releases/latest";
-
         return new self(
             version: null,
             publishedAt: null,
-            asset: ['name' => null, 'url' => $latest, 'bytes' => null, 'sha256' => null],
-            releaseUrl: $latest,
+            assets: [],
+            releaseUrl: "https://github.com/{$repo}/releases/latest",
             releasesUrl: $releasesUrl,
             source: self::SOURCE_UNAVAILABLE,
         );
     }
 
     /**
-     * Rebuilds a cached copy, or returns null when the copy is not one. A copy
-     * stored before the universal DMG, with a DMG per architecture, is not one.
-     *
      * @param  array<string, mixed>  $data
      */
     public static function fromArray(array $data): ?self
     {
-        $asset = $data['asset'] ?? null;
+        if (! is_string($data['releaseUrl'] ?? null) || ! is_string($data['releasesUrl'] ?? null) || ! is_string($data['source'] ?? null)) {
+            return null;
+        }
 
-        if (! is_array($asset) || ! is_string($asset['url'] ?? null) || ! is_string($data['releaseUrl'] ?? null) || ! is_string($data['releasesUrl'] ?? null) || ! is_string($data['source'] ?? null)) {
+        // A copy stored before the DMG per architecture holds the universal DMG as `asset`.
+        $stored = is_array($data['assets'] ?? null) ? $data['assets'] : (is_array($data['asset'] ?? null) ? [self::UNIVERSAL => $data['asset']] : []);
+        $assets = [];
+
+        foreach ($stored as $key => $asset) {
+            if (is_string($key) && is_array($asset) && is_string($asset['name'] ?? null) && is_string($asset['url'] ?? null)) {
+                $assets[$key] = [
+                    'name' => $asset['name'],
+                    'url' => $asset['url'],
+                    'bytes' => is_int($asset['bytes'] ?? null) ? $asset['bytes'] : null,
+                    'sha256' => is_string($asset['sha256'] ?? null) ? $asset['sha256'] : null,
+                ];
+            }
+        }
+
+        if ($assets === []) {
             return null;
         }
 
         return new self(
             version: is_string($data['version'] ?? null) ? $data['version'] : null,
             publishedAt: is_string($data['publishedAt'] ?? null) ? $data['publishedAt'] : null,
-            asset: [
-                'name' => is_string($asset['name'] ?? null) ? $asset['name'] : null,
-                'url' => $asset['url'],
-                'bytes' => is_int($asset['bytes'] ?? null) ? $asset['bytes'] : null,
-                'sha256' => is_string($asset['sha256'] ?? null) ? $asset['sha256'] : null,
-            ],
+            assets: $assets,
             releaseUrl: $data['releaseUrl'],
             releasesUrl: $data['releasesUrl'],
             source: $data['source'],
@@ -97,14 +106,14 @@ final readonly class MacRelease
     }
 
     /**
-     * @return array{version: string|null, publishedAt: string|null, asset: array{name: string|null, url: string, bytes: int|null, sha256: string|null}, releaseUrl: string, releasesUrl: string, source: string}
+     * @return array{version: string|null, publishedAt: string|null, assets: array<string, array{name: string, url: string, bytes: int|null, sha256: string|null}>, releaseUrl: string, releasesUrl: string, source: string}
      */
     public function toArray(): array
     {
         return [
             'version' => $this->version,
             'publishedAt' => $this->publishedAt,
-            'asset' => $this->asset,
+            'assets' => $this->assets,
             'releaseUrl' => $this->releaseUrl,
             'releasesUrl' => $this->releasesUrl,
             'source' => $this->source,
@@ -120,7 +129,7 @@ final readonly class MacRelease
      * (architecture §1.5). `LL` is "October 2, 2026" in English and
      * "2 tháng 10 năm 2026" in Vietnamese.
      *
-     * @return array{version: string|null, publishedAt: string|null, publishedAtFormatted: string|null, asset: array{name: string|null, url: string, bytes: int|null, sha256: string|null}, releaseUrl: string, releasesUrl: string, source: string}
+     * @return array{version: string|null, publishedAt: string|null, publishedAtFormatted: string|null, assets: array<string, array{name: string, url: string, bytes: int|null, sha256: string|null}>, releaseUrl: string, releasesUrl: string, source: string}
      */
     public function toProps(string $locale): array
     {
