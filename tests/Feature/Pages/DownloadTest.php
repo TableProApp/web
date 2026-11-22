@@ -265,18 +265,30 @@ it('shows each machine its own release and one action, and any other machine a s
         ->and((string) $document->querySelector('main')?->textContent)->not->toContain('Your download has started');
 })->group('ssr');
 
-it('asks for the Mac’s chip, Apple silicon first, when a release carries a DMG per architecture', function (): void {
+it('asks for the Mac’s chip, Apple silicon first, with each chip’s DMG link in the server render', function (): void {
     downloadFakeRelease();
     $document = downloadDocument();
 
     foreach ([downloadHeroFor($document, 'mac')['action'][0], $document->getElementById('mac')] as $action) {
-        $chips = iterator_to_array($action->querySelectorAll('fieldset input[type="radio"]'));
+        $control = $action->querySelector('.mac-download');
+        $chips = iterator_to_array($control->querySelectorAll('fieldset input[type="radio"]'));
+        $links = iterator_to_array($control->querySelectorAll('[data-arch] a[href$=".dmg"]'));
 
-        expect(array_map(fn(Dom\Element $chip): array => [$chip->getAttribute('value'), $chip->hasAttribute('checked'), downloadText($chip->parentElement)], $chips))
+        expect(downloadText($control->querySelector('fieldset legend')))->toBe('Your Mac’s chip')
+            ->and(array_map(fn(Dom\Element $chip): array => [$chip->getAttribute('value'), $chip->hasAttribute('checked'), downloadText($chip->parentElement)], $chips))
             ->toBe([['arm64', true, 'Apple silicon'], ['x86_64', false, 'Intel']])
-            ->and($action->querySelector('a[href$=".dmg"]')?->getAttribute('href'))->toEndWith('/TablePro-0.77.0-arm64.dmg');
+            ->and(array_map(fn(Dom\Element $link): array => [$link->parentElement->getAttribute('data-arch'), basename((string) $link->getAttribute('href'))], $links))
+            ->toBe([['arm64', 'TablePro-0.77.0-arm64.dmg'], ['x86_64', 'TablePro-0.77.0-x86_64.dmg']]);
     }
 })->group('ssr');
+
+it('shows only the checked chip’s DMG link, without waiting for JavaScript', function (): void {
+    $css = File::get(resource_path('css/app.css'));
+
+    foreach (['arm64', 'x86_64'] as $arch) {
+        expect($css)->toContain(".mac-download:has(input[value='{$arch}']:checked) [data-arch]:not([data-arch='{$arch}'])");
+    }
+});
 
 it('shows one button and the Universal caption for a release with a universal DMG', function (): void {
     downloadFakeRelease(githubUniversalReleasePayload());

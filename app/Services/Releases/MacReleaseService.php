@@ -21,10 +21,13 @@ use function Illuminate\Support\defer;
  * through, and an app release caught halfway through its upload.
  *
  * Fallback: the current stable item of the Sparkle appcast. Its DMGs are the
- * ones the last good copy holds for the same version, else a DMG per
- * architecture built from `platforms.json` (`assetTemplate`, and the `dmg`
- * destination's `urlTemplate`). Never the first item of the full releases
- * list, which plugin releases crowd.
+ * ones the last good copy holds for the same version. Otherwise the item's
+ * update archives say which DMGs the release shipped, since a DMG and its
+ * archive share a name up to the extension: a DMG per architecture, built
+ * from `platforms.json` (`assetTemplate`, and the `dmg` destination's
+ * `urlTemplate`), or the universal one. An item whose archives match neither
+ * counts as no answer. Never the first item of the full releases list, which
+ * plugin releases crowd.
  *
  * **A request never waits for GitHub.** `release:refresh`, scheduled every 15
  * minutes (routes/console.php), calls the sources; a page only reads what it
@@ -247,7 +250,6 @@ class MacReleaseService
         );
     }
 
-    // The last good copy's files win for its own version: a universal DMG cannot be built from platforms.json's templates.
     public function fromAppcast(): ?MacRelease
     {
         $item = $this->appcast->latest();
@@ -258,11 +260,17 @@ class MacReleaseService
 
         $version = $item['version'];
         $known = $this->lastGood();
+        // The last good copy has the sizes and checksums the feed lacks.
+        $assets = $known !== null && $known->version === $version ? $known->assets : $this->appcastAssets($version, $item['archives']);
+
+        if ($assets === []) {
+            return null;
+        }
 
         return new MacRelease(
             version: $version,
             publishedAt: $item['publishedAt'],
-            assets: $known !== null && $known->version === $version ? $known->assets : $this->templateAssets($version),
+            assets: $assets,
             releaseUrl: $this->tagUrl($version),
             releasesUrl: $this->releasesUrl(),
             source: MacRelease::SOURCE_APPCAST,
@@ -331,22 +339,40 @@ class MacReleaseService
     }
 
     /**
+     * @param  list<string>  $archives
      * @return array<string, array{name: string, url: string, bytes: null, sha256: null}>
      */
-    private function templateAssets(string $version): array
+    private function appcastAssets(string $version, array $archives): array
     {
-        $assets = [];
+        $shipped = fn(string $dmg): bool => array_any($archives, fn(string $archive): bool => str_starts_with($archive, pathinfo($dmg, PATHINFO_FILENAME) . '.'));
+        $names = $this->platforms->macAssetNames($version);
 
-        foreach ($this->platforms->macAssetNames($version) as $arch => $name) {
-            $assets[$arch] = [
-                'name' => $name,
-                'url' => $this->platforms->macAssetUrl($version, $arch) ?? 'https://github.com/' . $this->repo() . "/releases/download/v{$version}/" . rawurlencode($name),
-                'bytes' => null,
-                'sha256' => null,
-            ];
+        if ($names !== [] && array_all($names, $shipped)) {
+            $assets = [];
+
+            foreach ($names as $arch => $name) {
+                $assets[$arch] = $this->builtAsset($version, $name, $this->platforms->macAssetUrl($version, $arch));
+            }
+
+            return $assets;
         }
 
-        return $assets;
+        $universal = $this->platforms->macUniversalAssetName($version);
+
+        return $shipped($universal) ? [MacRelease::UNIVERSAL => $this->builtAsset($version, $universal, null)] : [];
+    }
+
+    /**
+     * @return array{name: string, url: string, bytes: null, sha256: null}
+     */
+    private function builtAsset(string $version, string $name, ?string $url): array
+    {
+        return [
+            'name' => $name,
+            'url' => $url ?? 'https://github.com/' . $this->repo() . "/releases/download/v{$version}/" . rawurlencode($name),
+            'bytes' => null,
+            'sha256' => null,
+        ];
     }
 
     private function date(mixed $timestamp): ?string

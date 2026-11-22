@@ -1520,12 +1520,13 @@ only once `platforms.json` says it is released.
 ```
 Hero #top    app icon (64, 80 from 768) · H1 "TablePro 0.85" (Home's size) · "Released November 4, 2026." Release notes ↗
              the action for the reader's machine:
-               Mac        [Download for Mac] primary lg · "Universal app. Requires macOS 13 Ventura or later."
+               Mac        ( Apple silicon | Intel ) SegmentedControl lg · [Download for Mac] primary lg ·
+                          "Requires macOS 13 Ventura or later."
                Linux      H1 "TablePro 0.1 (Beta)" · [Install on Linux] → #linux · "Runs on Ubuntu 26.04+, …"
                iOS        H1 "TablePro 1.0" · App Store badge · "Free. Requires iOS and iPadOS 18 or later."
                other      "TablePro runs on Mac, Linux, iPhone and iPad." No download.
-#mac         cols 1–3: Mac   cols 4–12: requirement, architectures, updates itself · [Download for Mac] secondary
-             · Homebrew: one CommandBlock with Copy
+#mac         cols 1–3: Mac   cols 4–12: requirement, architectures, updates itself · ( Apple silicon | Intel ) ·
+             [Download for Mac] secondary · Homebrew: one CommandBlock with Copy
 #linux       cols 1–3: Linux · Beta badge   cols 4–12: architectures and updates in one sentence · Ubuntu 26.04 and
              26.10 / Fedora 44 and 45 / Other distributions, with Flatpak: a heading and one CommandBlock each ·
              Packages on GitHub ↗
@@ -1540,6 +1541,12 @@ Hero #top    app icon (64, 80 from 768) · H1 "TablePro 0.85" (Home's size) · "
   `classifyDevice()` names it), and app.css hides every variant but the reader's. No React state, no swap, no layout
   shift; the Mac's shows without JavaScript. A machine with no app, or a platform not yet released, gets the `other`
   variant: the Mac's release and the sentence, never a guessed download.
+- **The Mac's chip.** A release with a DMG per architecture puts a SegmentedControl (§5.3.5, legend "Your Mac's chip")
+  above the DMG button, in the hero and in the Mac band. The two share one choice, Apple silicon checked by default;
+  the page never guesses the chip. Both DMG links are in the server render and app.css shows the checked chip's, so
+  the control works before hydration and without JavaScript, and a chip picked before hydration stays picked. A
+  release that shipped one universal DMG (0.82.0 to 0.87.0) shows no control, and the hero's caption reads
+  "Universal app. Requires macOS 13 Ventura or later."
 - **After the click.** The DMG action, in the hero or the Mac band, gives way in place to "Your download has started.
   If it didn't, download again." (the same link, `download-retry`) and three numbered steps, and takes focus. Only when
   a release source answered; with none the button opens GitHub's latest release and nothing claims a download.

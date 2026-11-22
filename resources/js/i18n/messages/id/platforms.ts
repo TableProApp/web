@@ -12,6 +12,7 @@ export default {
         "x86_64": "Intel",
         "joiner": " atau "
     },
+    "chip": "Chip Mac Anda",
     "app": {
         "mac": "aplikasi Mac",
         "ios": "aplikasi iPhone dan iPad"

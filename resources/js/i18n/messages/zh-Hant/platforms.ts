@@ -12,6 +12,7 @@ export default {
         "x86_64": "Intel",
         "joiner": " 或 "
     },
+    "chip": "Mac 的晶片",
     "app": {
         "mac": "Mac App",
         "ios": "iPhone 與 iPad App"

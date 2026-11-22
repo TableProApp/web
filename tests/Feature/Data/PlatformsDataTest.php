@@ -144,7 +144,6 @@ it('builds a DMG link per architecture from the version', function (): void {
     $dmg = collect($mac['destinations'])->firstWhere('kind', 'dmg');
 
     expect($mac['architectures'])->toBe(['arm64', 'x86_64'])
-        ->and($mac['universalBinary'])->toBeFalse()
         ->and($mac['assetTemplate'])->toContain('{version}')->toContain('{arch}')
         ->and($dmg['urlTemplate'])->toContain('/v{version}/')->toEndWith('/' . $mac['assetTemplate']);
 });

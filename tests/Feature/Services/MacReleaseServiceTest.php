@@ -236,28 +236,63 @@ it('builds the DMG link from platforms.json when it falls back to the appcast', 
         ->and($release->releaseUrl)->toBe('https://github.com/TableProApp/TablePro/releases/tag/v0.77.0');
 });
 
-it('keeps the last good copy’s universal DMG when the appcast names its version, and builds a DMG per architecture for a newer one', function (): void {
+it('keeps the last good copy’s DMG, with its size, when the appcast names its version', function (): void {
     Http::fakeSequence(RELEASES_FAKE_GITHUB_LATEST)
         ->push(githubUniversalReleasePayload())
         ->whenEmpty(Http::response('', 502));
-    Http::fakeSequence(RELEASES_FAKE_APPCAST)
-        ->push(appcastXml('0.77.0'))
-        ->push(appcastXml('0.78.0'));
+    Http::fake([RELEASES_FAKE_APPCAST => Http::response(appcastXml('0.77.0', universal: true))]);
 
     expect(macRelease()->source)->toBe(MacRelease::SOURCE_GITHUB);
 
     $known = releases()->refresh();
 
     expect($known?->source)->toBe(MacRelease::SOURCE_APPCAST)
-        ->and($known?->assets['universal']['url'] ?? null)->toEndWith('/v0.77.0/TablePro-0.77.0.dmg')
-        ->and(array_keys($known?->assets ?? []))->toBe(['universal']);
+        ->and($known?->assets)->toBe(['universal' => [
+            'name' => 'TablePro-0.77.0.dmg',
+            'url' => 'https://github.com/TableProApp/TablePro/releases/download/v0.77.0/TablePro-0.77.0.dmg',
+            'bytes' => 65_432_179,
+            'sha256' => null,
+        ]]);
+});
+
+// A universal release can be the last good copy while the appcast already names a newer release of either shape.
+it('offers the DMGs a newer appcast release shipped, read from its update archives', function (bool $universal, array $dmgs): void {
+    Http::fakeSequence(RELEASES_FAKE_GITHUB_LATEST)
+        ->push(githubUniversalReleasePayload())
+        ->whenEmpty(Http::response(['message' => 'API rate limit exceeded'], 403));
+    Http::fake([RELEASES_FAKE_APPCAST => Http::response(appcastXml('0.78.0', universal: $universal))]);
+
+    expect(macRelease()->version)->toBe('0.77.0');
 
     $newer = releases()->refresh();
 
-    expect($newer?->version)->toBe('0.78.0')
-        ->and(array_keys($newer?->assets ?? []))->toBe(['arm64', 'x86_64'])
-        ->and($newer?->assets['x86_64']['url'] ?? null)->toEndWith('/v0.78.0/TablePro-0.78.0-x86_64.dmg');
-});
+    expect($newer?->source)->toBe(MacRelease::SOURCE_APPCAST)
+        ->and($newer?->version)->toBe('0.78.0')
+        ->and(array_map(fn(array $asset): string => $asset['url'], $newer?->assets ?? []))->toBe($dmgs);
+})->with([
+    'universal' => [true, ['universal' => 'https://github.com/TableProApp/TablePro/releases/download/v0.78.0/TablePro-0.78.0.dmg']],
+    'one per architecture' => [false, [
+        'arm64' => 'https://github.com/TableProApp/TablePro/releases/download/v0.78.0/TablePro-0.78.0-arm64.dmg',
+        'x86_64' => 'https://github.com/TableProApp/TablePro/releases/download/v0.78.0/TablePro-0.78.0-x86_64.dmg',
+    ]],
+]);
+
+it('counts an appcast release whose update archives name no DMG it can build as no answer', function (string $archives): void {
+    $feed = '<rss xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle"><channel>' . $archives . '</channel></rss>';
+
+    Http::fake([
+        RELEASES_FAKE_GITHUB_LATEST => Http::response('', 502),
+        RELEASES_FAKE_APPCAST => Http::response($feed),
+    ]);
+
+    expect(releases()->refresh())->toBeNull()
+        ->and(releases()->failing())->toBeTrue()
+        ->and(releases()->latest()->source)->toBe(MacRelease::SOURCE_UNAVAILABLE);
+})->with([
+    'another name' => ['<item><sparkle:version>780099</sparkle:version><sparkle:shortVersionString>0.78.0</sparkle:shortVersionString><enclosure url="https://example.com/TableProApp-0.78.0.zip"/></item>'],
+    'Apple silicon only' => ['<item><sparkle:version>780099</sparkle:version><sparkle:shortVersionString>0.78.0</sparkle:shortVersionString><enclosure url="https://example.com/TablePro-0.78.0-arm64.tar.xz"/></item>'],
+    'no enclosure' => ['<item><sparkle:version>780099</sparkle:version><sparkle:shortVersionString>0.78.0</sparkle:shortVersionString></item>'],
+]);
 
 it('takes the fallback DMG link from the dmg destination’s urlTemplate when platforms.json has one', function (): void {
     bindReleaseFixturePlatforms(['mac.destinations' => [
@@ -526,7 +561,9 @@ it('reads the stable appcast item, skipping a newer beta above it, and ignores a
         'version' => '0.77.0',
         'publishedAt' => '2026-10-02',
         'minimumSystemVersion' => '13.0',
-    ]);
+        'archives' => ['TablePro-0.77.0-arm64.tar.xz', 'TablePro-0.77.0-x86_64.tar.xz'],
+    ])
+        ->and(SparkleAppcast::parse(appcastXml('0.77.0', universal: true))['archives'] ?? null)->toBe(['TablePro-0.77.0.tar.xz']);
 
     expect(SparkleAppcast::parse(''))->toBeNull()
         ->and(SparkleAppcast::parse('<html>rate limited</html>'))->toBeNull()

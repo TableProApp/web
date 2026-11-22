@@ -12,6 +12,7 @@ export default {
         "x86_64": "Intel",
         "joiner": " oder "
     },
+    "chip": "Der Chip deines Mac",
     "app": {
         "mac": "Mac-App",
         "ios": "iPhone- und iPad-App"

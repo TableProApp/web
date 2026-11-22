@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type ReactNode } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState, type ReactNode } from 'react';
 import { Download } from 'lucide-react';
 import Button from '@/components/ui/button';
 import SegmentedControl from '@/components/ui/segmented-control';
@@ -22,15 +22,27 @@ interface MacDownloadProps extends ArchitectureChoice {
 }
 
 // The DMG link is in the server render with its real URL and nothing starts on its own. A release with a DMG per
-// architecture asks for the reader's chip and never guesses it. Once the reader clicked, the action makes way for the
-// three install steps and the same file again; with no release data the link opens GitHub, so nothing claims a download
-// started.
+// architecture asks for the reader's chip and never guesses it; both links are rendered and app.css shows the checked
+// chip's, so the choice works without JavaScript. Once the reader clicked, the action makes way for the three install
+// steps and the same file again; with no release data the link opens GitHub, so nothing claims a download started.
 export default function MacDownload({ content, release, variant, location, caption, architecture, onArchitectureChange }: MacDownloadProps) {
     const { m, fmt } = useI18n();
     // The file that was clicked, which a later choice in the page's other control must not change.
     const [started, setStarted] = useState<ReleaseAsset | null>(null);
     const status = useRef<HTMLDivElement>(null);
-    const asset = macAsset(release.assets, architecture);
+    const root = useRef<HTMLDivElement>(null);
+    const perArchitecture = hasBuildPerArchitecture(release.assets);
+
+    // A chip picked before hydration is still checked in the DOM here; the first re-render would check the server's
+    // default again.
+    useLayoutEffect(() => {
+        const picked = root.current?.querySelector<HTMLInputElement>('input[type="radio"]:checked')?.value;
+        const choice = MAC_ARCHITECTURES.find((each) => each === picked);
+
+        if (choice !== undefined && choice !== architecture) {
+            onArchitectureChange(choice);
+        }
+    }, []);
 
     useEffect(() => {
         if (started !== null) {
@@ -65,30 +77,42 @@ export default function MacDownload({ content, release, variant, location, capti
         );
     }
 
+    const link = (asset: ReleaseAsset | null): ReactNode => (
+        <Button
+            href={asset?.url ?? release.releaseUrl}
+            variant={variant}
+            size="lg"
+            icon={<Download aria-hidden="true" />}
+            onClick={() => {
+                trackDownload(location, 'mac');
+                setStarted(asset);
+            }}
+        >
+            {m.download.macCta}
+        </Button>
+    );
+
     return (
-        <div className="grid justify-items-start gap-3">
-            {hasBuildPerArchitecture(release.assets) && (
-                <SegmentedControl<MacArchitecture>
-                    legend={m.download.macCta}
-                    size="lg"
-                    value={architecture}
-                    options={MAC_ARCHITECTURES.map((each) => ({ value: each, label: m.platforms.architectures[each] }))}
-                    onChange={onArchitectureChange}
-                    className="w-full max-w-xs"
-                />
+        <div ref={root} className="mac-download grid justify-items-start gap-3">
+            {perArchitecture ? (
+                <>
+                    <SegmentedControl<MacArchitecture>
+                        legend={m.platforms.chip}
+                        size="lg"
+                        value={architecture}
+                        options={MAC_ARCHITECTURES.map((each) => ({ value: each, label: m.platforms.architectures[each] }))}
+                        onChange={onArchitectureChange}
+                        className="w-full max-w-xs"
+                    />
+                    {MAC_ARCHITECTURES.map((each) => (
+                        <div key={each} data-arch={each}>
+                            {link(macAsset(release.assets, each))}
+                        </div>
+                    ))}
+                </>
+            ) : (
+                link(macAsset(release.assets, architecture))
             )}
-            <Button
-                href={asset?.url ?? release.releaseUrl}
-                variant={variant}
-                size="lg"
-                icon={<Download aria-hidden="true" />}
-                onClick={() => {
-                    trackDownload(location, 'mac');
-                    setStarted(asset);
-                }}
-            >
-                {m.download.macCta}
-            </Button>
             {caption !== undefined && <p className="type-small text-muted-foreground">{caption}</p>}
         </div>
     );
