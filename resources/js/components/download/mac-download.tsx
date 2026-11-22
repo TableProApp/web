@@ -22,9 +22,10 @@ interface MacDownloadProps extends ArchitectureChoice {
 }
 
 // The DMG link is in the server render with its real URL and nothing starts on its own. A release with a DMG per
-// architecture asks for the reader's chip and never guesses it; both links are rendered and app.css shows the checked
-// chip's, so the choice works without JavaScript. Once the reader clicked, the action makes way for the three install
-// steps and the same file again; with no release data the link opens GitHub, so nothing claims a download started.
+// architecture asks for the reader's chip, preset to the one the browser reports; both links are rendered and app.css
+// shows the checked chip's, so the choice works without JavaScript. Once the reader clicked, the action makes way for the
+// three install steps and the same file again; with no release data the link opens GitHub, so nothing claims a download
+// started.
 export default function MacDownload({ content, release, variant, location, caption, architecture, onArchitectureChange }: MacDownloadProps) {
     const { m, fmt } = useI18n();
     // The file that was clicked, which a later choice in the page's other control must not change.

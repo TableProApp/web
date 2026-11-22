@@ -631,7 +631,7 @@ Redesigned 2026-11-07 (owner): stacked bands on the Home grid, Mac windows only,
 - **/download.** Rebuilt 2026-11-08 (owner) on the feature-page grid: the hero, then a band per platform with everything shown.
   - The H1 is the release, "TablePro 0.85", from `releases/latest` or the appcast, never the first item of the release list (plugin releases crowd it). A Linux reader sees the Linux release, an iPhone or iPad reader the App Store one.
   - The action follows the reader's machine and never guesses: the DMG on a Mac, a jump to the commands on Linux, the App Store badge on an iPhone or iPad, and on any other machine a sentence naming where TablePro runs. The server renders the Mac's; the head script's class picks before first paint.
-  - A DMG per architecture, chosen with an Apple silicon / Intel control that the hero and the Mac band share; Apple silicon is checked by default, never guessed. A release that shipped one universal DMG, as 0.82.0 to 0.87.0 did, gets that DMG with no control. The Homebrew command has no "may trail" note.
+  - A DMG per architecture, chosen with an Apple silicon / Intel control that the hero and the Mac band share; Apple silicon is checked unless a Chromium browser reports an x86 CPU; nothing else is guessed. A release that shipped one universal DMG, as 0.82.0 to 0.87.0 did, gets that DMG with no control. The Homebrew command has no "may trail" note.
   - The page never starts a download on its own. The install steps appear only after a click on the DMG link, and never when the link opens GitHub instead.
   - If no release source answers, the button opens GitHub's latest release and the H1 reads "Download TablePro".
   - No checksums, file table or verification commands: GitHub Releases lists each file's SHA-256.
