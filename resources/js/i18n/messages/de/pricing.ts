@@ -53,6 +53,11 @@ export default {
             "cta": "Team kaufen",
             "subscriptionOnly": "Team gibt es monatlich oder jährlich."
         },
+        "selfHosted": {
+            "name": "Enterprise Self-Hosted",
+            "description": "TablePros Sync-Server auf deiner eigenen Infrastruktur, mit Anmeldung über deinen Identity Provider. {price} pro Arbeitsplatz und Jahr, ab {min} Arbeitsplätzen. <link>Preise und Bedingungen</link>",
+            "cta": "Evaluierung anfragen"
+        },
         "enterprise": {
             "name": "Enterprise",
             "description": "Anmeldung mit den Konten deines Unternehmens, verbindliche Richtlinien, ein Audit-Log, MDM, Bestellscheine.",

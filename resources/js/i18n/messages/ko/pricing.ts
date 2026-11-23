@@ -53,6 +53,11 @@ export default {
             "cta": "Team 구매",
             "subscriptionOnly": "Team은 월간 또는 연간으로만 판매합니다."
         },
+        "selfHosted": {
+            "name": "Enterprise Self-Hosted",
+            "description": "TablePro 동기화 서버를 자체 인프라에서 운영하고, 회사의 ID 공급자로 로그인합니다. 좌석당 연 {price}, 최소 {min}석. <link>가격 및 조건</link>",
+            "cta": "평가판 요청"
+        },
         "enterprise": {
             "name": "Enterprise",
             "description": "회사 계정으로 로그인, 정책 적용, 감사 로그, MDM, 구매 주문서.",

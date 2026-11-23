@@ -65,7 +65,8 @@ export default function PricingPlans({ variant = 'full', headingLevel = 'h3', ti
                         leads={single || tier === 'starter'}
                     />
                 ))}
-                {enterprise && <EnterpriseRow headingLevel={headingLevel} className="max-lg:order-2 lg:col-span-3" />}
+                {enterprise && <EnterpriseRow plan="selfHosted" headingLevel={headingLevel} className="max-lg:order-2 lg:col-span-3" />}
+                {enterprise && <EnterpriseRow plan="enterprise" headingLevel={headingLevel} className="max-lg:order-2 lg:col-span-3" />}
             </PlanGrid>
 
             <div className="mt-6 grid gap-2">

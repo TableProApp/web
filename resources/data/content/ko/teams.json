@@ -65,6 +65,23 @@
         "security": "TablePro의 데이터 처리 방식",
         "privacy": "개인정보 처리방침"
     },
+    "selfHosted": {
+        "title": "Enterprise Self-Hosted",
+        "note": "프리뷰 버전이며 macOS부터 제공됩니다. 평가는 {evaluationDays}일 동안 무료입니다.",
+        "lead": "TablePro 동기화 서버를 OCI 이미지와 PostgreSQL로 자체 인프라에서 운영합니다. 사용자는 회사의 ID 공급자(OIDC)로 로그인합니다. 쿼리 기록을 포함한 모든 것이 동기화되며, 비밀번호는 종단 간 암호화됩니다. 팀은 역할과 감사 로그를 갖추고 공유합니다. 모든 좌석에 Pro가 포함됩니다.",
+        "rows": [
+            { "term": "연간", "text": "좌석당 {shYearly}, 최소 {shMin}석." },
+            { "term": "월간", "text": "좌석당 {shMonthly}. 라이선스 갱신을 위해 서버가 tablepro.app에 연결할 수 있어야 합니다." },
+            { "term": "일회성", "text": "좌석당 {shOnce}, 1년간 업데이트 포함. 이후 업데이트는 좌석당 연 {shUpdates}이며 선택 사항입니다." },
+            { "term": "선결제", "text": "{prepaid} 할인." },
+            { "term": "좌석 수", "text": "설치 전체 기준으로 {volume} 할인." },
+            { "term": "스테이징", "text": "스테이징 설치 한 곳에 같은 좌석 수의 무료 라이선스를 제공합니다." },
+            { "term": "지원", "text": "이메일로, 영업일 기준 {supportDays}일 이내에 답변합니다." }
+        ],
+        "prepaid": "{years}년 선결제 시 {percent}%",
+        "volume": "{seats}석 이상 {percent}%",
+        "cta": "평가판 요청"
+    },
     "enterprise": {
         "title": "Enterprise",
         "sentence": "싱글 사인온(SSO), 회사 자체 약관, 더 큰 규모의 도입이 필요하신가요? 회사에 필요한 것을 알려 주세요.",

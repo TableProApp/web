@@ -49,6 +49,11 @@ export default {
             cta: 'Get Team',
             subscriptionOnly: 'Team is sold monthly or yearly.',
         },
+        selfHosted: {
+            name: 'Enterprise Self-Hosted',
+            description: "TablePro's sync server on your own infrastructure, with sign-in through your identity provider. {price} per seat per year, from {min} seats. <link>Prices and terms</link>",
+            cta: 'Request an evaluation',
+        },
         enterprise: {
             name: 'Enterprise',
             description: 'Sign-in with your company accounts, enforced policies, an audit log, MDM, purchase orders.',

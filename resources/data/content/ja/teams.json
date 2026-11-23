@@ -65,6 +65,23 @@
         "security": "TablePro によるデータの扱い",
         "privacy": "プライバシーポリシー"
     },
+    "selfHosted": {
+        "title": "Enterprise Self-Hosted",
+        "note": "プレビュー版で、まず macOS から提供します。評価は {evaluationDays} 日間無料です。",
+        "lead": "TablePro の同期サーバーを、OCI イメージと PostgreSQL で自社のインフラ上に運用できます。サインインは自社の ID プロバイダー（OIDC）を通じて行います。クエリ履歴を含むすべてが同期され、パスワードはエンドツーエンドで暗号化されます。チームはロールと監査ログ付きで共有できます。すべてのシートに Pro が含まれます。",
+        "rows": [
+            { "term": "年払い", "text": "1 シートあたり {shYearly}、{shMin} シートから。" },
+            { "term": "月払い", "text": "1 シートあたり {shMonthly}。ライセンスの更新のため、サーバーが tablepro.app に接続できる必要があります。" },
+            { "term": "買い切り", "text": "1 シートあたり {shOnce}、1 年間のアップデート付き。その後のアップデートは 1 シートあたり年額 {shUpdates} で、任意です。" },
+            { "term": "前払い", "text": "{prepaid} 割引。" },
+            { "term": "シート数", "text": "インストール全体に、{volume} 割引。" },
+            { "term": "ステージング", "text": "ステージング環境 1 つに、同じシート数の無料ライセンスを提供します。" },
+            { "term": "サポート", "text": "メールで、{supportDays} 営業日以内に返信します。" }
+        ],
+        "prepaid": "{years} 年分の前払いで {percent}%",
+        "volume": "{seats} シート以上で {percent}%",
+        "cta": "評価版を申し込む"
+    },
     "enterprise": {
         "title": "Enterprise",
         "sentence": "シングルサインオン、自社の契約条件、より大規模な導入などが必要な場合は、会社に必要なことをお知らせください。",

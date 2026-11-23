@@ -65,6 +65,23 @@
         "security": "Cómo trata TablePro tus datos",
         "privacy": "Política de privacidad"
     },
+    "selfHosted": {
+        "title": "Enterprise Self-Hosted",
+        "note": "Una versión preliminar, primero en macOS. La evaluación es gratuita durante {evaluationDays} días.",
+        "lead": "El servidor de sincronización de TablePro en tu propia infraestructura, como imagen OCI con PostgreSQL. Las personas inician sesión a través de tu proveedor de identidad (OIDC). Todo se sincroniza, incluido el historial de consultas, con las contraseñas cifradas de extremo a extremo. Los equipos comparten con roles y un registro de auditoría. Cada puesto incluye Pro.",
+        "rows": [
+            { "term": "Anual", "text": "{shYearly} por puesto, desde {shMin} puestos." },
+            { "term": "Mensual", "text": "{shMonthly} por puesto, para un servidor que pueda conectarse a tablepro.app para renovar su licencia." },
+            { "term": "Pago único", "text": "{shOnce} por puesto, con un año de actualizaciones. Después, las actualizaciones cuestan {shUpdates} por puesto al año y son opcionales." },
+            { "term": "Pago por adelantado", "text": "{prepaid}." },
+            { "term": "Más puestos", "text": "{volume}, en toda la instalación." },
+            { "term": "Staging", "text": "Una licencia gratuita para una instalación de staging, con los mismos puestos." },
+            { "term": "Soporte", "text": "Por correo electrónico, con respuesta en un plazo de {supportDays} días laborables." }
+        ],
+        "prepaid": "{percent}% de descuento por {years} años",
+        "volume": "{percent}% de descuento desde {seats} puestos",
+        "cta": "Solicitar una evaluación"
+    },
     "enterprise": {
         "title": "Enterprise",
         "sentence": "¿Necesitas inicio de sesión único, condiciones propias o un despliegue más amplio? Cuéntanos qué necesita tu empresa.",

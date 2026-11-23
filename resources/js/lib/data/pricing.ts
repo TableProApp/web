@@ -26,6 +26,19 @@ export interface TeamTier {
     prioritySupport: { responseBusinessDays: number };
 }
 
+// Checkout does not sell it yet: an evaluation starts by email, so no Polar product backs these prices.
+export interface SelfHostedPlan {
+    unit: 'seat';
+    prices: CyclePrices;
+    updatesYearly: number;
+    seats: { min: number };
+    prepaid: { years: number; percent: number }[];
+    // On the whole install, from that many seats.
+    volume: { seats: number; percent: number }[];
+    evaluationDays: number;
+    support: { responseBusinessDays: number };
+}
+
 export interface PricingData {
     currency: 'USD';
     merchantOfRecord: { name: string };
@@ -35,6 +48,7 @@ export interface PricingData {
         starter: StarterTier;
         team: TeamTier;
     };
+    selfHosted: SelfHostedPlan;
     refund: { days: number; scope: 'all-paid-plans' };
     // deviceLimit is per account, across Pro and Team; legacy is for builds that still use /v1.
     license: {

@@ -65,6 +65,23 @@
         "security": "TablePro 如何處理您的資料",
         "privacy": "隱私權政策"
     },
+    "selfHosted": {
+        "title": "Enterprise Self-Hosted",
+        "note": "預覽版，先支援 macOS。評估期 {evaluationDays} 天免費。",
+        "lead": "TablePro 同步伺服器以 OCI 映像檔加 PostgreSQL 的形式執行在您自己的基礎設施上。使用者透過您的身分識別提供者（OIDC）登入。所有內容都會同步，包括查詢歷史記錄，密碼採端對端加密。團隊共用支援角色與稽核記錄。每個席位都包含 Pro。",
+        "rows": [
+            { "term": "按年", "text": "每席位 {shYearly}，{shMin} 個席位起。" },
+            { "term": "按月", "text": "每席位 {shMonthly}，適用於能連線到 tablepro.app 以續訂授權的伺服器。" },
+            { "term": "一次性", "text": "每席位 {shOnce}，含一年更新。之後的更新為每席位每年 {shUpdates}，可選。" },
+            { "term": "預付", "text": "{prepaid}。" },
+            { "term": "更多席位", "text": "{volume}，以整個安裝計算。" },
+            { "term": "預備環境", "text": "為一個預備環境安裝提供免費授權，席位數相同。" },
+            { "term": "支援", "text": "透過電子郵件，{supportDays} 個工作天內回覆。" }
+        ],
+        "prepaid": "{years} 年預付優惠 {percent}%",
+        "volume": "{seats} 個席位起優惠 {percent}%",
+        "cta": "申請評估"
+    },
     "enterprise": {
         "title": "Enterprise",
         "sentence": "需要單一登入、自己的合約條款或更大規模的部署？告訴我們貴公司的需求。",

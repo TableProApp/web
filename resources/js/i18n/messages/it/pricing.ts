@@ -53,6 +53,11 @@ export default {
             "cta": "Acquista Team",
             "subscriptionOnly": "Team si vende con pagamento mensile o annuale."
         },
+        "selfHosted": {
+            "name": "Enterprise Self-Hosted",
+            "description": "Il server di sincronizzazione di TablePro sulla tua infrastruttura, con accesso tramite il tuo identity provider. {price} per posto all’anno, a partire da {min} posti. <link>Prezzi e condizioni</link>",
+            "cta": "Richiedi una valutazione"
+        },
         "enterprise": {
             "name": "Enterprise",
             "description": "Accesso con gli account aziendali, criteri imposti, un registro di audit, MDM, ordini di acquisto.",

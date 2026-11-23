@@ -15,6 +15,23 @@
             "prioritySupport": { "responseBusinessDays": 1 }
         }
     },
+    "selfHosted": {
+        "unit": "seat",
+        "prices": { "monthly": 12, "yearly": 120, "lifetime": 179 },
+        "updatesYearly": 45,
+        "seats": { "min": 3 },
+        "prepaid": [
+            { "years": 2, "percent": 10 },
+            { "years": 3, "percent": 15 }
+        ],
+        "volume": [
+            { "seats": 25, "percent": 10 },
+            { "seats": 50, "percent": 20 },
+            { "seats": 100, "percent": 30 }
+        ],
+        "evaluationDays": 30,
+        "support": { "responseBusinessDays": 2 }
+    },
     "refund": { "days": 7, "scope": "all-paid-plans" },
     "license": {
         "deviceLimit": 3,

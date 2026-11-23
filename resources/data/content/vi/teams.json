@@ -65,6 +65,23 @@
         "security": "TablePro xử lý dữ liệu của bạn thế nào",
         "privacy": "Chính sách quyền riêng tư"
     },
+    "selfHosted": {
+        "title": "Enterprise Self-Hosted",
+        "note": "Bản preview, có trên macOS trước. Dùng thử miễn phí {evaluationDays} ngày.",
+        "lead": "Server sync của TablePro chạy trên hạ tầng của chính bạn, dưới dạng OCI image cùng PostgreSQL. Mọi người đăng nhập qua identity provider của công ty (OIDC). Mọi thứ đều được sync, kể cả lịch sử query, và mật khẩu được mã hóa đầu cuối. Các nhóm chia sẻ với vai trò và audit log. Mỗi seat có Pro.",
+        "rows": [
+            { "term": "Theo năm", "text": "{shYearly} mỗi seat, tối thiểu {shMin} seat." },
+            { "term": "Theo tháng", "text": "{shMonthly} mỗi seat, cho server kết nối được tới tablepro.app để gia hạn license." },
+            { "term": "Mua một lần", "text": "{shOnce} mỗi seat, kèm một năm cập nhật. Sau đó, cập nhật có giá {shUpdates} mỗi seat mỗi năm, không bắt buộc." },
+            { "term": "Trả trước", "text": "Giảm {prepaid}." },
+            { "term": "Nhiều seat hơn", "text": "Giảm {volume}, áp dụng cho toàn bộ bản cài đặt." },
+            { "term": "Staging", "text": "Một license miễn phí cho một bản cài staging, cùng số seat." },
+            { "term": "Hỗ trợ", "text": "Qua email, phản hồi trong vòng {supportDays} ngày làm việc." }
+        ],
+        "prepaid": "{percent}% khi trả trước {years} năm",
+        "volume": "{percent}% từ {seats} seat",
+        "cta": "Yêu cầu dùng thử"
+    },
     "enterprise": {
         "title": "Enterprise",
         "sentence": "Bạn cần single sign-on, điều khoản riêng hay triển khai trên quy mô lớn hơn? Hãy cho chúng tôi biết công ty bạn cần gì.",

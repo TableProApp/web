@@ -45,6 +45,11 @@ export default {
             cta: 'Mua gói Team',
             subscriptionOnly: 'Gói Team bán theo tháng hoặc theo năm.',
         },
+        selfHosted: {
+            name: 'Enterprise Self-Hosted',
+            description: 'Server sync của TablePro trên hạ tầng của chính bạn, đăng nhập qua identity provider của công ty. {price} mỗi seat mỗi năm, tối thiểu {min} seat. <link>Giá và điều khoản</link>',
+            cta: 'Yêu cầu dùng thử',
+        },
         enterprise: {
             name: 'Enterprise',
             description: 'Đăng nhập bằng tài khoản công ty, policy bắt buộc, audit log, MDM, purchase order.',

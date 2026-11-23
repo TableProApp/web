@@ -65,6 +65,23 @@
         "security": "Cara TablePro menangani data Anda",
         "privacy": "Kebijakan privasi"
     },
+    "selfHosted": {
+        "title": "Enterprise Self-Hosted",
+        "note": "Versi pratinjau, di macOS terlebih dahulu. Evaluasinya gratis selama {evaluationDays} hari.",
+        "lead": "Server sinkronisasi TablePro di infrastruktur Anda sendiri, sebagai image OCI dengan PostgreSQL. Pengguna login melalui identity provider Anda (OIDC). Semuanya tersinkron, termasuk riwayat kueri, dengan kata sandi terenkripsi end-to-end. Tim berbagi dengan peran dan log audit. Setiap seat mendapat Pro.",
+        "rows": [
+            { "term": "Tahunan", "text": "{shYearly} per seat, mulai {shMin} seat." },
+            { "term": "Bulanan", "text": "{shMonthly} per seat, untuk server yang dapat menjangkau tablepro.app guna memperpanjang lisensinya." },
+            { "term": "Sekali bayar", "text": "{shOnce} per seat, dengan pembaruan selama satu tahun. Setelah itu, pembaruan seharga {shUpdates} per seat per tahun dan bersifat opsional." },
+            { "term": "Bayar di muka", "text": "Diskon {prepaid}." },
+            { "term": "Lebih banyak seat", "text": "Diskon {volume}, untuk seluruh instalasi." },
+            { "term": "Staging", "text": "Lisensi gratis untuk satu instalasi staging, dengan jumlah seat yang sama." },
+            { "term": "Dukungan", "text": "Melalui email, dengan balasan dalam {supportDays} hari kerja." }
+        ],
+        "prepaid": "{percent}% untuk {years} tahun",
+        "volume": "{percent}% mulai {seats} seat",
+        "cta": "Minta evaluasi"
+    },
     "enterprise": {
         "title": "Enterprise",
         "sentence": "Butuh single sign-on, ketentuan kontrak sendiri, atau penerapan yang lebih luas? Beri tahu kami kebutuhan perusahaan Anda.",
