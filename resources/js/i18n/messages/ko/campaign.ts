@@ -9,12 +9,6 @@ export default {
         "cta": "자세히 보기",
         "close": "Black Friday 알림 닫기",
     },
-    "band": {
-        "title": "TablePro Pro {percent}% 할인",
-        "lead": "Pro 일회성은 {lifetime}(정가 {lifetimeList}), Pro 연간은 첫해 {yearly}(정가 {yearlyList})입니다.",
-        "cta": "자세히 보기",
-        "onPricing": "아래 Pro 가격에 이 할인이 반영되어 있습니다.",
-    },
     "offer": {
         "tag": "Black Friday: {percent}% 할인",
         "firstYear": "첫해 가격입니다. 이후에는 연 {price}입니다.",

@@ -9,12 +9,6 @@ export default {
         "cta": "Lihat promo",
         "close": "Tutup pemberitahuan Black Friday",
     },
-    "band": {
-        "title": "Diskon {percent}% TablePro Pro",
-        "lead": "Pro sekali bayar seharga {lifetime}, bukan {lifetimeList}, dan Pro tahunan seharga {yearly}, bukan {yearlyList}, untuk tahun pertama.",
-        "cta": "Lihat promo",
-        "onPricing": "Harga Pro di bawah sudah termasuk diskon ini.",
-    },
     "offer": {
         "tag": "Black Friday: diskon {percent}%",
         "firstYear": "Untuk tahun pertama, lalu {price} per tahun.",

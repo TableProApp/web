@@ -444,8 +444,8 @@ Used in the pricing summary at `#pricing`, on `/pricing` and in the FAQ. The exa
 **Dated sales.** A sale with a start and an end in pricing.json's `campaign` (Black Friday) is the one time the site
 says what a discount takes off and how long is left. It is a real discount at the provider, on the current list
 prices, with a code that works only inside the window (`App\Support\Pricing\Campaign`, `lib/campaign.ts`).
-- **Where, while it is live:** the banner slot on every page but the sale's own, a black band above the homepage
-  hero and Pricing's header, and the plan cards of the cycles it covers. Checkout from the site attaches the code.
+- **Where, while it is live:** the banner slot on every page but the sale's own, and the plan cards of the cycles it
+  covers. No band above a page's hero (owner, 2026-11-23). Checkout from the site attaches the code.
   Before and after the window, only the sale's own page mentions it.
 - **The sale's own page,** `/black-friday`, keeps one URL from year to year and is black throughout, in both themes. Before the sale it states the window and
   the prices, and offers a calendar file for the start instead of a button that cannot be pressed; during it the offers

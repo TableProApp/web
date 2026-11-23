@@ -9,12 +9,6 @@ export default {
         "cta": "查看优惠",
         "close": "关闭 Black Friday 通知",
     },
-    "band": {
-        "title": "TablePro Pro 享 {percent}% 折扣",
-        "lead": "Pro 一次性价格为 {lifetime}，原价 {lifetimeList}；Pro 年付首年价格为 {yearly}，原价 {yearlyList}。",
-        "cta": "查看优惠",
-        "onPricing": "下方 Pro 价格已包含此折扣。",
-    },
     "offer": {
         "tag": "Black Friday：{percent}% 折扣",
         "firstYear": "此为首年价格，之后每年 {price}。",

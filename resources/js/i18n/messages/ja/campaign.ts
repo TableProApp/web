@@ -9,12 +9,6 @@ export default {
         "cta": "セールを見る",
         "close": "Black Friday のお知らせを閉じる",
     },
-    "band": {
-        "title": "TablePro Pro が {percent}% オフ",
-        "lead": "Pro 買い切りは {lifetimeList} から {lifetime} に、Pro 年払いは初年度が {yearlyList} から {yearly} になります。",
-        "cta": "セールを見る",
-        "onPricing": "下の Pro の価格には、この割引が反映されています。",
-    },
     "offer": {
         "tag": "Black Friday：{percent}% オフ",
         "firstYear": "初年度の価格です。その後は年額 {price} です。",

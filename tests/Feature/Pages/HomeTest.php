@@ -14,15 +14,15 @@ function homeDocument(string $locale): Dom\HTMLDocument
 }
 
 it('renders the sections in order, the sponsors third, under one h1', function (string $locale): void {
-    // A running sale adds its band above the hero.
-    travelTo(Campaign::current()?->endsAt ?? now());
+    // A live sale stays in the top bar and adds no section.
+    travelTo(Campaign::current()?->startsAt ?? now());
 
     $document = homeDocument($locale);
     $sections = array_map(fn(Dom\Element $section): string => $section->id, iterator_to_array($document->querySelectorAll('main > section')));
 
     expect($document->querySelectorAll('h1'))->toHaveCount(1)
         ->and($document->querySelectorAll('main'))->toHaveCount(1)
-        ->and(array_values(array_diff($sections, ['campaign'])))->toBe(['top', 'databases', 'sponsors', 'features', 'testimonials', 'pricing', 'open-source']);
+        ->and($sections)->toBe(['top', 'databases', 'sponsors', 'features', 'testimonials', 'pricing', 'open-source']);
 })->with(['en', 'vi'])->group('ssr');
 
 it('keeps every id an old link to the homepage can name', function (): void {

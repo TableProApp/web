@@ -1,6 +1,5 @@
 import type { ReactNode } from 'react';
 import { usePage } from '@inertiajs/react';
-import CampaignBand from '@/components/campaign/campaign-band';
 import PlanMatrix from '@/components/pricing/plan-matrix';
 import { planOffers } from '@/components/pricing/offers';
 import PricingFaq, { type PricingFaqGroup } from '@/components/pricing/pricing-faq';
@@ -185,7 +184,6 @@ export default function Pricing({ content, paidFeatures, featuredEngines, compar
                 })}
             />
 
-            <CampaignBand variant="pricing" />
             <PageHeader title={content.header.title} lead={content.header.lead} />
 
             <section id="plans" aria-labelledby="plans-title" className="py-8 md:py-10 xl:py-12">

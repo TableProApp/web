@@ -1321,7 +1321,7 @@ The ceiling drops from 320ms to 240ms, and `--dur-row` goes with the row bar.
 - autoplay video
 - hover lifts (`translateY`) or shadow blooms
 
-**The dated sale is the exception** (owner decision, 2026-11-06: "ban the AI look, not motion"). On the sale's black ground only (`/black-friday`, its band and its banner), and never under reduced motion:
+**The dated sale is the exception** (owner decision, 2026-11-06: "ban the AI look, not motion"). On the sale's black ground only (`/black-friday` and its banner), and never under reduced motion:
 
 - **The load sequence,** once per visit: the headline settles (`sale-rise`, 560ms, `--ease-panel`), a drawn line strikes the list prices, then the sale prices arrive. Under a second in all.
 - **The countdown digits roll**, each one only when it changes (`roll-in`, `roll-out`, 320ms).
