@@ -214,20 +214,17 @@ html.has-language-bar .support-banner {
  * ---------------------------------------------------------------------------
  *
  * While a sale in pricing.json is live, `html.campaign-live` (stamped by the
- * server, App\Support\Pricing\Campaign) shows what it adds: its banner in
- * the slot above the header, and its band at the top of the homepage and
- * Pricing. The head script and `useCampaign` remove the class when the
- * reader's clock passes the end, so all of it goes at once and nothing offers
- * a code checkout no longer takes.
+ * server, App\Support\Pricing\Campaign) shows its banner in the slot above
+ * the header. The head script and `useCampaign` remove the class when the
+ * reader's clock passes the end, so nothing offers a code checkout no longer
+ * takes.
  *
- * Both are an island of the dark theme whatever the reader chose: the element
- * carries `.dark`, so every token inside resolves to its dark value and the
- * design system's text pairs hold, on a ground darker than the dark page so
- * the band reads as an event rather than a section. The glow is the brand hue
- * thinning out from the top right. Positioning §12.2.
+ * The banner and the sale page's ground are an island of the dark theme
+ * whatever the reader chose: the element carries `.dark`, so every token
+ * inside resolves to its dark value and the design system's text pairs hold.
+ * The glow is the brand hue thinning out from the top right. Positioning §12.2.
  */
-.campaign-banner,
-.campaign-band {
+.campaign-banner {
   display: none;
 }
 
@@ -238,10 +235,6 @@ html.has-banner.campaign-live .campaign-banner {
 
 html.has-language-bar .campaign-banner {
   display: none;
-}
-
-html.campaign-live .campaign-band {
-  display: block;
 }
 
 .campaign-surface {

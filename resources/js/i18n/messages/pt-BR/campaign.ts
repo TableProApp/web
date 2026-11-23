@@ -9,12 +9,6 @@ export default {
         "cta": "Veja a oferta",
         "close": "Fechar o aviso da Black Friday"
     },
-    "band": {
-        "title": "{percent}% de desconto no TablePro Pro",
-        "lead": "O Pro de pagamento único custa {lifetime} em vez de {lifetimeList}, e o Pro anual custa {yearly} em vez de {yearlyList} no primeiro ano.",
-        "cta": "Veja a oferta",
-        "onPricing": "Os preços do Pro abaixo já incluem o desconto."
-    },
     "offer": {
         "tag": "Black Friday: −{percent}%",
         "firstYear": "No primeiro ano; depois, {price} por ano.",

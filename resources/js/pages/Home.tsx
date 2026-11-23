@@ -1,5 +1,4 @@
 import { usePage } from '@inertiajs/react';
-import CampaignBand from '@/components/campaign/campaign-band';
 import Closing from '@/components/home/closing';
 import FeatureTabs from '@/components/home/feature-tabs';
 import Hero from '@/components/home/hero';
@@ -18,14 +17,7 @@ import LandingLayout from '@/layouts/landing-layout';
 // Positioning §5: a homepage title longer than this falls back to the "for developers" form.
 const TITLE_LIMIT = 60;
 
-/**
- * `/` and every locale's home (sitemap §D; design-system §8.1): the hero with every platform's app, the databases and
- * the sponsors as two index bands, the features as tabs with each one's Mac and Linux capture, three quotes, pricing,
- * and the open source band. Section ids are English in every language; the ids of the sections this page replaced are
- * empty anchors, and `#pricing` (with its `#license` alias) is where shipped Mac builds land.
- *
- * While a dated sale is live, its band comes first, above the hero (`CampaignBand`).
- */
+// Section ids stay English in every language: shipped Mac builds link to `#pricing` and `#license`.
 export default function Home({ content, engines, testimonials }: HomePageProps) {
     const { canonicalBaseUrl } = usePage().props;
     const { locale, m, fmt, path } = useI18n();
@@ -52,7 +44,6 @@ export default function Home({ content, engines, testimonials }: HomePageProps) 
                 })}
             />
 
-            <CampaignBand variant="home" />
             <Hero content={content.hero} />
             <DatabaseBand content={content.databases} engines={engines} />
             <SponsorBand content={content.sponsors} />

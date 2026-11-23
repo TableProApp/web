@@ -9,12 +9,6 @@ export default {
         "cta": "Zum Angebot",
         "close": "Black-Friday-Hinweis schließen"
     },
-    "band": {
-        "title": "{percent} % Rabatt auf TablePro Pro",
-        "lead": "Pro einmalig kostet {lifetime} statt {lifetimeList}, Pro jährlich im ersten Jahr {yearly} statt {yearlyList}.",
-        "cta": "Zum Angebot",
-        "onPricing": "Die Pro-Preise unten enthalten den Rabatt bereits."
-    },
     "offer": {
         "tag": "Black Friday: {percent} % Rabatt",
         "firstYear": "Im ersten Jahr, danach {price} pro Jahr.",

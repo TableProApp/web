@@ -9,12 +9,6 @@ export default {
         cta: 'Xem ưu đãi',
         close: 'Đóng thông báo Black Friday',
     },
-    band: {
-        title: 'Giảm {percent}% TablePro Pro',
-        lead: 'Pro mua một lần còn {lifetime} thay vì {lifetimeList}, Pro theo năm còn {yearly} thay vì {yearlyList} cho năm đầu tiên.',
-        cta: 'Xem ưu đãi',
-        onPricing: 'Giá Pro bên dưới đã gồm ưu đãi này.',
-    },
     offer: {
         tag: 'Black Friday: giảm {percent}%',
         firstYear: 'Cho năm đầu tiên, sau đó {price} mỗi năm.',

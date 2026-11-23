@@ -219,3 +219,13 @@ it('sells from its page only while live, with one newsletter signup before and a
     'during the sale' => ['live', 2, false],
     'after the sale' => ['ended', 0, false],
 ])->group('ssr');
+
+it('shows only its banner on the homepage and Pricing while live', function (string $path): void {
+    requireSsr();
+    travelTo(saleCampaign()->startsAt);
+
+    $document = Dom\HTMLDocument::createFromString((string) get($path)->assertOk()->getContent(), LIBXML_NOERROR);
+
+    expect($document->querySelectorAll('.campaign-surface'))->toHaveCount(1)
+        ->and($document->querySelector('.campaign-surface')->classList->contains('campaign-banner'))->toBeTrue();
+})->with(['/', '/pricing', '/vi', '/vi/pricing'])->group('ssr');
