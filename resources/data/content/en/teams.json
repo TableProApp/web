@@ -65,6 +65,23 @@
         "security": "How TablePro handles your data",
         "privacy": "Privacy policy"
     },
+    "selfHosted": {
+        "title": "Enterprise Self-Hosted",
+        "note": "A preview, on macOS first. The evaluation is free for {evaluationDays} days.",
+        "lead": "TablePro's sync server on your own infrastructure, as an OCI image with PostgreSQL. People sign in through your identity provider (OIDC). Everything syncs, query history included, with passwords end-to-end encrypted. Teams share with roles and an audit log. Every seat gets Pro.",
+        "rows": [
+            { "term": "Yearly", "text": "{shYearly} per seat, from {shMin} seats." },
+            { "term": "Monthly", "text": "{shMonthly} per seat, for a server that can reach tablepro.app to renew its license." },
+            { "term": "One-time", "text": "{shOnce} per seat, with a year of updates. Updates after that are {shUpdates} per seat per year, and optional." },
+            { "term": "Paying ahead", "text": "{prepaid}." },
+            { "term": "More seats", "text": "{volume}, on the whole install." },
+            { "term": "Staging", "text": "A free license for one staging install, with the same seats." },
+            { "term": "Support", "text": "By email, with a reply within {supportDays} business days." }
+        ],
+        "prepaid": "{percent}% off for {years} years",
+        "volume": "{percent}% off from {seats} seats",
+        "cta": "Request an evaluation"
+    },
     "enterprise": {
         "title": "Enterprise",
         "sentence": "Need single sign-on, your own terms or a larger rollout? Tell us what your company needs.",

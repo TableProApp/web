@@ -53,6 +53,11 @@ export default {
             "cta": "Beli Team",
             "subscriptionOnly": "Team dijual bulanan atau tahunan."
         },
+        "selfHosted": {
+            "name": "Enterprise Self-Hosted",
+            "description": "Server sinkronisasi TablePro di infrastruktur Anda sendiri, dengan login melalui identity provider Anda. {price} per seat per tahun, mulai {min} seat. <link>Harga dan ketentuan</link>",
+            "cta": "Minta evaluasi"
+        },
         "enterprise": {
             "name": "Enterprise",
             "description": "Masuk dengan akun perusahaan, kebijakan wajib, log audit, MDM, purchase order.",

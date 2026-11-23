@@ -3,7 +3,7 @@ import { plainPageJsonLd } from '@/components/faq/structured-data';
 import { BandFrame } from '@/components/features/feature-band';
 import { ClosingFrame } from '@/components/features/feature-closing';
 import FeatureHero from '@/components/features/feature-hero';
-import { INQUIRY_SUBJECT } from '@/components/pricing/enterprise-row';
+import { INQUIRY_SUBJECT, SELF_HOSTED_SUBJECT } from '@/components/pricing/enterprise-row';
 import PricingPlans from '@/components/pricing/pricing-plans';
 import SEOHead from '@/components/seo/seo-head';
 import { SUPPORT_EMAIL } from '@/components/site/site-links';
@@ -14,6 +14,7 @@ import LocaleLink from '@/components/ui/locale-link';
 import { textLinkClasses } from '@/components/ui/text-link';
 import { useRevealOnScroll } from '@/hooks/use-reveal-on-scroll';
 import { LOCALES, Trans, useI18n, type Values } from '@/i18n';
+import { formatUsd, joinList } from '@/i18n/format';
 import { FACTS } from '@/lib/data/facts';
 import { examplesText } from '@/lib/data/paid-features';
 import { PRICING } from '@/lib/data/pricing';
@@ -34,7 +35,7 @@ interface Row {
 const WINDOW_SIZES = '(min-width: 1280px) 1216px, (min-width: 1024px) calc(100vw - 64px), (min-width: 640px) calc(100vw - 48px), calc(100vw - 32px)';
 const LINK = 'text-[0.9375rem] font-medium tracking-[-0.009em] text-foreground underline decoration-rule-strong underline-offset-4 hover:decoration-foreground';
 
-// `/teams` in every locale: what a seat and the plan include, the Team card, then seats, buying and data as rows.
+// `/teams` in every locale: what a seat and the plan include, the Team card, then seats, buying, data and self-hosted as rows.
 // Every number comes from pricing.json or facts.json. Inquiries share the Enterprise row's subject so they can be counted.
 export default function Teams({ content, organizationProfiles }: TeamsProps) {
     const { canonicalBaseUrl } = usePage().props;
@@ -43,7 +44,10 @@ export default function Teams({ content, organizationProfiles }: TeamsProps) {
     useRevealOnScroll('main > section:not(#top)');
 
     const team = PRICING.tiers.team;
+    const selfHosted = PRICING.selfHosted;
     const contact = `mailto:${SUPPORT_EMAIL}?subject=${encodeURIComponent(INQUIRY_SUBJECT)}`;
+    const evaluation = `mailto:${SUPPORT_EMAIL}?subject=${encodeURIComponent(SELF_HOSTED_SUBJECT)}`;
+    const usd = (amount: number): string => formatUsd(amount, m.pricing.currency);
 
     const values: Values = {
         deviceLimit: PRICING.license.deviceLimit,
@@ -52,6 +56,21 @@ export default function Teams({ content, organizationProfiles }: TeamsProps) {
         refundDays: PRICING.refund.days,
         email: SUPPORT_EMAIL,
         proExamples: examplesText('starter', m.common.list),
+        shYearly: usd(selfHosted.prices.yearly),
+        shMonthly: usd(selfHosted.prices.monthly),
+        shOnce: usd(selfHosted.prices.lifetime),
+        shUpdates: usd(selfHosted.updatesYearly),
+        shMin: selfHosted.seats.min,
+        prepaid: joinList(
+            selfHosted.prepaid.map((offer) => fmt(content.selfHosted.prepaid, offer)),
+            m.common.list,
+        ),
+        volume: joinList(
+            selfHosted.volume.map((offer) => fmt(content.selfHosted.volume, offer)),
+            m.common.list,
+        ),
+        supportDays: selfHosted.support.responseBusinessDays,
+        evaluationDays: selfHosted.evaluationDays,
     };
 
     const tags = {
@@ -162,6 +181,20 @@ export default function Teams({ content, organizationProfiles }: TeamsProps) {
                     <LocaleLink href="/privacy" className={LINK}>
                         {content.data.privacy}
                     </LocaleLink>
+                </p>
+            </BandFrame>
+
+            <BandFrame
+                id="self-hosted"
+                title={content.selfHosted.title}
+                marker={<p className="mt-3 max-w-[18rem] text-[0.9375rem] leading-[1.5] text-pretty text-muted-foreground">{fmt(content.selfHosted.note, values)}</p>}
+            >
+                <p className="text-[1.0625rem] leading-[1.55] tracking-[-0.011em] text-pretty text-foreground">{content.selfHosted.lead}</p>
+                <div className="mt-6">{rows(content.selfHosted.rows)}</div>
+                <p className="mt-6">
+                    <a href={evaluation} className={buttonClasses('secondary', 'lg', 'min-w-36')}>
+                        {content.selfHosted.cta}
+                    </a>
                 </p>
             </BandFrame>
 

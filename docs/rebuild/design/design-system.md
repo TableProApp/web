@@ -936,7 +936,7 @@ One shared file, `components/shared/theme-control.tsx` (architecture §1.10 and 
 - Activation line: "One person, up to 3 Macs." or "One person per seat, on up to 3 Macs.", the count from `license.deviceLimit`.
 - **Full-width `md` purchase button:** `primary` on the plan the page leads with, `secondary` on the others. Free gets "Download for Mac".
 - `Includes`: a `small` list of 2-5 word bullets, the paid ones from data, with the check in `--accent-text`.
-- Enterprise is not a card: one row under the three (`EnterpriseRow`), its name, one line and "Contact us →".
+- Enterprise is not a card: two rows under the three (`EnterpriseRow`), each its name, one line and a mail link. Enterprise Self-Hosted states its yearly price and minimum seats and links "Prices and terms" to `/teams#self-hosted`, with "Request an evaluation →"; Enterprise has "Contact us →".
 
 **One plan leads, by layout only:**
 
@@ -1493,7 +1493,7 @@ Sections and ids follow sitemap §A.1.
 PageHeader    H1 "Pricing" · one line: free at work too; Pro and Team add features to the Mac app
 #plans        BillingCycleControl (Monthly | Yearly | One-time), centered, its selection sliding + caption (computed saving)
               PricingCard ×3  Free · Pro · Team   (cols 4/4/4, Pro leads)
-              EnterpriseRow   one line under the three, "Contact us →"
+              EnterpriseRow ×2  Enterprise Self-Hosted "Request an evaluation →", Enterprise "Contact us →"
               Line (small, muted)  Refunds within 7 days (refund policy). Prices in USD; Polar adds tax.
               Disclosure  Have a discount code?
 #features     H2 "What a paid plan adds"
@@ -1816,7 +1816,7 @@ Bands ×7     cols 1–3: H2 that states the band's fact   cols 4–12 at 42rem:
 
 ### 8.24 Teams (`/teams`, every locale)
 
-Rebuilt 2026-11-08 short, like zed.dev/business: about 320 words.
+Rebuilt 2026-11-08 short, like zed.dev/business: about 320 words, about 460 with Enterprise Self-Hosted (2026-11-24).
 
 ```
 Hero         H1 · one sentence · See Team pricing (to #price) · How Team works ↗ (docs)
@@ -1826,6 +1826,8 @@ Hero         H1 · one sentence · See Team pricing (to #price) · How Team work
 #seats       cols 1–3: H2   cols 4–12 at 42rem: term rows (DescriptionList, body size), one sentence each
 #buying      the same
 #data        the same, then Security and Privacy policy links
+#self-hosted cols 1–3: Enterprise Self-Hosted, preview and evaluation days under it   cols 4–12: one paragraph, price
+             term rows from pricing.json `selfHosted`, Request an evaluation with that row's subject
 #enterprise  closing band: one sentence, Contact us with the Enterprise row's subject
 ```
 

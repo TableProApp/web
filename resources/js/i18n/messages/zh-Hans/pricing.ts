@@ -53,6 +53,11 @@ export default {
             "cta": "购买 Team",
             "subscriptionOnly": "Team 按月或按年订阅。"
         },
+        "selfHosted": {
+            "name": "Enterprise Self-Hosted",
+            "description": "TablePro 同步服务器部署在您自己的基础设施上，通过您的身份提供商登录。每席位每年 {price}，{min} 个席位起。<link>价格和条款</link>",
+            "cta": "申请评估"
+        },
         "enterprise": {
             "name": "Enterprise",
             "description": "使用公司账号登录、强制执行的策略、审计日志、MDM、采购订单。",

@@ -65,6 +65,23 @@
         "security": "Comment TablePro traite vos données",
         "privacy": "Politique de confidentialité"
     },
+    "selfHosted": {
+        "title": "Enterprise Self-Hosted",
+        "note": "Une préversion, d’abord sur macOS. L’évaluation est gratuite pendant {evaluationDays} jours.",
+        "lead": "Le serveur de synchronisation de TablePro sur votre propre infrastructure, sous forme d’image OCI avec PostgreSQL. Chacun se connecte via votre fournisseur d’identité (OIDC). Tout se synchronise, historique des requêtes compris, avec des mots de passe chiffrés de bout en bout. Les équipes partagent avec des rôles et un journal d’audit. Chaque poste inclut Pro.",
+        "rows": [
+            { "term": "Annuelle", "text": "{shYearly} par poste, à partir de {shMin} postes." },
+            { "term": "Mensuelle", "text": "{shMonthly} par poste, pour un serveur qui peut joindre tablepro.app afin de renouveler sa licence." },
+            { "term": "Paiement unique", "text": "{shOnce} par poste, avec un an de mises à jour. Ensuite, les mises à jour coûtent {shUpdates} par poste et par an, et sont facultatives." },
+            { "term": "Paiement anticipé", "text": "{prepaid}." },
+            { "term": "Plus de postes", "text": "{volume}, sur toute l’installation." },
+            { "term": "Préproduction", "text": "Une licence gratuite pour une installation de préproduction, avec les mêmes postes." },
+            { "term": "Support", "text": "Par e-mail, avec une réponse sous {supportDays} jours ouvrés." }
+        ],
+        "prepaid": "{percent} % de remise pour {years} ans",
+        "volume": "{percent} % de remise à partir de {seats} postes",
+        "cta": "Demander une évaluation"
+    },
     "enterprise": {
         "title": "Enterprise",
         "sentence": "Besoin d’une authentification unique, de vos propres conditions ou d’un déploiement plus large ? Dites-nous ce dont votre entreprise a besoin.",

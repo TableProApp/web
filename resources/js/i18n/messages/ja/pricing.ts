@@ -53,6 +53,11 @@ export default {
             "cta": "Team を購入",
             "subscriptionOnly": "Team は月額または年額でのご提供です。"
         },
+        "selfHosted": {
+            "name": "Enterprise Self-Hosted",
+            "description": "TablePro の同期サーバーを自社のインフラで運用し、自社の ID プロバイダーでサインインします。1 シートあたり年額 {price}、{min} シートから。<link>料金と条件</link>",
+            "cta": "評価版を申し込む"
+        },
         "enterprise": {
             "name": "Enterprise",
             "description": "会社アカウントでのサインイン、ポリシーの適用、監査ログ、MDM、発注書。",

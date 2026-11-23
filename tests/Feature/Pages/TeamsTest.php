@@ -18,7 +18,7 @@ function teamsCopy(array $content): string
 it('names only the tokens Teams.tsx fills, in every locale', function (string $locale): void {
     preg_match_all('/\{([A-Za-z]+)\}/', teamsCopy(teamsData("content/{$locale}/teams.json")), $tokens);
 
-    expect(array_values(array_diff(array_unique($tokens[1]), ['proExamples', 'deviceLimit', 'inviteDays', 'merchant', 'refundDays', 'email'])))->toBe([]);
+    expect(array_values(array_diff(array_unique($tokens[1]), ['proExamples', 'deviceLimit', 'inviteDays', 'merchant', 'refundDays', 'email', 'shYearly', 'shMonthly', 'shOnce', 'shUpdates', 'shMin', 'prepaid', 'volume', 'supportDays', 'evaluationDays', 'percent', 'years', 'seats'])))->toBe([]);
 })->with('locales');
 
 it('stays short and never ties a seat to one platform', function (): void {
@@ -27,7 +27,7 @@ it('stays short and never ties a seat to one platform', function (): void {
 
     // "Each Mac gets every Pro feature" read as "not on Linux" (owner, 2026-11-08).
     expect($copy)->not->toMatch('/\bMacs?\b(?! or Linux)/')
-        ->and($words)->toBeLessThanOrEqual(360);
+        ->and($words)->toBeLessThanOrEqual(470);
 });
 
 it('opens on the price and the docs, and keeps every id it had', function (string $prefix): void {
@@ -39,7 +39,7 @@ it('opens on the price and the docs, and keeps every id it had', function (strin
         ->and($document->querySelector('main')->textContent)->not->toMatch('/\{[A-Za-z]+\}/')
         ->and((string) $document->querySelector('#enterprise a[href^="mailto:"]')?->getAttribute('href'))->toContain('?subject=');
 
-    foreach (['includes', 'share', 'price', 'seats', 'buying', 'data', 'enterprise'] as $id) {
+    foreach (['includes', 'share', 'price', 'seats', 'buying', 'data', 'self-hosted', 'enterprise'] as $id) {
         expect($document->getElementById($id))->not->toBeNull("#{$id} is gone from {$prefix}/teams");
     }
 })->with(['', '/vi'])->group('ssr');
