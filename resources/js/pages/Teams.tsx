@@ -11,7 +11,6 @@ import AssetSlot, { useShownSlot } from '@/components/ui/asset-slot';
 import { buttonClasses } from '@/components/ui/button';
 import DescriptionList, { DescriptionItem } from '@/components/ui/description-list';
 import LocaleLink from '@/components/ui/locale-link';
-import { textLinkClasses } from '@/components/ui/text-link';
 import { useRevealOnScroll } from '@/hooks/use-reveal-on-scroll';
 import { LOCALES, Trans, useI18n, type Values } from '@/i18n';
 import { formatUsd, joinList } from '@/i18n/format';
@@ -54,7 +53,6 @@ export default function Teams({ content, organizationProfiles }: TeamsProps) {
         inviteDays: FACTS.account.teamInviteDays,
         merchant: PRICING.merchantOfRecord.name,
         refundDays: PRICING.refund.days,
-        email: SUPPORT_EMAIL,
         proExamples: examplesText('starter', m.common.list),
         shYearly: usd(selfHosted.prices.yearly),
         shMonthly: usd(selfHosted.prices.monthly),
@@ -69,16 +67,13 @@ export default function Teams({ content, organizationProfiles }: TeamsProps) {
             selfHosted.volume.map((offer) => fmt(content.selfHosted.volume, offer)),
             m.common.list,
         ),
+        onceVolume: joinList(
+            selfHosted.lifetimeVolume.map((offer) => fmt(content.selfHosted.volume, offer)),
+            m.common.list,
+        ),
+        shRefundDays: selfHosted.refund.days,
         supportDays: selfHosted.support.responseBusinessDays,
         evaluationDays: selfHosted.evaluationDays,
-    };
-
-    const tags = {
-        email: (text: string) => (
-            <a href={`mailto:${SUPPORT_EMAIL}`} className={textLinkClasses('inline')}>
-                {text}
-            </a>
-        ),
     };
 
     const crumbs = [
@@ -99,7 +94,7 @@ export default function Teams({ content, organizationProfiles }: TeamsProps) {
         <DescriptionList>
             {items.map((row) => (
                 <DescriptionItem key={row.term} term={row.term} size="body">
-                    <Trans text={row.text} tags={tags} values={values} />
+                    <Trans text={row.text} values={values} />
                 </DescriptionItem>
             ))}
         </DescriptionList>

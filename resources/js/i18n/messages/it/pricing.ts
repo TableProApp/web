@@ -60,7 +60,7 @@ export default {
         },
         "enterprise": {
             "name": "Enterprise",
-            "description": "Accesso con gli account aziendali, criteri imposti, un registro di audit, MDM, ordini di acquisto.",
+            "description": "Accesso con gli account aziendali, criteri imposti, un registro di audit, MDM.",
             "cta": "Contattaci"
         }
     },
@@ -104,8 +104,8 @@ export default {
     },
     "allFeatures": "Tutte le funzionalità a pagamento",
     "refund": {
-        "one": "Rimborsi entro {count} giorno da un acquisto o da un rinnovo (<link>politica di rimborso</link>).",
-        "other": "Rimborsi entro {count} giorni da un acquisto o da un rinnovo (<link>politica di rimborso</link>)."
+        "one": "Pro e Team: rimborsi entro {count} giorno da un acquisto o da un rinnovo (<link>politica di rimborso</link>).",
+        "other": "Pro e Team: rimborsi entro {count} giorni da un acquisto o da un rinnovo (<link>politica di rimborso</link>)."
     },
     "finePrint": "Prezzi in dollari USA; {merchant} aggiunge imposte o IVA al checkout.",
     "comparePlans": "Confronta i piani",

@@ -60,7 +60,7 @@ export default {
         },
         "enterprise": {
             "name": "Enterprise",
-            "description": "使用公司帳號登入、強制執行的政策、稽核記錄、MDM、採購單。",
+            "description": "使用公司帳號登入、強制執行的政策、稽核記錄、MDM。",
             "cta": "聯絡我們"
         }
     },
@@ -104,8 +104,8 @@ export default {
     },
     "allFeatures": "所有付費功能",
     "refund": {
-        "one": "購買或續訂後 {count} 天內可退款（<link>退款政策</link>）。",
-        "other": "購買或續訂後 {count} 天內可退款（<link>退款政策</link>）。"
+        "one": "Pro 和 Team 在購買或續訂後 {count} 天內可退款（<link>退款政策</link>）。",
+        "other": "Pro 和 Team 在購買或續訂後 {count} 天內可退款（<link>退款政策</link>）。"
     },
     "finePrint": "價格以美元計；{merchant} 在結帳時加收銷售稅或加值稅。",
     "comparePlans": "比較方案",

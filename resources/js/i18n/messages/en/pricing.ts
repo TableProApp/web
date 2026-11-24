@@ -56,7 +56,7 @@ export default {
         },
         enterprise: {
             name: 'Enterprise',
-            description: 'Sign-in with your company accounts, enforced policies, an audit log, MDM, purchase orders.',
+            description: 'Sign-in with your company accounts, enforced policies, an audit log, MDM.',
             cta: 'Contact us',
         },
     },
@@ -98,8 +98,8 @@ export default {
     // A link to the plan table, after a card's highlighted features.
     allFeatures: 'Every paid feature',
     refund: {
-        one: 'Refunds within {count} day of a purchase or a renewal (<link>refund policy</link>).',
-        other: 'Refunds within {count} days of a purchase or a renewal (<link>refund policy</link>).',
+        one: 'Pro and Team: refunds within {count} day of a purchase or a renewal (<link>refund policy</link>).',
+        other: 'Pro and Team: refunds within {count} days of a purchase or a renewal (<link>refund policy</link>).',
     },
     finePrint: 'Prices in US dollars; {merchant} adds sales tax or VAT at checkout.',
     comparePlans: 'Compare plans',

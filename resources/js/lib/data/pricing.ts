@@ -35,6 +35,10 @@ export interface SelfHostedPlan {
     prepaid: { years: number; percent: number }[];
     // On the whole install, from that many seats.
     volume: { seats: number; percent: number }[];
+    // One-time takes these in place of volume, on the license and its yearly updates.
+    lifetimeVolume: { seats: number; percent: number }[];
+    // Only while no license file has been issued; renewals are not refunded.
+    refund: { days: number };
     evaluationDays: number;
     support: { responseBusinessDays: number };
 }

@@ -60,7 +60,7 @@ export default {
         },
         "enterprise": {
             "name": "Enterprise",
-            "description": "使用公司账号登录、强制执行的策略、审计日志、MDM、采购订单。",
+            "description": "使用公司账号登录、强制执行的策略、审计日志、MDM。",
             "cta": "联系我们"
         }
     },
@@ -104,8 +104,8 @@ export default {
     },
     "allFeatures": "所有付费功能",
     "refund": {
-        "one": "购买或续订后 {count} 天内可退款（<link>退款政策</link>）。",
-        "other": "购买或续订后 {count} 天内可退款（<link>退款政策</link>）。"
+        "one": "Pro 和 Team 在购买或续订后 {count} 天内可退款（<link>退款政策</link>）。",
+        "other": "Pro 和 Team 在购买或续订后 {count} 天内可退款（<link>退款政策</link>）。"
     },
     "finePrint": "价格以美元计；{merchant} 在结账时加收销售税或增值税。",
     "comparePlans": "对比方案",

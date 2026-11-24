@@ -1494,7 +1494,7 @@ PageHeader    H1 "Pricing" · one line: free at work too; Pro and Team add featu
 #plans        BillingCycleControl (Monthly | Yearly | One-time), centered, its selection sliding + caption (computed saving)
               PricingCard ×3  Free · Pro · Team   (cols 4/4/4, Pro leads)
               EnterpriseRow ×2  Enterprise Self-Hosted "Request an evaluation →", Enterprise "Contact us →"
-              Line (small, muted)  Refunds within 7 days (refund policy). Prices in USD; Polar adds tax.
+              Line (small, muted)  Pro and Team: refunds within 7 days (refund policy). Prices in USD; Polar adds tax.
               Disclosure  Have a discount code?
 #features     H2 "What a paid plan adds"
               PlanMatrix  grouped: In Pro and Team · In Team (+ Priority support) · In every plan (Macs, everything else);
@@ -1816,7 +1816,7 @@ Bands ×7     cols 1–3: H2 that states the band's fact   cols 4–12 at 42rem:
 
 ### 8.24 Teams (`/teams`, every locale)
 
-Rebuilt 2026-11-08 short, like zed.dev/business: about 320 words, about 460 with Enterprise Self-Hosted (2026-11-24).
+Rebuilt 2026-11-08 short, like zed.dev/business: about 320 words, about 530 with Enterprise Self-Hosted and its terms (2026-11-24).
 
 ```
 Hero         H1 · one sentence · See Team pricing (to #price) · How Team works ↗ (docs)

@@ -60,7 +60,7 @@ export default {
         },
         "enterprise": {
             "name": "Enterprise",
-            "description": "Inicio de sesión con las cuentas de tu empresa, políticas obligatorias, registro de auditoría, MDM, órdenes de compra.",
+            "description": "Inicio de sesión con las cuentas de tu empresa, políticas obligatorias, registro de auditoría, MDM.",
             "cta": "Contáctanos"
         }
     },
@@ -104,8 +104,8 @@ export default {
     },
     "allFeatures": "Todas las funciones de pago",
     "refund": {
-        "one": "Reembolsos en el plazo de {count} día desde una compra o una renovación (<link>política de reembolso</link>).",
-        "other": "Reembolsos en los {count} días siguientes a una compra o una renovación (<link>política de reembolso</link>)."
+        "one": "Pro y Team: reembolsos en el plazo de {count} día desde una compra o una renovación (<link>política de reembolso</link>).",
+        "other": "Pro y Team: reembolsos en el plazo de {count} días desde una compra o una renovación (<link>política de reembolso</link>)."
     },
     "finePrint": "Precios en dólares estadounidenses; {merchant} añade el impuesto sobre ventas o el IVA al pagar.",
     "comparePlans": "Comparar planes",
