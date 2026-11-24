@@ -1,6 +1,6 @@
 ---
 title: 환불 정책
-description: 모든 TablePro 플랜은 구매 후 {refundDays}일 이내에, 월간 또는 연간 플랜의 각 갱신은 결제 후 {refundDays}일 이내에 환불받을 수 있습니다. 신청 방법과 라이선스 처리 방식을 안내합니다.
+description: Pro와 Team 플랜은 구매 후 {refundDays}일 이내에, 월간 또는 연간 플랜의 각 갱신은 결제 후 {refundDays}일 이내에 환불받을 수 있습니다. 신청 방법과 라이선스 처리 방식을 안내합니다.
 updatedAt: "2026-11-07"
 ---
 
