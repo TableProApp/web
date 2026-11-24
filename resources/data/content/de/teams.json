@@ -51,8 +51,7 @@
         "rows": [
             { "term": "Merchant of Record", "text": "{merchant} nimmt die Zahlung entgegen und schlägt die Umsatzsteuer für deine Rechnungsadresse auf." },
             { "term": "Rechnungen", "text": "Trag den Namen deines Unternehmens und deine USt-IdNr. im Portal von {merchant} ein und lade dann jede Rechnung herunter." },
-            { "term": "Erstattungen", "text": "Innerhalb von {refundDays} Tagen nach einem Kauf und nach jeder Verlängerung." },
-            { "term": "Bestellscheine", "text": "Oder eine andere Zahlungsart: Schreib an <email>{email}</email>." }
+            { "term": "Erstattungen", "text": "Innerhalb von {refundDays} Tagen nach einem Kauf und nach jeder Verlängerung." }
         ]
     },
     "data": {
@@ -70,11 +69,14 @@
         "note": "Eine Vorschauversion, zuerst für macOS. Die Evaluierung ist {evaluationDays} Tage kostenlos.",
         "lead": "TablePros Sync-Server auf deiner eigenen Infrastruktur, als OCI-Image mit PostgreSQL. Die Anmeldung läuft über deinen Identity Provider (OIDC). Alles wird synchronisiert, auch der Abfrageverlauf, und Passwörter sind Ende-zu-Ende-verschlüsselt. Teams teilen mit Rollen und einem Audit-Log. Jeder Arbeitsplatz bekommt Pro.",
         "rows": [
-            { "term": "Jährlich", "text": "{shYearly} pro Arbeitsplatz, ab {shMin} Arbeitsplätzen." },
+            { "term": "Jährlich", "text": "{shYearly} pro Arbeitsplatz. Jede Option beginnt bei {shMin} Arbeitsplätzen." },
             { "term": "Monatlich", "text": "{shMonthly} pro Arbeitsplatz, für einen Server, der tablepro.app erreicht, um seine Lizenz zu verlängern." },
             { "term": "Einmalig", "text": "{shOnce} pro Arbeitsplatz, mit einem Jahr Updates. Danach kosten Updates {shUpdates} pro Arbeitsplatz und Jahr und sind optional." },
-            { "term": "Vorauszahlung", "text": "{prepaid}." },
-            { "term": "Mehr Arbeitsplätze", "text": "{volume}, auf die ganze Installation." },
+            { "term": "Verpasste Updates", "text": "Für neue Updates zahlst du die verpassten Jahre nach, höchstens den Preis einer neuen Einmallizenz." },
+            { "term": "Vorauszahlung", "text": "{prepaid}, nach einem etwaigen Rabatt für mehr Arbeitsplätze." },
+            { "term": "Mehr Arbeitsplätze", "text": "{volume}, auf die ganze Installation, für jährlich, monatlich und Vorauszahlung. Einmalig gibt es stattdessen {onceVolume}, auf die Lizenz und ihre Updates." },
+            { "term": "Verlängerungen", "text": "Zum Preis, den du bezahlt hast, solange du verlängerst." },
+            { "term": "Erstattungen", "text": "Vollständig innerhalb von {shRefundDays} Tagen, solange keine Lizenzdatei ausgestellt wurde. Verlängerungen werden nicht erstattet." },
             { "term": "Staging", "text": "Eine kostenlose Lizenz für eine Staging-Installation, mit denselben Arbeitsplätzen." },
             { "term": "Support", "text": "Per E-Mail, mit Antwort innerhalb von {supportDays} Werktagen." }
         ],

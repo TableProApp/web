@@ -51,8 +51,7 @@
         "rows": [
             { "term": "Merchant of record", "text": "{merchant} encaisse le paiement et ajoute la taxe de vente ou la TVA selon votre adresse de facturation." },
             { "term": "Factures", "text": "Ajoutez le nom de votre entreprise et votre numéro de TVA dans le portail de {merchant}, puis téléchargez chaque facture." },
-            { "term": "Remboursements", "text": "Dans les {refundDays} jours suivant un achat, et suivant chaque renouvellement." },
-            { "term": "Bons de commande", "text": "Ou un autre moyen de paiement : écrivez à <email>{email}</email>." }
+            { "term": "Remboursements", "text": "Dans les {refundDays} jours suivant un achat, et suivant chaque renouvellement." }
         ]
     },
     "data": {
@@ -70,11 +69,14 @@
         "note": "Une préversion, d’abord sur macOS. L’évaluation est gratuite pendant {evaluationDays} jours.",
         "lead": "Le serveur de synchronisation de TablePro sur votre propre infrastructure, sous forme d’image OCI avec PostgreSQL. Chacun se connecte via votre fournisseur d’identité (OIDC). Tout se synchronise, historique des requêtes compris, avec des mots de passe chiffrés de bout en bout. Les équipes partagent avec des rôles et un journal d’audit. Chaque poste inclut Pro.",
         "rows": [
-            { "term": "Annuelle", "text": "{shYearly} par poste, à partir de {shMin} postes." },
+            { "term": "Annuelle", "text": "{shYearly} par poste. Chaque option commence à {shMin} postes." },
             { "term": "Mensuelle", "text": "{shMonthly} par poste, pour un serveur qui peut joindre tablepro.app afin de renouveler sa licence." },
             { "term": "Paiement unique", "text": "{shOnce} par poste, avec un an de mises à jour. Ensuite, les mises à jour coûtent {shUpdates} par poste et par an, et sont facultatives." },
-            { "term": "Paiement anticipé", "text": "{prepaid}." },
-            { "term": "Plus de postes", "text": "{volume}, sur toute l’installation." },
+            { "term": "Mises à jour manquées", "text": "Pour retrouver les mises à jour, vous payez les années manquées, jamais plus qu’une nouvelle licence à paiement unique." },
+            { "term": "Paiement anticipé", "text": "{prepaid}, après l’éventuelle remise pour plus de postes." },
+            { "term": "Plus de postes", "text": "{volume}, sur toute l’installation, en annuel, en mensuel et en paiement anticipé. Le paiement unique bénéficie à la place de {onceVolume}, sur la licence et ses mises à jour." },
+            { "term": "Renouvellements", "text": "Au prix payé, tant que vous renouvelez." },
+            { "term": "Remboursements", "text": "Intégral sous {shRefundDays} jours, tant qu’aucun fichier de licence n’a été émis. Les renouvellements ne sont pas remboursés." },
             { "term": "Préproduction", "text": "Une licence gratuite pour une installation de préproduction, avec les mêmes postes." },
             { "term": "Support", "text": "Par e-mail, avec une réponse sous {supportDays} jours ouvrés." }
         ],

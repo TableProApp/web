@@ -60,7 +60,7 @@ export default {
         },
         "enterprise": {
             "name": "Enterprise",
-            "description": "Connexion avec les comptes de votre entreprise, règles imposées, journal d’audit, MDM, bons de commande.",
+            "description": "Connexion avec les comptes de votre entreprise, règles imposées, journal d’audit, MDM.",
             "cta": "Nous contacter"
         }
     },
@@ -104,8 +104,8 @@ export default {
     },
     "allFeatures": "Toutes les fonctionnalités payantes",
     "refund": {
-        "one": "Remboursement dans un délai de {count} jour après un achat ou un renouvellement (<link>politique de remboursement</link>).",
-        "other": "Remboursement dans les {count} jours suivant un achat ou un renouvellement (<link>politique de remboursement</link>)."
+        "one": "Pro et Team : remboursement dans un délai de {count} jour après un achat ou un renouvellement (<link>politique de remboursement</link>).",
+        "other": "Pro et Team : remboursement dans un délai de {count} jours après un achat ou un renouvellement (<link>politique de remboursement</link>)."
     },
     "finePrint": "Prix en dollars américains ; {merchant} ajoute la taxe de vente ou la TVA au paiement.",
     "comparePlans": "Comparer les offres",

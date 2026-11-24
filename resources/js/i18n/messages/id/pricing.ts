@@ -60,7 +60,7 @@ export default {
         },
         "enterprise": {
             "name": "Enterprise",
-            "description": "Masuk dengan akun perusahaan, kebijakan wajib, log audit, MDM, purchase order.",
+            "description": "Masuk dengan akun perusahaan, kebijakan wajib, log audit, MDM.",
             "cta": "Hubungi kami"
         }
     },
@@ -104,8 +104,8 @@ export default {
     },
     "allFeatures": "Semua fitur berbayar",
     "refund": {
-        "one": "Pengembalian dana dalam {count} hari setelah pembelian atau perpanjangan (<link>kebijakan pengembalian dana</link>).",
-        "other": "Pengembalian dana dalam {count} hari setelah pembelian atau perpanjangan (<link>kebijakan pengembalian dana</link>)."
+        "one": "Pro dan Team: pengembalian dana dalam {count} hari setelah pembelian atau perpanjangan (<link>kebijakan pengembalian dana</link>).",
+        "other": "Pro dan Team: pengembalian dana dalam {count} hari setelah pembelian atau perpanjangan (<link>kebijakan pengembalian dana</link>)."
     },
     "finePrint": "Harga dalam dolar AS; {merchant} menambahkan pajak penjualan atau PPN saat checkout.",
     "comparePlans": "Bandingkan paket",

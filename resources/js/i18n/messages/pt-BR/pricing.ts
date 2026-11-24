@@ -60,7 +60,7 @@ export default {
         },
         "enterprise": {
             "name": "Enterprise",
-            "description": "Login com as contas da empresa, políticas obrigatórias, log de auditoria, MDM, pedidos de compra.",
+            "description": "Login com as contas da empresa, políticas obrigatórias, log de auditoria, MDM.",
             "cta": "Fale conosco"
         }
     },
@@ -104,8 +104,8 @@ export default {
     },
     "allFeatures": "Todos os recursos pagos",
     "refund": {
-        "one": "Reembolso em até {count} dia após uma compra ou renovação (<link>política de reembolso</link>).",
-        "other": "Reembolso em até {count} dias após uma compra ou renovação (<link>política de reembolso</link>)."
+        "one": "Pro e Team: reembolso em até {count} dia após uma compra ou renovação (<link>política de reembolso</link>).",
+        "other": "Pro e Team: reembolso em até {count} dias após uma compra ou renovação (<link>política de reembolso</link>)."
     },
     "finePrint": "Preços em dólares americanos; {merchant} adiciona tributos sobre vendas ou IVA no checkout.",
     "comparePlans": "Comparar planos",

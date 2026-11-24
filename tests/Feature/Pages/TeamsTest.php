@@ -18,7 +18,7 @@ function teamsCopy(array $content): string
 it('names only the tokens Teams.tsx fills, in every locale', function (string $locale): void {
     preg_match_all('/\{([A-Za-z]+)\}/', teamsCopy(teamsData("content/{$locale}/teams.json")), $tokens);
 
-    expect(array_values(array_diff(array_unique($tokens[1]), ['proExamples', 'deviceLimit', 'inviteDays', 'merchant', 'refundDays', 'email', 'shYearly', 'shMonthly', 'shOnce', 'shUpdates', 'shMin', 'prepaid', 'volume', 'supportDays', 'evaluationDays', 'percent', 'years', 'seats'])))->toBe([]);
+    expect(array_values(array_diff(array_unique($tokens[1]), ['proExamples', 'deviceLimit', 'inviteDays', 'merchant', 'refundDays', 'shYearly', 'shMonthly', 'shOnce', 'shUpdates', 'shMin', 'prepaid', 'volume', 'onceVolume', 'shRefundDays', 'supportDays', 'evaluationDays', 'percent', 'years', 'seats'])))->toBe([]);
 })->with('locales');
 
 it('stays short and never ties a seat to one platform', function (): void {
@@ -27,7 +27,7 @@ it('stays short and never ties a seat to one platform', function (): void {
 
     // "Each Mac gets every Pro feature" read as "not on Linux" (owner, 2026-11-08).
     expect($copy)->not->toMatch('/\bMacs?\b(?! or Linux)/')
-        ->and($words)->toBeLessThanOrEqual(470);
+        ->and($words)->toBeLessThanOrEqual(530);
 });
 
 it('opens on the price and the docs, and keeps every id it had', function (string $prefix): void {

@@ -51,8 +51,7 @@
         "rows": [
             { "term": "Merchant of record", "text": "{merchant} nhận thanh toán và cộng thuế bán hàng hoặc VAT theo địa chỉ thanh toán của bạn." },
             { "term": "Hóa đơn", "text": "Thêm tên công ty và mã số thuế trong cổng khách hàng của {merchant}, rồi tải từng hóa đơn về." },
-            { "term": "Hoàn tiền", "text": "Trong vòng {refundDays} ngày kể từ lần mua, và kể từ mỗi lần gia hạn." },
-            { "term": "Purchase order", "text": "Hoặc một cách thanh toán khác: gửi email tới <email>{email}</email>." }
+            { "term": "Hoàn tiền", "text": "Trong vòng {refundDays} ngày kể từ lần mua, và kể từ mỗi lần gia hạn." }
         ]
     },
     "data": {
@@ -70,11 +69,14 @@
         "note": "Bản preview, có trên macOS trước. Dùng thử miễn phí {evaluationDays} ngày.",
         "lead": "Server sync của TablePro chạy trên hạ tầng của chính bạn, dưới dạng OCI image cùng PostgreSQL. Mọi người đăng nhập qua identity provider của công ty (OIDC). Mọi thứ đều được sync, kể cả lịch sử query, và mật khẩu được mã hóa đầu cuối. Các nhóm chia sẻ với vai trò và audit log. Mỗi seat có Pro.",
         "rows": [
-            { "term": "Theo năm", "text": "{shYearly} mỗi seat, tối thiểu {shMin} seat." },
+            { "term": "Theo năm", "text": "{shYearly} mỗi seat. Mọi cách trả đều tối thiểu {shMin} seat." },
             { "term": "Theo tháng", "text": "{shMonthly} mỗi seat, cho server kết nối được tới tablepro.app để gia hạn license." },
             { "term": "Mua một lần", "text": "{shOnce} mỗi seat, kèm một năm cập nhật. Sau đó, cập nhật có giá {shUpdates} mỗi seat mỗi năm, không bắt buộc." },
-            { "term": "Trả trước", "text": "Giảm {prepaid}." },
-            { "term": "Nhiều seat hơn", "text": "Giảm {volume}, áp dụng cho toàn bộ bản cài đặt." },
+            { "term": "Cập nhật bị gián đoạn", "text": "Để nhận cập nhật lại, trả bù các năm đã bỏ, không quá giá một license mua một lần mới." },
+            { "term": "Trả trước", "text": "Giảm {prepaid}, tính sau mức giảm theo số seat nếu có." },
+            { "term": "Nhiều seat hơn", "text": "Giảm {volume}, áp dụng cho toàn bộ bản cài đặt, khi trả theo năm, theo tháng hoặc trả trước. Mua một lần thì thay vào đó giảm {onceVolume}, cho cả license và cập nhật." },
+            { "term": "Gia hạn", "text": "Giữ giá đã trả, miễn là bạn tiếp tục gia hạn." },
+            { "term": "Hoàn tiền", "text": "Hoàn đủ trong vòng {shRefundDays} ngày, khi chưa có file license nào được cấp. Không hoàn tiền gia hạn." },
             { "term": "Staging", "text": "Một license miễn phí cho một bản cài staging, cùng số seat." },
             { "term": "Hỗ trợ", "text": "Qua email, phản hồi trong vòng {supportDays} ngày làm việc." }
         ],

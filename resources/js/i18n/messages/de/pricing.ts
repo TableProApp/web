@@ -60,7 +60,7 @@ export default {
         },
         "enterprise": {
             "name": "Enterprise",
-            "description": "Anmeldung mit den Konten deines Unternehmens, verbindliche Richtlinien, ein Audit-Log, MDM, Bestellscheine.",
+            "description": "Anmeldung mit den Konten deines Unternehmens, verbindliche Richtlinien, ein Audit-Log, MDM.",
             "cta": "Kontakt aufnehmen"
         }
     },
@@ -104,8 +104,8 @@ export default {
     },
     "allFeatures": "Alle Bezahlfunktionen",
     "refund": {
-        "one": "Erstattung innerhalb von {count} Tag nach einem Kauf oder einer Verlängerung (<link>Erstattungsrichtlinie</link>).",
-        "other": "Erstattung innerhalb von {count} Tagen nach einem Kauf oder einer Verlängerung (<link>Erstattungsrichtlinie</link>)."
+        "one": "Pro und Team: Erstattung innerhalb von {count} Tag nach einem Kauf oder einer Verlängerung (<link>Erstattungsrichtlinie</link>).",
+        "other": "Pro und Team: Erstattung innerhalb von {count} Tagen nach einem Kauf oder einer Verlängerung (<link>Erstattungsrichtlinie</link>)."
     },
     "finePrint": "Preise in US-Dollar; {merchant} berechnet die Umsatzsteuer beim Checkout.",
     "comparePlans": "Tarife vergleichen",

@@ -60,7 +60,7 @@ export default {
         },
         "enterprise": {
             "name": "Enterprise",
-            "description": "会社アカウントでのサインイン、ポリシーの適用、監査ログ、MDM、発注書。",
+            "description": "会社アカウントでのサインイン、ポリシーの適用、監査ログ、MDM。",
             "cta": "お問い合わせ"
         }
     },
@@ -104,8 +104,8 @@ export default {
     },
     "allFeatures": "すべての有料機能",
     "refund": {
-        "one": "購入または更新から {count} 日以内に返金できます（<link>返金ポリシー</link>）。",
-        "other": "購入または更新から {count} 日以内に返金できます（<link>返金ポリシー</link>）。"
+        "one": "Pro と Team は、購入または更新から {count} 日以内に返金できます（<link>返金ポリシー</link>）。",
+        "other": "Pro と Team は、購入または更新から {count} 日以内に返金できます（<link>返金ポリシー</link>）。"
     },
     "finePrint": "価格は米ドルで、{merchant} が購入時に売上税または VAT を加算します。",
     "comparePlans": "プランを比較",

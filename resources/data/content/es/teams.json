@@ -51,8 +51,7 @@
         "rows": [
             { "term": "Merchant of record", "text": "{merchant} cobra el pago y añade el impuesto sobre ventas o el IVA según tu dirección de facturación." },
             { "term": "Facturas", "text": "Añade el nombre de tu empresa y tu número de IVA en el portal de {merchant}, y después descarga cada factura." },
-            { "term": "Reembolsos", "text": "En los {refundDays} días siguientes a una compra y a cada renovación." },
-            { "term": "Órdenes de compra", "text": "U otra forma de pago: escribe a <email>{email}</email>." }
+            { "term": "Reembolsos", "text": "En los {refundDays} días siguientes a una compra y a cada renovación." }
         ]
     },
     "data": {
@@ -70,11 +69,14 @@
         "note": "Una versión preliminar, primero en macOS. La evaluación es gratuita durante {evaluationDays} días.",
         "lead": "El servidor de sincronización de TablePro en tu propia infraestructura, como imagen OCI con PostgreSQL. Las personas inician sesión a través de tu proveedor de identidad (OIDC). Todo se sincroniza, incluido el historial de consultas, con las contraseñas cifradas de extremo a extremo. Los equipos comparten con roles y un registro de auditoría. Cada puesto incluye Pro.",
         "rows": [
-            { "term": "Anual", "text": "{shYearly} por puesto, desde {shMin} puestos." },
+            { "term": "Anual", "text": "{shYearly} por puesto. Todas las opciones empiezan en {shMin} puestos." },
             { "term": "Mensual", "text": "{shMonthly} por puesto, para un servidor que pueda conectarse a tablepro.app para renovar su licencia." },
             { "term": "Pago único", "text": "{shOnce} por puesto, con un año de actualizaciones. Después, las actualizaciones cuestan {shUpdates} por puesto al año y son opcionales." },
-            { "term": "Pago por adelantado", "text": "{prepaid}." },
-            { "term": "Más puestos", "text": "{volume}, en toda la instalación." },
+            { "term": "Actualizaciones perdidas", "text": "Para volver a recibir actualizaciones, pagas los años perdidos, nunca más que una nueva licencia de pago único." },
+            { "term": "Pago por adelantado", "text": "{prepaid}, después del descuento por más puestos, si lo hay." },
+            { "term": "Más puestos", "text": "{volume}, en toda la instalación, para anual, mensual y pago por adelantado. El pago único tiene en su lugar {onceVolume}, en la licencia y sus actualizaciones." },
+            { "term": "Renovaciones", "text": "Al precio que pagaste, mientras sigas renovando." },
+            { "term": "Reembolsos", "text": "Completos en un plazo de {shRefundDays} días, mientras no se haya emitido ningún archivo de licencia. Las renovaciones no se reembolsan." },
             { "term": "Staging", "text": "Una licencia gratuita para una instalación de staging, con los mismos puestos." },
             { "term": "Soporte", "text": "Por correo electrónico, con respuesta en un plazo de {supportDays} días laborables." }
         ],

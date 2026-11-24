@@ -51,8 +51,7 @@
         "rows": [
             { "term": "Merchant of record", "text": "{merchant} 负责收款，并按您的账单地址加收销售税或 VAT。" },
             { "term": "发票", "text": "在 {merchant} 门户中添加公司名称和增值税号，然后下载每张发票。" },
-            { "term": "退款", "text": "可在购买后以及每次续费后 {refundDays} 天内退款。" },
-            { "term": "采购订单", "text": "需要采购订单或其他付款方式，请发邮件至 <email>{email}</email>。" }
+            { "term": "退款", "text": "可在购买后以及每次续费后 {refundDays} 天内退款。" }
         ]
     },
     "data": {
@@ -70,11 +69,14 @@
         "note": "预览版，先支持 macOS。评估期 {evaluationDays} 天免费。",
         "lead": "TablePro 同步服务器以 OCI 镜像加 PostgreSQL 的形式运行在您自己的基础设施上。用户通过您的身份提供商（OIDC）登录。所有内容都会同步，包括查询历史，密码端到端加密。团队共享支持角色和审计日志。每个席位都包含 Pro。",
         "rows": [
-            { "term": "按年", "text": "每席位 {shYearly}，{shMin} 个席位起。" },
+            { "term": "按年", "text": "每席位 {shYearly}。所有付款方式均 {shMin} 个席位起。" },
             { "term": "按月", "text": "每席位 {shMonthly}，适用于能访问 tablepro.app 以续订许可证的服务器。" },
             { "term": "一次性", "text": "每席位 {shOnce}，含一年更新。之后的更新为每席位每年 {shUpdates}，可选。" },
-            { "term": "预付", "text": "{prepaid}。" },
-            { "term": "更多席位", "text": "{volume}，按整个安装计算。" },
+            { "term": "中断的更新", "text": "补付中断的年份即可恢复更新，最多不超过一份新一次性许可证的价格。" },
+            { "term": "预付", "text": "{prepaid}，在席位折扣之后计算。" },
+            { "term": "更多席位", "text": "{volume}，按整个安装计算，适用于按年、按月和预付。一次性则改为 {onceVolume}，适用于许可证及其更新。" },
+            { "term": "续订", "text": "只要持续续订，就保持你支付的价格。" },
+            { "term": "退款", "text": "未签发许可证文件前，{shRefundDays} 天内全额退款。续订不退款。" },
             { "term": "预发布环境", "text": "为一个预发布环境安装提供免费许可证，席位数相同。" },
             { "term": "支持", "text": "通过邮件，{supportDays} 个工作日内回复。" }
         ],

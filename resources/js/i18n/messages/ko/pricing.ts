@@ -60,7 +60,7 @@ export default {
         },
         "enterprise": {
             "name": "Enterprise",
-            "description": "회사 계정으로 로그인, 정책 적용, 감사 로그, MDM, 구매 주문서.",
+            "description": "회사 계정으로 로그인, 정책 적용, 감사 로그, MDM.",
             "cta": "문의하기"
         }
     },
@@ -104,8 +104,8 @@ export default {
     },
     "allFeatures": "모든 유료 기능",
     "refund": {
-        "one": "구매 또는 갱신 후 {count}일 이내에 환불할 수 있습니다(<link>환불 정책</link>).",
-        "other": "구매 또는 갱신 후 {count}일 이내에 환불할 수 있습니다(<link>환불 정책</link>)."
+        "one": "Pro와 Team은 구매 또는 갱신 후 {count}일 이내에 환불할 수 있습니다(<link>환불 정책</link>).",
+        "other": "Pro와 Team은 구매 또는 갱신 후 {count}일 이내에 환불할 수 있습니다(<link>환불 정책</link>)."
     },
     "finePrint": "가격은 미국 달러 기준이며, {merchant}가 결제 시 판매세 또는 VAT를 더합니다.",
     "comparePlans": "플랜 비교",

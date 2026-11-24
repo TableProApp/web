@@ -51,8 +51,7 @@
         "rows": [
             { "term": "Merchant of record", "text": "{merchant} takes the payment and adds sales tax or VAT for your billing address." },
             { "term": "Invoices", "text": "Add your company name and VAT number in {merchant}'s portal, then download each invoice." },
-            { "term": "Refunds", "text": "Within {refundDays} days of a purchase, and of each renewal." },
-            { "term": "Purchase orders", "text": "Or another way to pay: write to <email>{email}</email>." }
+            { "term": "Refunds", "text": "Within {refundDays} days of a purchase, and of each renewal." }
         ]
     },
     "data": {
@@ -70,11 +69,14 @@
         "note": "A preview, on macOS first. The evaluation is free for {evaluationDays} days.",
         "lead": "TablePro's sync server on your own infrastructure, as an OCI image with PostgreSQL. People sign in through your identity provider (OIDC). Everything syncs, query history included, with passwords end-to-end encrypted. Teams share with roles and an audit log. Every seat gets Pro.",
         "rows": [
-            { "term": "Yearly", "text": "{shYearly} per seat, from {shMin} seats." },
+            { "term": "Yearly", "text": "{shYearly} per seat. Every option starts at {shMin} seats." },
             { "term": "Monthly", "text": "{shMonthly} per seat, for a server that can reach tablepro.app to renew its license." },
             { "term": "One-time", "text": "{shOnce} per seat, with a year of updates. Updates after that are {shUpdates} per seat per year, and optional." },
-            { "term": "Paying ahead", "text": "{prepaid}." },
-            { "term": "More seats", "text": "{volume}, on the whole install." },
+            { "term": "Missed updates", "text": "To get updates again, pay for the years missed, never more than a new one-time license." },
+            { "term": "Paying ahead", "text": "{prepaid}, after any discount for more seats." },
+            { "term": "More seats", "text": "{volume}, on the whole install, for yearly, monthly and paying ahead. One-time takes {onceVolume} instead, on the license and its updates." },
+            { "term": "Renewals", "text": "At the price you paid, for as long as you renew." },
+            { "term": "Refunds", "text": "In full within {shRefundDays} days, while no license file has been issued. Renewals are not refunded." },
             { "term": "Staging", "text": "A free license for one staging install, with the same seats." },
             { "term": "Support", "text": "By email, with a reply within {supportDays} business days." }
         ],

@@ -52,7 +52,7 @@ export default {
         },
         enterprise: {
             name: 'Enterprise',
-            description: 'Đăng nhập bằng tài khoản công ty, policy bắt buộc, audit log, MDM, purchase order.',
+            description: 'Đăng nhập bằng tài khoản công ty, policy bắt buộc, audit log, MDM.',
             cta: 'Liên hệ',
         },
     },
@@ -89,7 +89,7 @@ export default {
     },
     allFeatures: 'Tất cả tính năng trả phí',
     refund: {
-        other: 'Hoàn tiền trong vòng {count} ngày kể từ lần mua hoặc gia hạn (<link>chính sách hoàn tiền</link>).',
+        other: 'Pro và Team: hoàn tiền trong vòng {count} ngày kể từ lần mua hoặc gia hạn (<link>chính sách hoàn tiền</link>).',
     },
     finePrint: 'Giá tính bằng USD; {merchant} cộng thuế bán hàng hoặc VAT khi thanh toán.',
     comparePlans: 'So sánh các gói',

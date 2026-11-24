@@ -51,8 +51,7 @@
         "rows": [
             { "term": "Merchant of record", "text": "{merchant} menerima pembayaran dan menambahkan pajak penjualan atau PPN sesuai alamat penagihan Anda." },
             { "term": "Faktur", "text": "Tambahkan nama perusahaan dan nomor pajak (VAT) Anda di portal {merchant}, lalu unduh setiap faktur." },
-            { "term": "Pengembalian dana", "text": "Dalam {refundDays} hari setelah pembelian, dan setelah setiap perpanjangan." },
-            { "term": "Purchase order", "text": "Atau cara bayar lain: kirim email ke <email>{email}</email>." }
+            { "term": "Pengembalian dana", "text": "Dalam {refundDays} hari setelah pembelian, dan setelah setiap perpanjangan." }
         ]
     },
     "data": {
@@ -70,11 +69,14 @@
         "note": "Versi pratinjau, di macOS terlebih dahulu. Evaluasinya gratis selama {evaluationDays} hari.",
         "lead": "Server sinkronisasi TablePro di infrastruktur Anda sendiri, sebagai image OCI dengan PostgreSQL. Pengguna login melalui identity provider Anda (OIDC). Semuanya tersinkron, termasuk riwayat kueri, dengan kata sandi terenkripsi end-to-end. Tim berbagi dengan peran dan log audit. Setiap seat mendapat Pro.",
         "rows": [
-            { "term": "Tahunan", "text": "{shYearly} per seat, mulai {shMin} seat." },
+            { "term": "Tahunan", "text": "{shYearly} per seat. Setiap opsi mulai {shMin} seat." },
             { "term": "Bulanan", "text": "{shMonthly} per seat, untuk server yang dapat menjangkau tablepro.app guna memperpanjang lisensinya." },
             { "term": "Sekali bayar", "text": "{shOnce} per seat, dengan pembaruan selama satu tahun. Setelah itu, pembaruan seharga {shUpdates} per seat per tahun dan bersifat opsional." },
-            { "term": "Bayar di muka", "text": "Diskon {prepaid}." },
-            { "term": "Lebih banyak seat", "text": "Diskon {volume}, untuk seluruh instalasi." },
+            { "term": "Pembaruan terlewat", "text": "Untuk mendapat pembaruan lagi, bayar tahun-tahun yang terlewat, tidak lebih dari harga lisensi sekali bayar yang baru." },
+            { "term": "Bayar di muka", "text": "Diskon {prepaid}, setelah diskon untuk lebih banyak seat, jika ada." },
+            { "term": "Lebih banyak seat", "text": "Diskon {volume}, untuk seluruh instalasi, untuk tahunan, bulanan, dan bayar di muka. Sekali bayar mendapat diskon {onceVolume} sebagai gantinya, untuk lisensi dan pembaruannya." },
+            { "term": "Perpanjangan", "text": "Dengan harga yang Anda bayar, selama Anda terus memperpanjang." },
+            { "term": "Pengembalian dana", "text": "Penuh dalam {shRefundDays} hari, selama belum ada file lisensi yang diterbitkan. Perpanjangan tidak dikembalikan dananya." },
             { "term": "Staging", "text": "Lisensi gratis untuk satu instalasi staging, dengan jumlah seat yang sama." },
             { "term": "Dukungan", "text": "Melalui email, dengan balasan dalam {supportDays} hari kerja." }
         ],
