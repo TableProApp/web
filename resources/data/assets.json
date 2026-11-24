@@ -8992,6 +8992,165 @@
         "/images/blog/create-table-native-tabs.png"
       ]
     },
+    "blog-tablepro-0-88-1": {
+      "kind": "figure",
+      "type": "detail",
+      "family": "blog",
+      "ownerRepo": "web",
+      "slot": true,
+      "handoffPriority": "P3",
+      "usedOn": [
+        {
+          "path": "/blog/tablepro-0-88",
+          "section": "figure-1"
+        }
+      ],
+      "aspect": "1120:1280",
+      "priority": false,
+      "theme": "single",
+      "locale": "shared",
+      "mobile": null,
+      "description": {
+        "en": "The Share Result sheet's Columns list with two columns masked by the connection's rules, one detected IP address, one removed column and the rest kept.",
+        "vi": null
+      },
+      "alt": {
+        "en": "The Share Result sheet scrolled to its Columns list: id on Keep, email on Mask and Email and phone on Mask and Last 4 Characters, both marked Masked by this connection's rules, display_name on Mask and Full, notes on Remove, last_ip on Mask and Stable Hash marked Looks like: IP address, and plan on Keep, above the line 4 columns masked, 1 removed, with Cancel and Create Link at the bottom",
+        "vi": null
+      },
+      "caption": {
+        "en": "Each column is kept, masked or removed before the link is created, and columns that look sensitive start masked.",
+        "vi": null
+      },
+      "replacement": {
+        "dir": "public/images/blog",
+        "base": "blog-tablepro-0-88-1"
+      },
+      "status": "supplied",
+      "src": {
+        "light": {
+          "widths": [
+            704,
+            1120
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 1120,
+          "height": 1280
+        }
+      },
+      "legacySource": [
+        "/images/blog/share-result-columns.png"
+      ]
+    },
+    "blog-tablepro-0-88-2": {
+      "kind": "figure",
+      "type": "screenshot",
+      "family": "blog",
+      "ownerRepo": "web",
+      "slot": true,
+      "handoffPriority": "P3",
+      "usedOn": [
+        {
+          "path": "/blog/tablepro-0-88",
+          "section": "figure-2"
+        }
+      ],
+      "aspect": "2460:1730",
+      "priority": false,
+      "theme": "single",
+      "locale": "shared",
+      "mobile": null,
+      "description": {
+        "en": "Two iPhone screens side by side: a table's More menu with Export and Import Rows, and the Export Table sheet set to CSV.",
+        "vi": null
+      },
+      "alt": {
+        "en": "Two iPhone screens from the Chinook sample database. On the left, the Track table's More menu lists Table Structure, Select Rows, Cards and Grid, Export…, Import Rows…, and Copy Page as JSON, CSV or SQL INSERT. On the right, the Export Table sheet has Format set to CSV, File Name Track with the .csv extension under it, the Track table checked under Tables, and the CSV options Delimiter set to Comma and Quote set to Quote if needed",
+        "vi": null
+      },
+      "caption": {
+        "en": "On iPhone and iPad, a table's More menu now exports it to a file or imports rows into it.",
+        "vi": null
+      },
+      "replacement": {
+        "dir": "public/images/blog",
+        "base": "blog-tablepro-0-88-2"
+      },
+      "status": "supplied",
+      "src": {
+        "light": {
+          "widths": [
+            704,
+            1408
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 1408,
+          "height": 990
+        }
+      },
+      "legacySource": [
+        "/images/blog/ios-export-menu-and-sheet.png"
+      ]
+    },
+    "blog-tablepro-0-88-3": {
+      "kind": "figure",
+      "type": "detail",
+      "family": "blog",
+      "ownerRepo": "web",
+      "slot": true,
+      "handoffPriority": "P3",
+      "usedOn": [
+        {
+          "path": "/blog/tablepro-0-88",
+          "section": "figure-3"
+        }
+      ],
+      "aspect": "1548:1014",
+      "priority": false,
+      "theme": "single",
+      "locale": "shared",
+      "mobile": null,
+      "description": {
+        "en": "A notes table with Wrap Text on: long body values run over several lines, short ones stay on one.",
+        "vi": null
+      },
+      "alt": {
+        "en": "A data grid of eight notes with id, title, body and status columns and Wrap Text on: the Release checklist body runs over four lines, an address over three lines from its own line breaks, a SQL query with a comment over three, a long log over nine, and the Short, Empty and Reminder rows stay one line tall",
+        "vi": null
+      },
+      "caption": {
+        "en": "With Wrap Text on, each row grows to fit its longest value, up to 10 lines.",
+        "vi": null
+      },
+      "replacement": {
+        "dir": "public/images/blog",
+        "base": "blog-tablepro-0-88-3"
+      },
+      "status": "supplied",
+      "src": {
+        "light": {
+          "widths": [
+            704,
+            1408
+          ],
+          "formats": [
+            "avif",
+            "webp"
+          ],
+          "width": 1408,
+          "height": 922
+        }
+      },
+      "legacySource": [
+        "/images/blog/grid-wrap-text.png"
+      ]
+    },
     "blog-tablepro-for-iphone-1": {
       "kind": "phone",
       "type": "screenshot-phone",
