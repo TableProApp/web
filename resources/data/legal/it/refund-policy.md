@@ -1,6 +1,6 @@
 ---
 title: Politica di rimborso
-description: Ogni piano TablePro è rimborsabile entro {refundDays} giorni dall’acquisto, e ogni rinnovo mensile o annuale entro {refundDays} giorni dal suo addebito. Come richiederlo.
+description: I piani Pro e Team sono rimborsabili entro {refundDays} giorni dall’acquisto, e ogni rinnovo mensile o annuale entro {refundDays} giorni dal suo addebito. Come richiederlo.
 updatedAt: "2026-11-07"
 ---
 

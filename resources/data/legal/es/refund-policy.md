@@ -1,6 +1,6 @@
 ---
 title: Política de reembolso
-description: Cada plan es reembolsable en los {refundDays} días siguientes a la compra, y cada renovación mensual o anual en los {refundDays} días siguientes a su cobro. Cómo pedirlo.
+description: Los planes Pro y Team se reembolsan en los {refundDays} días siguientes a la compra, y cada renovación mensual o anual en los {refundDays} días siguientes a su cobro. Cómo pedirlo.
 updatedAt: "2026-11-07"
 ---
 

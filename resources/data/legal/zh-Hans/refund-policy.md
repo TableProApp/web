@@ -1,6 +1,6 @@
 ---
 title: 退款政策
-description: 所有 TablePro 方案均可在购买后 {refundDays} 天内退款，月付或年付方案的每次续订也可在扣款后 {refundDays} 天内退款。本文说明申请方式及许可证后续处理。
+description: Pro 和 Team 方案均可在购买后 {refundDays} 天内退款，月付或年付方案的每次续订也可在扣款后 {refundDays} 天内退款。本文说明申请方式及许可证后续处理。
 updatedAt: "2026-11-07"
 ---
 

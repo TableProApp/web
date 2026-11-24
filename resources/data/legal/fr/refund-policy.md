@@ -1,6 +1,6 @@
 ---
 title: Politique de remboursement
-description: Toute offre TablePro est remboursable dans les {refundDays} jours suivant l’achat, et chaque renouvellement mensuel ou annuel dans les {refundDays} jours suivant son paiement.
+description: Les offres Pro et Team sont remboursables dans les {refundDays} jours suivant l’achat, et chaque renouvellement mensuel ou annuel dans les {refundDays} jours suivant son paiement.
 updatedAt: "2026-11-07"
 ---
 

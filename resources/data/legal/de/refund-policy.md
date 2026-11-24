@@ -1,6 +1,6 @@
 ---
 title: Erstattungsrichtlinie
-description: Jeder Tarif ist bis {refundDays} Tage nach dem Kauf erstattbar, jede monatliche oder jährliche Verlängerung bis {refundDays} Tage nach ihrer Abbuchung. So beantragst du sie.
+description: Pro und Team sind bis {refundDays} Tage nach dem Kauf erstattbar, jede monatliche oder jährliche Verlängerung bis {refundDays} Tage nach ihrer Abbuchung. So beantragst du sie.
 updatedAt: "2026-11-07"
 ---
 
