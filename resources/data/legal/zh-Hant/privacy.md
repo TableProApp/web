@@ -1,7 +1,7 @@
 ---
 title: 隱私政策
 description: TablePro 收集的資料、用途、接收方、儲存時間，以及您的選擇和權利。
-updatedAt: "2026-11-07"
+updatedAt: "2026-11-25"
 ---
 
 本政策涵蓋 Mac、Linux、iPhone 和 iPad 上的 TablePro；tablepro.app；docs.tablepro.app；以及帳戶、購買、支援和郵件訂閱服務。[技術清單](https://docs.tablepro.app/security/privacy)列出欄位、端點和控制選項。App原始碼位於[公開倉庫]({github})。
@@ -41,6 +41,14 @@ Mac 和 Linux 預設開啟使用資料，可關閉。已發布的 iPhone 和 iPa
 {merchant}（Polar Software, Inc.）是 merchant of record 和轉售商，按自己的條款收集姓名、郵箱、賬單地址及付款資訊，處理付款、稅務、收據和爭議。我們從不接收完整銀行卡資訊。
 
 我們為結賬、稅務和幣種傳送購買內容、語言、訪問來源及 IP。我們接收買方及賬單詳情、金額、訂單/訂閱 ID、續訂、取消和退款。訂單保留郵箱、賬單國家、金額及來源歸因。未登入購買會在必要時為該郵箱建立未驗證帳戶。取消原因和評論傳送至 {merchant} 並隨訂閱儲存。處理履行購買合同；稅務及會計記錄履行法定義務。缺少必要資訊無法結賬。在 [{merchant} 門戶]({portal})管理賬單；參閱[條款](/zh-Hant/terms)和[退款](/zh-Hant/refund-policy)。
+
+### 面向學生與教師的 Pro {#education}
+
+申請面向學生與教師的 Pro 時，我們會詢問您的年齡層（未滿 13 歲、13 至 15 歲、16 至 17 歲，或 18 歲以上），未滿 18 歲時還會詢問您的父母或監護人是否同意。我們只儲存年齡層和該回答，從不儲存出生日期，並拒絕未滿 13 歲者。我們將您帳戶的電子郵件地址與公開的學校網域清單比對，向該地址寄送確認碼，並在授權上記錄符合資格的學校網域。PostHog 接收該網域，從不接收您的電子郵件地址。
+
+如果無法以這種方式確認您的地址，年滿 16 歲後可提交學校文件。我們儲存您的角色（學生或教師）、全名、學校名稱和網站、僅以無法還原的帶金鑰雜湊形式儲存的學號、文件或您的教職員頁面連結、Cloudflare 為該請求回報的國家，以及您同意的時間和同意文字版本。我們應您的請求，在核發授權前使用這些資訊判斷您是否符合資格；依據是您在訂立合同前要求採取的步驟（第 6(1)(b) 條），您也會在表單中表示同意。為防止濫用，我們會將文件指紋和學號雜湊與其他帳戶的申請比對。
+
+文件存放在一個不做備份的專用 Cloudflare R2 儲存桶中，等待我們作出決定，並在決定時刪除；如無人審核，則在 14 天後刪除。文件從不進入我們的資料庫、日誌、郵件或備份。請勿傳送身分證、護照或銀行卡；如收到此類文件，我們會拒絕並立即刪除。決定記錄見[儲存期限](#retention)。
 
 ### 團隊和共享內容 {#library}
 
@@ -168,7 +176,7 @@ Cloudflare Web Analytics 不在瀏覽器儲存內容。公開頁面不設第一�
 | 接收方 | 資料與目的 |
 | --- | --- |
 | [OVH]({ovhPrivacy}) | 伺服器及服務記錄託管 |
-| [Cloudflare]({cloudflarePrivacy}) | DNS/代理、R2/備份、Turnstile、Cloudflare Web Analytics |
+| [Cloudflare]({cloudflarePrivacy}) | DNS/代理、R2/備份、待審核的學校文件、Turnstile、Cloudflare Web Analytics |
 | [Amazon Web Services]({awsPrivacy}) | Amazon SES 郵件、投遞及互動；CloudFront 連結、SNS/SQS 事件 |
 | [PostHog EU]({posthogPrivacy}) | App/伺服器分析；帳戶 ID，無姓名/郵箱；直接請求含 IP |
 | [{merchant}]({merchantPrivacy}) | 獨立 merchant of record；結賬、賬單及購買 |
@@ -203,6 +211,7 @@ OVH 伺服器和 Amazon SES 在新加坡（SES 為 `ap-southeast-1`）。PostHog
 | Google Analytics | 使用者/事件資料 2 個月；彙總標準報告另計 |
 | Cloudflare Web Analytics | 我們可檢視最近六個月瀏覽總數 |
 | 支援 | Crisp 對話和郵箱訊息保留至刪除，包括按請求刪除。未設期限。 |
+| 面向學生與教師的 Pro | 學校文件在作出決定時刪除，如無人審核則在提交 14 天後刪除，從不進入備份。決定記錄（姓名、學校、角色、年齡層、學號雜湊、文件指紋、請求國家、同意及決定）保留至所核發授權結束後 12 個月，或拒絕後 12 個月，並隨帳戶刪除。年齡層保留至刪除帳戶。 |
 | 備份和遷移檔案 | 未設期限。刪帳戶不刪副本。舊完整資料庫含姓名/郵箱、授權、訂單、團隊、裝置名、訂閱者、beta 註冊、郵件、使用報告及帶 IP 的授權日誌。 |
 
 ## 選擇和權利 {#rights}
@@ -217,7 +226,7 @@ OVH 伺服器和 Amazon SES 在新加坡（SES 為 `ap-southeast-1`）。PostHog
 
 ## 兒童 {#children}
 
-TablePro 不面向 16 歲以下兒童，我們不會明知而收集其個人資料。如認為兒童已向我們提供資料，請聯絡我們刪除。
+TablePro 帳戶供年滿 13 歲的使用者使用。未滿 18 歲，或未達您居住地的成年年齡時，須依[條款](/zh-Hant/terms#account)所述取得父母或監護人同意。面向學生與教師的 Pro 會先詢問您的年齡層，只儲存該年齡層，拒絕未滿 13 歲者，並僅接受年滿 16 歲者提交學校文件。如認為未滿 13 歲的兒童已向我們提供個人資料，請聯絡我們刪除。
 
 ## 安全 {#security}
 

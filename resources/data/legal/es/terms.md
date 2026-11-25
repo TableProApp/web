@@ -1,7 +1,7 @@
 ---
 title: Condiciones del servicio
 description: Condiciones del sitio web, el portal de cuentas, el servidor de licencias y Team Library de TablePro, y de la compra de una licencia Pro o Team.
-updatedAt: "2026-11-19"
+updatedAt: "2026-11-25"
 ---
 
 Estas condiciones rigen el sitio web tablepro.app, el portal de cuentas, nuestro servidor de licencias, Team Library y las Licencias y Claves de licencia de pago descritas a continuación. Al usarlos, o al comprar o activar una Licencia, aceptas estas condiciones. TablePro para Mac, TablePro para Linux y TablePro para iPhone y iPad se licencian solo bajo la AGPLv3: no necesitas aceptar estas condiciones para descargarlas, instalarlas o ejecutarlas.
@@ -51,6 +51,18 @@ Las apps renuevan tu plan con nuestro servidor una vez al día. Si no se puede a
 ## Portal de cuentas {#account}
 
 Gestionas tus Licencias en el [portal de cuentas]({account}), al que accedes con un enlace o un código enviado a tu correo, con una llave de acceso o con Apple, GitHub o Google. Mantenlos seguros: no somos responsables del acceso a tu cuenta mediante una cuenta de correo, un dispositivo o una cuenta de proveedor comprometidos.
+
+Debes tener al menos 13 años para crear una cuenta. Si tienes menos de 18 años, o no has alcanzado la mayoría de edad en el lugar donde vives, tu padre, madre o tutor legal debe aceptar estas condiciones en tu nombre, y lo confirma cuando solicitas Pro para estudiantes y docentes.
+
+## Pro para estudiantes y docentes {#education}
+
+Los estudiantes y docentes pueden obtener una Licencia Pro gratis durante un año. Comprobamos que cumples los requisitos con la dirección de correo de tu institución educativa que usa tu cuenta, comparándola con una lista pública de dominios de instituciones educativas, o, cuando tu dirección no se puede comprobar de ese modo, con un documento de tu institución educativa que revisamos manualmente. Aceptamos documentos a partir de los 16 años.
+
+- El documento debe ser auténtico, vigente y tuyo, y mostrar tu nombre completo, tu institución educativa y una fecha del curso actual. No envíes un documento nacional de identidad, un pasaporte ni una tarjeta bancaria.
+- Cada cuenta puede enviar hasta 3 documentos en 12 meses. Decidimos en un plazo de 2 días hábiles siempre que podemos, y podemos rechazar un documento sin dar más motivo que el que indiquemos.
+- La Licencia es solo para ti. No se puede vender, compartir ni transferir, y una cuenta no puede tener más de una a la vez.
+- Podemos revocar la Licencia, y rechazar cualquier otra posterior, si la información o el documento que proporcionaste eran falsos o se usaron para otra persona, o si la Licencia se revende.
+- Puedes renovarla desde 30 días antes de que termine, con la dirección de correo de tu institución educativa o con un documento nuevo, mientras sigas estudiando o enseñando en una institución educativa.
 
 ## Uso aceptable {#acceptable-use}
 

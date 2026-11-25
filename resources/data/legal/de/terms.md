@@ -1,7 +1,7 @@
 ---
 title: Nutzungsbedingungen
 description: Die Bedingungen für Website, Kontoportal, Lizenzserver und Team Library von TablePro sowie den Kauf einer Pro- oder Team-Lizenz.
-updatedAt: "2026-11-19"
+updatedAt: "2026-11-25"
 ---
 
 Diese Bedingungen regeln die Website tablepro.app, das Kontoportal, unseren Lizenzserver, die Team Library sowie die unten beschriebenen kostenpflichtigen Lizenzen und Lizenzschlüssel. Indem du sie nutzt oder eine Lizenz kaufst oder aktivierst, stimmst du diesen Bedingungen zu. TablePro für Mac, TablePro für Linux sowie TablePro für iPhone und iPad stehen allein unter der AGPLv3: Um sie herunterzuladen, zu installieren oder auszuführen, musst du diese Bedingungen nicht akzeptieren.
@@ -51,6 +51,18 @@ Die Apps erneuern deinen Tarif einmal täglich bei unserem Server. Ist der Serve
 ## Kontoportal {#account}
 
 Du verwaltest deine Lizenzen im [Kontoportal]({account}). Du meldest dich dort mit einem Link oder Code an, der an deine E-Mail-Adresse gesendet wird, mit einem Passkey oder mit Apple, GitHub oder Google. Schütze diese Zugänge: Wir sind nicht für Zugriffe auf dein Konto über ein kompromittiertes E-Mail-Konto, Gerät oder Anbieterkonto verantwortlich.
+
+Du musst mindestens 13 Jahre alt sein, um ein Konto zu erstellen. Bist du unter 18 oder an deinem Wohnort noch nicht volljährig, muss ein Elternteil oder dein Vormund diesen Bedingungen für dich zustimmen und bestätigt dies, wenn du Pro für Schüler, Studierende und Lehrkräfte beantragst.
+
+## Pro für Schüler, Studierende und Lehrkräfte {#education}
+
+Schüler, Studierende und Lehrkräfte können eine Pro-Lizenz ein Jahr lang kostenlos erhalten. Die Berechtigung prüfen wir anhand der schulischen oder universitären E-Mail-Adresse deines Kontos, die wir mit einer öffentlichen Liste von Domains von Bildungseinrichtungen abgleichen, oder, wenn deine Adresse so nicht geprüft werden kann, anhand eines Dokuments deiner Bildungseinrichtung, das wir von Hand prüfen. Dokumente nehmen wir ab 16 Jahren an.
+
+- Das Dokument muss echt, aktuell und dein eigenes sein und deinen vollständigen Namen, deine Bildungseinrichtung und ein Datum im laufenden Schul- oder Studienjahr zeigen. Sende keinen Personalausweis, keinen Reisepass und keine Bankkarte.
+- Jedes Konto kann innerhalb von 12 Monaten bis zu 3 Dokumente senden. Wir entscheiden nach Möglichkeit innerhalb von 2 Arbeitstagen und können ein Dokument ablehnen, ohne einen anderen Grund als den genannten anzugeben.
+- Die Lizenz gilt nur für dich. Sie kann nicht verkauft, geteilt oder übertragen werden, und ein Konto kann nicht mehr als eine gleichzeitig haben.
+- Wir können die Lizenz widerrufen und jede spätere ablehnen, wenn deine Angaben oder dein Dokument falsch waren oder für eine andere Person verwendet wurden oder wenn die Lizenz weiterverkauft wird.
+- Du kannst sie ab 30 Tagen vor ihrem Ende mit deiner schulischen oder universitären E-Mail-Adresse oder einem neuen Dokument verlängern, solange du noch an einer Bildungseinrichtung lernst oder lehrst.
 
 ## Zulässige Nutzung {#acceptable-use}
 

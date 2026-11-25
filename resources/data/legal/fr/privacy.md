@@ -1,7 +1,7 @@
 ---
 title: Politique de confidentialité
 description: Les données recueillies par TablePro, leurs usages, destinataires et durées de conservation, vos choix et droits.
-updatedAt: "2026-11-07"
+updatedAt: "2026-11-25"
 ---
 
 Cette politique couvre TablePro sur Mac, Linux, iPhone et iPad ; tablepro.app ; docs.tablepro.app ; et nos services de compte, achats, assistance et newsletter. L'[inventaire technique](https://docs.tablepro.app/security/privacy) précise champs, destinations et réglages. Le code figure dans le [dépôt public]({github}).
@@ -41,6 +41,14 @@ Le [portail]({account}) sert à modifier profil et méthodes de connexion, gére
 {merchant} (Polar Software, Inc.) est le merchant of record et revendeur. Il recueille nom, e-mail, adresse de facturation et données de paiement selon ses conditions. Il gère paiement, taxes, reçus et litiges. Nous ne recevons jamais les données complètes de carte.
 
 Nous transmettons achat, langue, origine de visite et IP pour le paiement, les taxes et la devise. Nous recevons données de l'acheteur/facturation, montants, IDs de commande/abonnement, renouvellements, annulations et remboursements. Les commandes gardent e-mail, pays, montants et attribution. Un achat sans connexion crée si nécessaire un compte non vérifié pour cette adresse. Motifs et commentaires d'annulation vont à {merchant} et restent avec l'abonnement. Le traitement exécute le contrat ; les dossiers fiscaux et comptables répondent aux obligations légales. Sans les données nécessaires, l'achat ne peut aboutir. Gérez la facturation sur le [portail {merchant}]({portal}) ; consultez [conditions](/fr/terms) et [remboursements](/fr/refund-policy).
+
+### Pro pour les élèves, étudiants et enseignants {#education}
+
+Lorsque vous demandez Pro pour les élèves, étudiants et enseignants, nous demandons votre tranche d'âge (moins de 13 ans, 13 à 15, 16 à 17, ou 18 ans et plus) et, avant 18 ans, si l'un de vos parents ou votre tuteur légal est d'accord. Nous gardons la tranche et cette réponse, jamais une date de naissance, et refusons toute personne de moins de 13 ans. Nous comparons l'adresse e-mail de votre compte à une liste publique de domaines d'établissements d'enseignement, lui envoyons un code de confirmation et inscrivons sur la Licence le domaine de l'établissement qui y a donné droit. PostHog reçoit ce domaine, jamais votre adresse.
+
+Si votre adresse ne peut pas être vérifiée ainsi, vous pouvez envoyer un document de votre établissement à partir de 16 ans. Nous gardons votre rôle (vous étudiez ou enseignez), vos nom et prénom, le nom et le site web de votre établissement, votre numéro d'étudiant uniquement sous forme de hachage à clé irréversible, le document ou un lien vers votre page sur le site de l'établissement, le pays indiqué par Cloudflare pour la demande, ainsi que l'heure et la version du texte de votre consentement. Nous les utilisons pour décider, à votre demande, si vous êtes éligible avant de vous donner la Licence ; la base est l'exécution de mesures précontractuelles prises à votre demande (article 6(1)(b)), et vous donnez aussi votre consentement dans le formulaire. Nous comparons l'empreinte d'un document et le hachage d'un numéro d'étudiant avec les demandes d'autres comptes pour prévenir les abus.
+
+Le fichier attend dans un bucket Cloudflare R2 dédié, non sauvegardé, jusqu'à notre décision, et il est supprimé à ce moment-là, ou après 14 jours si personne ne l'a examiné. Il n'entre jamais dans notre base de données, nos journaux, nos e-mails ni nos sauvegardes. N'envoyez pas de carte nationale d'identité, de passeport ni de carte bancaire ; si l'un d'eux nous parvient, nous le refusons et le supprimons aussitôt. La [conservation](#retention) couvre le dossier de décision.
 
 ### Équipes et contenu partagé {#library}
 
@@ -168,7 +176,7 @@ Modifiez l'accord analytique avec Cookie settings au pied de page ou ici :
 | Destinataire | Données et but |
 | --- | --- |
 | [OVH]({ovhPrivacy}) | Serveur et dossiers du service |
-| [Cloudflare]({cloudflarePrivacy}) | DNS/proxy, R2 et sauvegardes, Turnstile, Cloudflare Web Analytics |
+| [Cloudflare]({cloudflarePrivacy}) | DNS/proxy, R2 et sauvegardes, documents scolaires en attente d'examen, Turnstile, Cloudflare Web Analytics |
 | [Amazon Web Services]({awsPrivacy}) | E-mails Amazon SES, livraison et engagement ; liens CloudFront, événements SNS/SQS |
 | [PostHog EU]({posthogPrivacy}) | Analyse app/serveur ; IDs sans noms/e-mails ; requêtes directes avec IP |
 | [{merchant}]({merchantPrivacy}) | Merchant of record indépendant ; paiement, facturation et achats |
@@ -203,6 +211,7 @@ Aucune limite n'est fixée là où le tableau le dit. Supprimer le compte n'effa
 | Google Analytics | Données utilisateur/événement : 2 mois ; rapports standard totaux distincts |
 | Cloudflare Web Analytics | Totaux des six derniers mois accessibles |
 | Assistance | Crisp et boîte e-mail jusqu'à effacement, notamment sur demande. Aucune limite fixée. |
+| Pro pour les élèves, étudiants et enseignants | Un document de l'établissement est supprimé lors de notre décision, ou 14 jours après son envoi si personne ne l'a examiné, et n'entre jamais dans les sauvegardes. Le dossier de décision (nom, établissement, rôle, tranche d'âge, hachage du numéro d'étudiant, empreinte du document, pays de la demande, consentement et décision) reste jusqu'à 12 mois après la fin de la Licence accordée, ou 12 mois après un refus, et est supprimé avec le compte. La tranche d'âge reste jusqu'à la suppression du compte. |
 | Sauvegardes et archive | Aucune limite. Supprimer le compte ne les efface pas. L'ancienne base complète contient noms/e-mails, licences, commandes, équipes, noms d'appareils, abonnés, inscriptions bêta, e-mails, rapports d'usage et journaux de licence avec IP. |
 
 ## Choix et droits {#rights}
@@ -217,7 +226,7 @@ Selon votre résidence, demandez accès, correction, effacement, restriction, po
 
 ## Enfants {#children}
 
-TablePro ne vise pas les moins de 16 ans et nous ne recueillons pas sciemment leurs données. Si vous pensez qu'un enfant nous en a donné, contactez-nous pour les supprimer.
+Les comptes TablePro sont destinés aux personnes de 13 ans ou plus. Avant 18 ans, ou avant l'âge de la majorité là où vous vivez, l'un de vos parents ou votre tuteur légal doit donner son accord, comme l'indiquent les [conditions](/fr/terms#account). Pro pour les élèves, étudiants et enseignants demande d'abord votre tranche d'âge, ne garde que cette tranche, refuse toute personne de moins de 13 ans et n'accepte un document de l'établissement qu'à partir de 16 ans. Si vous pensez qu'un enfant de moins de 13 ans nous a donné des données personnelles, contactez-nous et nous les supprimerons.
 
 ## Sécurité {#security}
 

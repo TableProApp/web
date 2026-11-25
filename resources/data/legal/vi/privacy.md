@@ -1,7 +1,7 @@
 ---
 title: Chính sách quyền riêng tư
 description: Dữ liệu TablePro thu thập, mục đích, bên nhận, thời gian lưu giữ và quyền lựa chọn của bạn.
-updatedAt: "2026-11-07"
+updatedAt: "2026-11-25"
 ---
 
 Chính sách này áp dụng cho TablePro trên Mac, Linux, iPhone và iPad; tablepro.app; docs.tablepro.app; cùng dịch vụ tài khoản, mua hàng, hỗ trợ và newsletter. [Danh mục kỹ thuật](https://docs.tablepro.app/security/privacy) liệt kê trường dữ liệu, endpoint và cách kiểm soát. Mã nguồn ứng dụng nằm trong [repository công khai]({github}).
@@ -41,6 +41,14 @@ Việc dùng miễn phí trên máy không yêu cầu tài khoản. Dịch vụ 
 {merchant} (Polar Software, Inc.) là merchant of record và bên bán lại. Họ thu tên, email, địa chỉ thanh toán và thông tin trả tiền theo điều khoản riêng. Họ xử lý thanh toán, thuế, biên nhận và tranh chấp. Chúng tôi không nhận đầy đủ thông tin thẻ.
 
 Chúng tôi gửi mặt hàng, ngôn ngữ, nguồn truy cập và IP để checkout, tính thuế và chọn tiền tệ. Chúng tôi nhận thông tin người mua/thanh toán, số tiền, ID đơn hàng/subscription, gia hạn, hủy và hoàn tiền. Đơn hàng giữ email, quốc gia thanh toán, số tiền và nguồn truy cập. Mua khi chưa đăng nhập tạo tài khoản chưa xác minh cho email đó nếu chưa có. Lý do hủy và bình luận đến {merchant} và được lưu với subscription. Xử lý thực hiện hợp đồng mua hàng; bản ghi thuế/kế toán đáp ứng nghĩa vụ pháp lý. Thiếu thông tin bắt buộc thì checkout không hoàn tất. Quản lý thanh toán ở [cổng {merchant}]({portal}); xem [điều khoản](/vi/terms) và [hoàn tiền](/vi/refund-policy).
+
+### Pro cho học sinh, sinh viên và giáo viên {#education}
+
+Khi bạn đăng ký nhận Pro cho học sinh, sinh viên và giáo viên, chúng tôi hỏi nhóm tuổi của bạn (dưới 13, 13 đến 15, 16 đến 17, hoặc từ 18 trở lên) và, nếu bạn dưới 18 tuổi, cha mẹ hoặc người giám hộ có đồng ý không. Chúng tôi lưu nhóm tuổi và câu trả lời đó, không bao giờ lưu ngày sinh, và từ chối người dưới 13 tuổi. Chúng tôi đối chiếu email của tài khoản với một danh sách công khai các tên miền của trường, gửi mã xác nhận tới email đó, và ghi trên License tên miền của trường đã đủ điều kiện. PostHog nhận tên miền đó, không bao giờ nhận địa chỉ email của bạn.
+
+Nếu không thể kiểm tra địa chỉ của bạn theo cách đó, bạn có thể gửi giấy tờ do trường cấp khi từ 16 tuổi trở lên. Chúng tôi lưu vai trò (học sinh/sinh viên hoặc giáo viên), họ tên đầy đủ, tên và website của trường, mã số học sinh/sinh viên chỉ dưới dạng hash có khóa không thể đọc ngược, giấy tờ hoặc link tới trang giới thiệu bạn trên website của trường, quốc gia mà Cloudflare ghi nhận cho yêu cầu, cùng thời điểm và phiên bản nội dung đồng ý của bạn. Theo yêu cầu của bạn, chúng tôi dùng các thông tin này để xét bạn có đủ điều kiện không trước khi cấp License; cơ sở là các bước bạn yêu cầu trước khi giao kết hợp đồng (Điều 6(1)(b)), và bạn cũng đồng ý trong biểu mẫu. Chúng tôi so sánh fingerprint của giấy tờ và hash mã số học sinh/sinh viên với hồ sơ của các tài khoản khác để ngăn lạm dụng.
+
+File chờ trong một bucket Cloudflare R2 riêng, không được backup, cho đến khi chúng tôi quyết định, và bị xóa khi có quyết định, hoặc sau 14 ngày nếu chưa ai xem xét. File không bao giờ đi vào database, log, email hay backup của chúng tôi. Vui lòng không gửi thẻ căn cước, hộ chiếu hay thẻ ngân hàng; nếu nhận được, chúng tôi sẽ từ chối và xóa ngay. Mục [thời gian lưu giữ](#retention) nêu thời hạn giữ bản ghi quyết định.
 
 ### Nhóm và nội dung chia sẻ {#library}
 
@@ -168,7 +176,7 @@ Cloudflare Web Analytics không lưu gì trong trình duyệt. Trang công khai 
 | Bên nhận | Dữ liệu và mục đích |
 | --- | --- |
 | [OVH]({ovhPrivacy}) | Máy chủ và bản ghi dịch vụ |
-| [Cloudflare]({cloudflarePrivacy}) | DNS/proxy, R2 và backup, Turnstile, Cloudflare Web Analytics |
+| [Cloudflare]({cloudflarePrivacy}) | DNS/proxy, R2 và backup, giấy tờ do trường cấp đang chờ xem xét, Turnstile, Cloudflare Web Analytics |
 | [Amazon Web Services]({awsPrivacy}) | Email Amazon SES, giao thư và tương tác newsletter; link CloudFront, sự kiện SNS/SQS |
 | [PostHog EU]({posthogPrivacy}) | Analytics ứng dụng/máy chủ; ID tài khoản, không tên/email; yêu cầu trực tiếp kèm IP |
 | [{merchant}]({merchantPrivacy}) | Merchant of record độc lập; checkout, thanh toán và đơn hàng |
@@ -203,6 +211,7 @@ Chúng tôi chưa đặt giới hạn thời gian tại những mục ghi như v
 | Google Analytics | Dữ liệu người dùng/sự kiện: 2 tháng; báo cáo tổng hợp chuẩn là riêng |
 | Cloudflare Web Analytics | Chúng tôi xem được tổng lượt xem sáu tháng gần nhất |
 | Hỗ trợ | Crisp và email giữ đến khi xóa, gồm theo yêu cầu. Chưa có giới hạn. |
+| Pro cho học sinh, sinh viên và giáo viên | Giấy tờ do trường cấp bị xóa khi có quyết định, hoặc 14 ngày sau khi gửi nếu chưa ai xem xét, và không bao giờ vào backup. Bản ghi quyết định (tên, trường, vai trò, nhóm tuổi, hash mã số học sinh/sinh viên, fingerprint giấy tờ, quốc gia của yêu cầu, sự đồng ý và quyết định) được giữ đến 12 tháng sau khi License đã cấp kết thúc, hoặc 12 tháng sau khi bị từ chối, và bị xóa cùng tài khoản. Nhóm tuổi được giữ đến khi xóa tài khoản. |
 | Backup và bản lưu chuyển đổi | Chưa có giới hạn. Xóa tài khoản không xóa các bản này. Bản lưu toàn database cũ gồm tên/email, license, đơn hàng, nhóm, tên thiết bị, subscriber, beta signup, email, báo cáo sử dụng và log license kèm IP. |
 
 ## Lựa chọn và quyền của bạn {#rights}
@@ -217,7 +226,7 @@ Tùy nơi sống, yêu cầu truy cập, sửa, xóa, hạn chế, di chuyển h
 
 ## Trẻ em {#children}
 
-TablePro không hướng đến trẻ dưới 16 tuổi và chúng tôi không cố ý thu thập dữ liệu cá nhân của trẻ. Nếu bạn cho rằng trẻ đã cung cấp dữ liệu, liên hệ để chúng tôi xóa.
+Tài khoản TablePro dành cho người từ 13 tuổi trở lên. Người dưới 18 tuổi, hoặc chưa đến tuổi thành niên nơi mình sống, cần có sự đồng ý của cha mẹ hoặc người giám hộ, như [điều khoản](/vi/terms#account) đã nêu. Pro cho học sinh, sinh viên và giáo viên hỏi nhóm tuổi của bạn trước tiên, chỉ lưu nhóm tuổi đó, từ chối người dưới 13 tuổi và chỉ nhận giấy tờ do trường cấp từ 16 tuổi. Nếu bạn cho rằng trẻ dưới 13 tuổi đã cung cấp dữ liệu cá nhân cho chúng tôi, hãy liên hệ để chúng tôi xóa.
 
 ## Bảo mật {#security}
 

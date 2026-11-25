@@ -1,7 +1,7 @@
 ---
 title: Privacy policy
 description: What TablePro collects, why it is used, who receives it, how long it stays, and your choices and rights.
-updatedAt: "2026-11-07"
+updatedAt: "2026-11-25"
 ---
 
 This policy covers TablePro for Mac, Linux, iPhone and iPad; tablepro.app; docs.tablepro.app; and our account, purchase, support and newsletter services. The [technical inventory](https://docs.tablepro.app/security/privacy) lists app fields, endpoints and controls. The apps' source is in the [public repository]({github}).
@@ -41,6 +41,14 @@ The [account portal]({account}) lets you edit your profile and sign-in methods, 
 {merchant} (Polar Software, Inc.) is the merchant of record and reseller. It collects your name, email, billing address and payment details under its own terms. It handles payment, tax, receipts and disputes. We never receive full card details.
 
 We send the purchase, language, visit source and IP address for checkout, tax and currency. We receive buyer and billing details, amounts, order/subscription IDs, renewals, cancellations and refunds. Orders keep email, billing country, amounts and visit attribution. A guest purchase creates an unverified account for its email if none exists. Cancellation reasons and comments go to {merchant} and stay with the subscription. Processing fulfils the purchase contract; tax and accounting records meet legal obligations. Without the required details, checkout cannot complete. Manage billing in [{merchant}'s portal]({portal}); see [terms](/terms) and [refunds](/refund-policy).
+
+### Pro for students and teachers {#education}
+
+When you claim Pro for students and teachers, we ask your age group (under 13, 13 to 15, 16 to 17, or 18 or older) and, under 18, whether your parent or guardian agrees. We keep the group and that answer, never a birth date, and refuse anyone under 13. We check your account's email address against a public list of school domains, email a confirmation code to it, and record on the License the school domain that qualified. PostHog receives that domain, never your address.
+
+If your address cannot be checked that way, you can send a school document from the age of 16. We keep your role (student or teacher), your full name, your school's name and website, your student number only as a keyed hash that cannot be read back, the document or a link to your staff page, the country Cloudflare reports for the request, and the time and wording version of your consent. We use them to decide whether you are eligible, at your request, before giving you the License; this is the basis of steps you ask for before a contract (Article 6(1)(b)), and you also give your consent in the form. We compare a document's fingerprint and a student number's hash with other accounts' applications to prevent abuse.
+
+The file waits in a Cloudflare R2 bucket of its own, which is not backed up, until we decide, and is deleted when we do, or after 14 days if nobody reviewed it. It never enters our database, logs, emails or backups. Do not send a national ID card, a passport or a bank card; if one arrives, we reject it and delete it at once. [Retention](#retention) covers the decision record.
 
 ### Teams and shared content {#library}
 
@@ -168,7 +176,7 @@ Change analytics consent with Cookie settings in the footer or here:
 | Recipient | Data and purpose |
 | --- | --- |
 | [OVH]({ovhPrivacy}) | Hosts our server and service records |
-| [Cloudflare]({cloudflarePrivacy}) | DNS/proxy traffic, R2 storage and backups, Turnstile, Web Analytics |
+| [Cloudflare]({cloudflarePrivacy}) | DNS/proxy traffic, R2 storage and backups, school documents awaiting review, Turnstile, Web Analytics |
 | [Amazon Web Services]({awsPrivacy}) | Amazon SES emails, delivery and newsletter engagement; CloudFront tracking links, SNS/SQS delivery events |
 | [PostHog EU]({posthogPrivacy}) | App and server analytics; account IDs, no names/emails; direct requests include IP addresses |
 | [{merchant}]({merchantPrivacy}) | Independent merchant of record; checkout, billing and purchase records |
@@ -203,6 +211,7 @@ We have not set a time limit where the table says so. Deleting an account does n
 | Google Analytics | User/event data: 2 months; aggregate standard reports are separate |
 | Cloudflare Web Analytics | Last six months of page-view totals available to us |
 | Support | Crisp conversations and mailbox messages stay until deleted, including on request. No time limit set. |
+| Pro for students and teachers | A school document is deleted when we decide it, or 14 days after it was sent if nobody reviewed it, and never enters backups. The decision record (name, school, role, age group, student number hash, document fingerprint, request country, consent and decision) stays until 12 months after the License it gave ends, or 12 months after a rejection, and is deleted with the account. The age group stays until the account is deleted. |
 | Backups and migration archive | No time limit set. Account deletion does not remove these copies. The previous server's whole-database archive includes names/emails, licenses, orders, teams, device names, subscribers, beta signups, email records, usage reports and license logs with IP addresses. |
 
 ## Your choices and rights {#rights}
@@ -217,7 +226,7 @@ Depending on where you live, request access, correction, erasure, restriction, p
 
 ## Children {#children}
 
-TablePro is not directed at children under 16, and we do not knowingly collect their personal data. If you believe a child has given us personal data, contact us and we will delete it.
+TablePro accounts are for people aged 13 or older. Under 18, or under the age of majority where you live, a parent or guardian must agree, as the [terms](/terms#account) say. Pro for students and teachers asks your age group first, keeps only that group, refuses anyone under 13, and takes a school document only from 16. If you believe a child under 13 has given us personal data, contact us and we will delete it.
 
 ## Security {#security}
 
