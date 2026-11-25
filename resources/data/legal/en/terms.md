@@ -1,7 +1,7 @@
 ---
 title: Terms of service
 description: The terms for TablePro's website, account portal, license server and Team Library, and for buying a Pro or Team license.
-updatedAt: "2026-11-19"
+updatedAt: "2026-11-25"
 ---
 
 These terms govern the website at tablepro.app, the account portal, our license server, the Team Library, and the paid Licenses and License Keys described below. By using them, or by buying or activating a License, you agree to these terms. TablePro for Mac, TablePro for Linux, and TablePro for iPhone and iPad are licensed under the AGPLv3 alone: you do not need to accept these terms to download, install or run them.
@@ -51,6 +51,18 @@ The apps renew your plan with our server once a day. If our server cannot be rea
 ## Account portal {#account}
 
 You manage your Licenses in the [account portal]({account}), which you sign in to with a link or code sent to your email address, with a passkey, or with Apple, GitHub or Google. Keep these secure: we are not responsible for access to your account through a compromised email account, device or sign-in provider account.
+
+You must be at least 13 years old to create an account. If you are under 18, or under the age of majority where you live, your parent or guardian must agree to these terms for you, and confirms that they do when you claim Pro for students and teachers.
+
+## Pro for students and teachers {#education}
+
+Students and teachers can get a Pro License free for one year. We check eligibility with the school email address of your account, against a public list of school domains, or, when your address cannot be checked that way, with a document from your school that we review by hand. A document is accepted from the age of 16.
+
+- The document must be genuine, current and your own, and show your full name, your school and a date in the current school year. Do not send a national ID card, a passport or a bank card.
+- Each account can send up to 3 documents in 12 months. We decide within 2 business days where we can, and we may refuse a document without giving more reason than the one we name.
+- The License is for you alone. It cannot be sold, shared or transferred, and an account cannot hold more than one at a time.
+- We may revoke the License, and refuse any later one, if the information or document you gave was false or was used for another person, or if the License is resold.
+- You can renew it from 30 days before it ends, with your school email address or a new document, while you still study or teach at a school.
 
 ## Acceptable use {#acceptable-use}
 

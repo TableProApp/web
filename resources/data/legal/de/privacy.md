@@ -1,7 +1,7 @@
 ---
 title: Datenschutzerklärung
 description: Welche Daten TablePro erhebt, wofür, wer sie erhält, wie lange sie bleiben und welche Rechte du hast.
-updatedAt: "2026-11-07"
+updatedAt: "2026-11-25"
 ---
 
 Diese Erklärung gilt für TablePro auf Mac, Linux, iPhone und iPad; tablepro.app; docs.tablepro.app; sowie Konto, Käufe, Support und Newsletter. Das [technische Verzeichnis](https://docs.tablepro.app/security/privacy) nennt Felder, Ziele und Einstellungen. Der Code steht im [öffentlichen Repository]({github}).
@@ -41,6 +41,14 @@ Im [Kontoportal]({account}) bearbeitest du Profil und Anmeldung, verwaltest Ger�
 {merchant} (Polar Software, Inc.) ist Merchant of Record und Wiederverkäufer. Er erhebt Name, E-Mail, Rechnungsadresse und Zahlungsdaten nach eigenen Bedingungen. Er bearbeitet Zahlungen, Steuern, Belege und Streitfälle. Vollständige Kartendaten erreichen uns nie.
 
 Wir senden Kauf, Sprache, Besuchsquelle und IP für Zahlung, Steuer und Währung. Wir erhalten Käufer-/Rechnungsdaten, Beträge, Bestell-/Abo-IDs, Verlängerungen, Kündigungen und Erstattungen. Bestellungen behalten E-Mail, Land, Beträge und Herkunft. Gastkäufe erzeugen bei Bedarf ein unbestätigtes Konto für die Adresse. Kündigungsgründe und Kommentare gehen an {merchant} und bleiben beim Abo. Die Verarbeitung erfüllt den Kaufvertrag; Steuer-/Buchhaltungsdaten dienen gesetzlichen Pflichten. Ohne erforderliche Angaben kann der Kauf nicht abgeschlossen werden. Rechnungen verwaltest du im [{merchant}-Portal]({portal}); siehe [Bedingungen](/de/terms) und [Erstattungen](/de/refund-policy).
+
+### Pro für Schüler, Studierende und Lehrkräfte {#education}
+
+Wenn du Pro für Schüler, Studierende und Lehrkräfte beantragst, fragen wir nach deiner Altersgruppe (unter 13, 13 bis 15, 16 bis 17 oder ab 18) und, unter 18, ob ein Elternteil oder dein Vormund zustimmt. Wir speichern die Gruppe und diese Antwort, nie ein Geburtsdatum, und lehnen alle unter 13 ab. Wir gleichen die E-Mail-Adresse deines Kontos mit einer öffentlichen Liste von Domains von Bildungseinrichtungen ab, senden an sie einen Bestätigungscode und vermerken an der Lizenz die Domain der Bildungseinrichtung, über die du berechtigt warst. PostHog erhält diese Domain, nie deine Adresse.
+
+Kann deine Adresse so nicht geprüft werden, kannst du ab 16 ein Dokument deiner Bildungseinrichtung senden. Wir speichern deine Rolle (Schüler/Studierende oder Lehrkraft), deinen vollständigen Namen, Name und Website deiner Bildungseinrichtung, deine Schüler- oder Matrikelnummer nur als Hash mit geheimem Schlüssel, der sich nicht zurückrechnen lässt, das Dokument oder einen Link zu deiner Profilseite bei der Einrichtung, das Land, das Cloudflare für die Anfrage meldet, sowie Zeitpunkt und Textversion deiner Einwilligung. Wir nutzen sie, um auf deinen Wunsch vor Erteilung der Lizenz zu entscheiden, ob du berechtigt bist; Grundlage sind vorvertragliche Maßnahmen auf deine Anfrage (Artikel 6(1)(b)), und zusätzlich willigst du im Formular ein. Den Fingerabdruck eines Dokuments und den Hash einer Schüler- oder Matrikelnummer gleichen wir mit Anträgen anderer Konten ab, um Missbrauch zu verhindern.
+
+Die Datei liegt bis zu unserer Entscheidung in einem eigenen Cloudflare-R2-Bucket ohne Backup und wird bei der Entscheidung gelöscht oder nach 14 Tagen, wenn niemand sie geprüft hat. Sie gelangt nie in unsere Datenbank, Logs, E-Mails oder Backups. Sende keinen Personalausweis, keinen Reisepass und keine Bankkarte; kommt doch eines davon an, lehnen wir es ab und löschen es sofort. [Aufbewahrung](#retention) beschreibt den Entscheidungsdatensatz.
 
 ### Teams und geteilte Inhalte {#library}
 
@@ -168,7 +176,7 @@ Cloudflare Web Analytics speichert nichts im Browser. Öffentliche Seiten setzen
 | Empfänger | Daten und Zweck |
 | --- | --- |
 | [OVH]({ovhPrivacy}) | Server und Dienstdaten |
-| [Cloudflare]({cloudflarePrivacy}) | DNS/Proxy, R2 und Backups, Turnstile, Cloudflare Web Analytics |
+| [Cloudflare]({cloudflarePrivacy}) | DNS/Proxy, R2 und Backups, Schul- und Hochschuldokumente in Prüfung, Turnstile, Cloudflare Web Analytics |
 | [Amazon Web Services]({awsPrivacy}) | Amazon SES Mail, Zustellung und Newsletterinteraktion; CloudFront-Links, SNS/SQS-Ereignisse |
 | [PostHog EU]({posthogPrivacy}) | App-/Serveranalyse; IDs ohne Namen/E-Mail; direkte Anfragen mit IP |
 | [{merchant}]({merchantPrivacy}) | Unabhängiger Merchant of Record; Checkout, Abrechnung, Käufe |
@@ -203,6 +211,7 @@ Wo angegeben, haben wir keine Zeitgrenze festgelegt. Kontolöschung löscht nich
 | Google Analytics | Nutzer-/Ereignisdaten 2 Monate; Standard-Gesamtberichte separat |
 | Cloudflare Web Analytics | Aufrufzahlen der letzten sechs Monate verfügbar |
 | Support | Crisp und Mail bis Löschung, auch auf Anfrage. Keine feste Grenze. |
+| Pro für Schüler, Studierende und Lehrkräfte | Ein Dokument der Bildungseinrichtung wird bei unserer Entscheidung gelöscht oder 14 Tage nach dem Senden, wenn niemand es geprüft hat, und gelangt nie in Backups. Der Entscheidungsdatensatz (Name, Bildungseinrichtung, Rolle, Altersgruppe, Hash der Schüler- oder Matrikelnummer, Fingerabdruck des Dokuments, Land der Anfrage, Einwilligung und Entscheidung) bleibt bis 12 Monate nach Ende der damit erteilten Lizenz oder 12 Monate nach einer Ablehnung und wird mit dem Konto gelöscht. Die Altersgruppe bleibt bis zur Kontolöschung. |
 | Backups und Migrationsarchiv | Keine Grenze. Kontolöschung entfernt diese Kopien nicht. Altes Gesamtarchiv enthält Namen/E-Mails, Lizenzen, Bestellungen, Teams, Gerätenamen, Abonnenten, Beta-Anmeldungen, Mails, Nutzungsberichte und Lizenzlogs mit IP. |
 
 ## Wahl und Rechte {#rights}
@@ -217,7 +226,7 @@ Je nach Wohnort kannst du Auskunft, Berichtigung, Löschung, Einschränkung, Üb
 
 ## Kinder {#children}
 
-TablePro richtet sich nicht an Kinder unter 16, und wir erheben ihre Daten nicht wissentlich. Wenn ein Kind uns Daten gegeben haben könnte, kontaktiere uns zur Löschung.
+TablePro-Konten sind für Personen ab 13 Jahren. Bist du unter 18 oder an deinem Wohnort noch nicht volljährig, muss ein Elternteil oder dein Vormund zustimmen, wie es die [Bedingungen](/de/terms#account) vorsehen. Pro für Schüler, Studierende und Lehrkräfte fragt zuerst deine Altersgruppe ab, speichert nur diese Gruppe, lehnt alle unter 13 ab und nimmt ein Dokument der Bildungseinrichtung erst ab 16 an. Wenn du glaubst, dass ein Kind unter 13 uns personenbezogene Daten gegeben hat, kontaktiere uns, dann löschen wir sie.
 
 ## Sicherheit {#security}
 

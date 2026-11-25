@@ -1,7 +1,7 @@
 ---
 title: Ketentuan layanan
 description: Ketentuan untuk situs web, portal akun, server lisensi, dan Team Library TablePro, serta pembelian lisensi Pro atau Team.
-updatedAt: "2026-11-19"
+updatedAt: "2026-11-25"
 ---
 
 Ketentuan ini mengatur situs web tablepro.app, portal akun, server lisensi kami, Team Library, serta Lisensi dan Kunci Lisensi berbayar yang dijelaskan di bawah. Dengan memakainya, atau dengan membeli atau mengaktifkan Lisensi, Anda menyetujui ketentuan ini. TablePro untuk Mac, TablePro untuk Linux, serta TablePro untuk iPhone dan iPad dilisensikan hanya di bawah AGPLv3: Anda tidak perlu menyetujui ketentuan ini untuk mengunduh, menginstal, atau menjalankannya.
@@ -51,6 +51,18 @@ Aplikasi TablePro memperbarui paket Anda ke server kami sekali sehari. Jika serv
 ## Portal akun {#account}
 
 Anda mengelola Lisensi dalam [portal akun]({account}), tempat Anda masuk dengan tautan atau kode yang dikirim ke email Anda, dengan passkey, atau dengan Apple, GitHub, atau Google. Amankan semuanya: kami tidak bertanggung jawab atas akses ke akun Anda melalui akun email, perangkat, atau akun penyedia yang disusupi.
+
+Anda harus berusia minimal 13 tahun untuk membuat akun. Jika Anda berusia di bawah 18 tahun, atau di bawah usia dewasa di tempat tinggal Anda, orang tua atau wali Anda harus menyetujui ketentuan ini atas nama Anda, dan mengonfirmasi persetujuan tersebut saat Anda mengajukan Pro untuk pelajar dan pengajar.
+
+## Pro untuk pelajar dan pengajar {#education}
+
+Pelajar dan pengajar dapat memperoleh Lisensi Pro gratis selama satu tahun. Kami memeriksa kelayakan melalui alamat email sekolah atau kampus pada akun Anda, dengan mencocokkannya ke daftar publik domain sekolah, atau, jika alamat Anda tidak dapat diperiksa dengan cara itu, melalui dokumen dari sekolah atau kampus Anda yang kami tinjau secara manual. Dokumen diterima mulai usia 16 tahun.
+
+- Dokumen harus asli, masih berlaku, dan milik Anda sendiri, serta menunjukkan nama lengkap Anda, sekolah atau kampus Anda, dan tanggal dalam tahun ajaran berjalan. Jangan kirim kartu identitas nasional, paspor, atau kartu bank.
+- Setiap akun dapat mengirim hingga 3 dokumen dalam 12 bulan. Kami memutuskan dalam 2 hari kerja bila memungkinkan, dan kami dapat menolak dokumen tanpa memberikan alasan lain selain alasan yang kami sebutkan.
+- Lisensi ini hanya untuk Anda. Lisensi tidak dapat dijual, dibagikan, atau dipindahtangankan, dan satu akun tidak dapat memegang lebih dari satu Lisensi seperti ini pada waktu yang sama.
+- Kami dapat mencabut Lisensi, dan menolak Lisensi berikutnya, jika informasi atau dokumen yang Anda berikan tidak benar atau digunakan untuk orang lain, atau jika Lisensi dijual kembali.
+- Anda dapat memperpanjangnya mulai 30 hari sebelum berakhir, dengan alamat email sekolah atau kampus Anda atau dengan dokumen baru, selama Anda masih belajar atau mengajar di sekolah atau kampus.
 
 ## Penggunaan yang dapat diterima {#acceptable-use}
 

@@ -1,7 +1,7 @@
 ---
 title: Conditions d’utilisation
 description: Conditions du site web, du portail de comptes, du serveur de licences et de Team Library de TablePro, et d’achat d’une licence Pro ou Team.
-updatedAt: "2026-11-19"
+updatedAt: "2026-11-25"
 ---
 
 Ces conditions régissent le site web tablepro.app, le portail de comptes, notre serveur de licences, Team Library ainsi que les Licences et Clés de licence payantes décrites ci-dessous. En les utilisant, ou en achetant ou activant une Licence, vous acceptez ces conditions. TablePro pour Mac, TablePro pour Linux et TablePro pour iPhone et iPad sont distribués sous la seule licence AGPLv3 : vous n’avez pas besoin d’accepter ces conditions pour les télécharger, les installer ou les exécuter.
@@ -51,6 +51,18 @@ Les applications renouvellent votre offre auprès de notre serveur une fois par 
 ## Portail de comptes {#account}
 
 Vous gérez vos Licences dans le [portail de comptes]({account}), auquel vous vous connectez avec un lien ou un code envoyé à votre adresse e-mail, avec une clé d’accès, ou avec Apple, GitHub ou Google. Protégez-les : nous ne sommes pas responsables de l’accès à votre compte via une messagerie, un appareil ou un compte de fournisseur compromis.
+
+Vous devez avoir au moins 13 ans pour créer un compte. Si vous avez moins de 18 ans, ou n’avez pas atteint l’âge de la majorité là où vous vivez, l’un de vos parents ou votre tuteur légal doit accepter ces conditions en votre nom, et le confirme lorsque vous demandez Pro pour les élèves, étudiants et enseignants.
+
+## Pro pour les élèves, étudiants et enseignants {#education}
+
+Les élèves, étudiants et enseignants peuvent obtenir une Licence Pro gratuite pendant un an. Nous vérifions l’éligibilité avec l’adresse e-mail scolaire ou universitaire de votre compte, en la comparant à une liste publique de domaines d’établissements d’enseignement, ou, lorsque votre adresse ne peut pas être vérifiée ainsi, avec un document de votre établissement que nous examinons manuellement. Un document est accepté à partir de 16 ans.
+
+- Le document doit être authentique, en cours de validité et le vôtre, et indiquer vos nom et prénom, votre établissement et une date de l’année scolaire ou universitaire en cours. N’envoyez pas de carte nationale d’identité, de passeport ni de carte bancaire.
+- Chaque compte peut envoyer jusqu’à 3 documents sur 12 mois. Nous décidons sous 2 jours ouvrés dans la mesure du possible, et nous pouvons refuser un document sans donner d’autre motif que celui que nous indiquons.
+- La Licence vous est strictement personnelle. Elle ne peut être ni vendue, ni partagée, ni transférée, et un compte ne peut en détenir qu’une à la fois.
+- Nous pouvons révoquer la Licence, et refuser toute Licence ultérieure, si les informations ou le document que vous avez fournis étaient faux ou ont été utilisés pour une autre personne, ou si la Licence est revendue.
+- Vous pouvez la renouveler à partir de 30 jours avant son expiration, avec votre adresse e-mail scolaire ou universitaire ou un nouveau document, tant que vous étudiez ou enseignez encore dans un établissement.
 
 ## Utilisation acceptable {#acceptable-use}
 

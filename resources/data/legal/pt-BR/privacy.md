@@ -1,7 +1,7 @@
 ---
 title: Política de privacidade
 description: Dados coletados pelo TablePro, finalidades, destinatários, retenção, escolhas e direitos.
-updatedAt: "2026-11-07"
+updatedAt: "2026-11-25"
 ---
 
 Esta política cobre TablePro para Mac, Linux, iPhone e iPad; tablepro.app; docs.tablepro.app; e serviços de conta, compras, suporte e newsletter. O [inventário técnico](https://docs.tablepro.app/security/privacy) lista campos, destinos e controles. O código está no [repositório público]({github}).
@@ -41,6 +41,14 @@ O [portal]({account}) permite editar perfil e acesso, gerenciar dispositivos, ex
 {merchant} (Polar Software, Inc.) é merchant of record e revendedor. Coleta nome, e-mail, endereço de cobrança e dados de pagamento sob seus termos. Cuida de pagamento, impostos, recibos e disputas. Nunca recebemos os dados completos do cartão.
 
 Enviamos compra, idioma, origem da visita e IP para checkout, impostos e moeda. Recebemos dados do comprador/cobrança, valores, IDs de pedido/assinatura, renovações, cancelamentos e reembolsos. Pedidos mantêm e-mail, país, valores e atribuição. Compra sem login cria conta não verificada para o e-mail se necessário. Motivos e comentários de cancelamento vão a {merchant} e ficam na assinatura. O tratamento cumpre contrato; registros fiscais/contábeis atendem obrigações legais. Sem dados obrigatórios o checkout não termina. Gerencie cobrança no [portal de {merchant}]({portal}); veja [termos](/pt-BR/terms) e [reembolsos](/pt-BR/refund-policy).
+
+### Pro para estudantes e professores {#education}
+
+Quando você solicita o Pro para estudantes e professores, perguntamos sua faixa etária (menos de 13, 13 a 15, 16 a 17, ou 18 ou mais) e, se tiver menos de 18, se seu pai, sua mãe ou seu responsável legal concorda. Guardamos a faixa e essa resposta, nunca a data de nascimento, e recusamos qualquer pessoa com menos de 13 anos. Comparamos o e-mail da sua conta com uma lista pública de domínios de instituições de ensino, enviamos a ele um código de confirmação e registramos na Licença o domínio da instituição que deu direito a ela. O PostHog recebe esse domínio, nunca seu endereço.
+
+Se seu endereço não puder ser verificado assim, você pode enviar um documento da sua instituição de ensino a partir dos 16 anos. Guardamos sua função (estudante ou professor), seu nome completo, o nome e o site da sua instituição, seu número de matrícula apenas como hash com chave que não pode ser revertido, o documento ou um link para sua página de docente, o país informado pela Cloudflare para a solicitação, e o horário e a versão do texto do seu consentimento. Usamos esses dados para decidir, a seu pedido, se você tem direito antes de lhe dar a Licença; a base são diligências pré-contratuais que você solicita (artigo 6(1)(b)), e você também dá seu consentimento no formulário. Comparamos a impressão digital de um documento e o hash de um número de matrícula com as solicitações de outras contas para evitar abusos.
+
+O arquivo aguarda em um bucket próprio do Cloudflare R2, sem backup, até decidirmos, e é excluído quando decidimos ou após 14 dias se ninguém o analisou. Ele nunca entra em nosso banco de dados, logs, e-mails ou backups. Não envie carteira de identidade, passaporte nem cartão bancário; se algum chegar, nós o recusamos e excluímos imediatamente. [Retenção](#retention) cobre o registro da decisão.
 
 ### Equipes e conteúdo compartilhado {#library}
 
@@ -168,7 +176,7 @@ Mude o consentimento com Cookie settings no rodapé ou aqui:
 | Destinatário | Dados e finalidade |
 | --- | --- |
 | [OVH]({ovhPrivacy}) | Servidor e registros do serviço |
-| [Cloudflare]({cloudflarePrivacy}) | DNS/proxy, R2/backups, Turnstile, Cloudflare Web Analytics |
+| [Cloudflare]({cloudflarePrivacy}) | DNS/proxy, R2/backups, documentos de instituições de ensino aguardando análise, Turnstile, Cloudflare Web Analytics |
 | [Amazon Web Services]({awsPrivacy}) | E-mail Amazon SES, entrega e interação; links CloudFront, eventos SNS/SQS |
 | [PostHog EU]({posthogPrivacy}) | Análise app/servidor; IDs sem nomes/e-mails; pedidos diretos com IP |
 | [{merchant}]({merchantPrivacy}) | Merchant of record independente; checkout, cobrança e compras |
@@ -203,6 +211,7 @@ Não fixamos limite onde indicado. Excluir conta não exclui PostHog ou Crisp. E
 | Google Analytics | Dados de usuário/evento: 2 meses; relatórios totais padrão separados |
 | Cloudflare Web Analytics | Totais dos últimos seis meses disponíveis |
 | Suporte | Crisp e caixa postal até excluir, também a pedido. Sem limite. |
+| Pro para estudantes e professores | Um documento da instituição é excluído quando decidimos sobre ele, ou 14 dias após o envio se ninguém o analisou, e nunca entra em backups. O registro da decisão (nome, instituição, função, faixa etária, hash da matrícula, impressão digital do documento, país da solicitação, consentimento e decisão) fica até 12 meses após o fim da Licença concedida, ou 12 meses após uma recusa, e é excluído com a conta. A faixa etária fica até a exclusão da conta. |
 | Backups e arquivo migração | Sem limite. Excluir conta não remove cópias. Base antiga completa contém nomes/e-mails, licenças, pedidos, equipes, nomes de dispositivos, inscritos, beta, e-mails, relatórios de uso e logs de licença com IP. |
 
 ## Escolhas e direitos {#rights}
@@ -217,7 +226,7 @@ Conforme residência, solicite acesso, correção, exclusão, restrição, porta
 
 ## Crianças {#children}
 
-TablePro não se destina a menores de 16 anos e não coletamos seus dados conscientemente. Se acreditar que uma criança nos forneceu dados, entre em contato e os excluiremos.
+As contas TablePro são para pessoas com 13 anos ou mais. Com menos de 18 anos, ou abaixo da maioridade onde você mora, seu pai, sua mãe ou seu responsável legal precisa concordar, como dizem os [termos](/pt-BR/terms#account). O Pro para estudantes e professores pergunta primeiro sua faixa etária, guarda só essa faixa, recusa menores de 13 anos e só aceita documento da instituição a partir dos 16. Se acreditar que uma criança com menos de 13 anos nos forneceu dados pessoais, entre em contato e os excluiremos.
 
 ## Segurança {#security}
 

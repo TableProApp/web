@@ -1,7 +1,7 @@
 ---
 title: Política de privacidad
 description: Qué recoge TablePro, para qué, quién lo recibe, cuánto se conserva y tus opciones y derechos.
-updatedAt: "2026-11-07"
+updatedAt: "2026-11-25"
 ---
 
 Esta política cubre TablePro para Mac, Linux, iPhone y iPad; tablepro.app; docs.tablepro.app; y los servicios de cuentas, compras, soporte y boletines. El [inventario técnico](https://docs.tablepro.app/security/privacy) enumera campos, destinos y controles. El código está en el [repositorio público]({github}).
@@ -41,6 +41,14 @@ El [portal]({account}) permite editar perfil y acceso, gestionar dispositivos, e
 {merchant} (Polar Software, Inc.) es el merchant of record y revendedor. Recoge nombre, correo, dirección de facturación y datos de pago según sus condiciones. Gestiona pagos, impuestos, recibos y disputas. Nunca recibimos los datos completos de la tarjeta.
 
 Enviamos compra, idioma, origen de visita e IP para el pago, impuestos y moneda. Recibimos datos del comprador y facturación, importes, IDs de pedido/suscripción, renovaciones, cancelaciones y reembolsos. El pedido conserva correo, país, importes y atribución. Comprar sin acceder crea una cuenta no verificada para ese correo si no existe. Motivos y comentarios de cancelación llegan a {merchant} y quedan con la suscripción. El tratamiento cumple el contrato; los registros fiscales y contables cumplen obligaciones legales. Sin los datos necesarios no se completa el pago. Gestiona la facturación en [el portal de {merchant}]({portal}); consulta [condiciones](/es/terms) y [reembolsos](/es/refund-policy).
+
+### Pro para estudiantes y docentes {#education}
+
+Cuando solicitas Pro para estudiantes y docentes, te preguntamos tu franja de edad (menos de 13, de 13 a 15, de 16 a 17, o 18 o más) y, si tienes menos de 18, si tu padre, madre o tutor legal está de acuerdo. Guardamos la franja y esa respuesta, nunca una fecha de nacimiento, y rechazamos a cualquier persona menor de 13 años. Comparamos el correo de tu cuenta con una lista pública de dominios de instituciones educativas, le enviamos un código de confirmación y registramos en la Licencia el dominio de la institución que dio derecho a ella. PostHog recibe ese dominio, nunca tu dirección.
+
+Si tu dirección no se puede comprobar así, puedes enviar un documento de tu institución educativa a partir de los 16 años. Guardamos tu rol (estudiante o docente), tu nombre completo, el nombre y el sitio web de tu institución, tu número de estudiante solo como hash con clave que no se puede revertir, el documento o un enlace a tu página de docente, el país que Cloudflare indica para la solicitud, y la hora y la versión del texto de tu consentimiento. Los usamos para decidir, a petición tuya, si cumples los requisitos antes de darte la Licencia; la base es la aplicación de medidas precontractuales que solicitas (artículo 6(1)(b)), y además das tu consentimiento en el formulario. Comparamos la huella digital de un documento y el hash de un número de estudiante con las solicitudes de otras cuentas para prevenir abusos.
+
+El archivo espera en un bucket propio de Cloudflare R2, sin copias de seguridad, hasta que decidimos, y se borra cuando decidimos o a los 14 días si nadie lo ha revisado. Nunca entra en nuestra base de datos, registros, correos ni copias de seguridad. No envíes un documento nacional de identidad, un pasaporte ni una tarjeta bancaria; si llega uno, lo rechazamos y lo borramos de inmediato. La [conservación](#retention) cubre el registro de la decisión.
 
 ### Equipos y contenido compartido {#library}
 
@@ -168,7 +176,7 @@ Cambia el consentimiento con Cookie settings en el pie o aquí:
 | Destinatario | Datos y fin |
 | --- | --- |
 | [OVH]({ovhPrivacy}) | Servidor y registros del servicio |
-| [Cloudflare]({cloudflarePrivacy}) | DNS/proxy, almacenamiento R2/copias, Turnstile, Cloudflare Web Analytics |
+| [Cloudflare]({cloudflarePrivacy}) | DNS/proxy, almacenamiento R2/copias, documentos de instituciones educativas pendientes de revisión, Turnstile, Cloudflare Web Analytics |
 | [Amazon Web Services]({awsPrivacy}) | Amazon SES: correo, entrega e interacción; enlaces CloudFront, eventos SNS/SQS |
 | [PostHog EU]({posthogPrivacy}) | Analítica de aplicación/servidor; IDs sin nombres/correos; solicitudes directas con IP |
 | [{merchant}]({merchantPrivacy}) | Merchant of record independiente; pago, facturación y compras |
@@ -203,6 +211,7 @@ No hemos fijado límite donde así se indica. Borrar la cuenta no borra PostHog 
 | Google Analytics | Datos de usuario/evento: 2 meses; informes estándar totales aparte |
 | Cloudflare Web Analytics | Totales de visitas de los últimos seis meses disponibles |
 | Soporte | Crisp y correo hasta borrado, también a petición. Sin límite fijado. |
+| Pro para estudiantes y docentes | Un documento de la institución se borra cuando decidimos sobre él, o 14 días después del envío si nadie lo revisó, y nunca entra en copias. El registro de la decisión (nombre, institución, rol, franja de edad, hash del número de estudiante, huella digital del documento, país de la solicitud, consentimiento y decisión) se conserva hasta 12 meses después del fin de la Licencia concedida, o 12 meses después de un rechazo, y se borra con la cuenta. La franja de edad se conserva hasta borrar la cuenta. |
 | Copias y archivo de migración | Sin límite. Borrar cuenta no borra copias. El archivo completo anterior incluye nombres/correos, licencias, pedidos, equipos, nombres de dispositivos, suscriptores, registros beta, correos, informes de uso y logs de licencia con IP. |
 
 ## Opciones y derechos {#rights}
@@ -217,7 +226,7 @@ Según tu residencia, pide acceso, corrección, borrado, restricción, portabili
 
 ## Menores {#children}
 
-TablePro no se dirige a menores de 16 años y no recogemos sus datos a sabiendas. Si crees que un menor nos dio datos, contacta y los borraremos.
+Las cuentas de TablePro son para personas de 13 años o más. Si tienes menos de 18 años, o no has alcanzado la mayoría de edad donde vives, tu padre, madre o tutor legal debe estar de acuerdo, como indican las [condiciones](/es/terms#account). Pro para estudiantes y docentes pregunta primero tu franja de edad, guarda solo esa franja, rechaza a menores de 13 años y solo acepta un documento de la institución a partir de los 16. Si crees que un menor de 13 años nos dio datos personales, contacta y los borraremos.
 
 ## Seguridad {#security}
 

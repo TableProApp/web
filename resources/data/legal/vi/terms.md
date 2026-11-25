@@ -1,7 +1,7 @@
 ---
 title: Điều khoản sử dụng
 description: Các điều khoản cho website, trang tài khoản, máy chủ license và Team Library của TablePro, và khi mua license Pro hoặc Team.
-updatedAt: "2026-11-19"
+updatedAt: "2026-11-25"
 ---
 
 Các điều khoản này điều chỉnh website tablepro.app, trang tài khoản, máy chủ license của chúng tôi, Team Library, cùng các License và License Key trả phí được mô tả dưới đây. Khi sử dụng chúng, hoặc khi mua hay kích hoạt một License, bạn đồng ý với các điều khoản này. TablePro cho Mac, TablePro cho Linux và TablePro cho iPhone và iPad chỉ được cấp phép theo giấy phép AGPLv3: bạn không cần chấp nhận các điều khoản này để tải về, cài đặt hay chạy các ứng dụng đó.
@@ -51,6 +51,18 @@ Các ứng dụng làm mới gói của bạn với máy chủ của chúng tôi
 ## Trang tài khoản {#account}
 
 Bạn quản lý các License của mình trong [trang tài khoản]({account}), nơi bạn đăng nhập bằng liên kết hoặc mã được gửi tới địa chỉ email của bạn, bằng passkey, hoặc bằng Apple, GitHub hay Google. Hãy giữ an toàn cho các cách đăng nhập đó: chúng tôi không chịu trách nhiệm về việc tài khoản của bạn bị truy cập thông qua một tài khoản email, thiết bị hoặc tài khoản nhà cung cấp bị xâm phạm.
+
+Bạn phải từ 13 tuổi trở lên mới được tạo tài khoản. Nếu bạn dưới 18 tuổi, hoặc chưa đến tuổi thành niên nơi bạn sống, cha mẹ hoặc người giám hộ phải thay bạn đồng ý với các điều khoản này, và xác nhận điều đó khi bạn đăng ký nhận Pro cho học sinh, sinh viên và giáo viên.
+
+## Pro cho học sinh, sinh viên và giáo viên {#education}
+
+Học sinh, sinh viên và giáo viên có thể nhận License Pro miễn phí trong một năm. Chúng tôi kiểm tra điều kiện bằng địa chỉ email của trường trên tài khoản của bạn, đối chiếu với một danh sách công khai các tên miền của trường, hoặc, khi không thể kiểm tra địa chỉ của bạn theo cách đó, bằng giấy tờ do trường của bạn cấp mà chúng tôi xem xét thủ công. Giấy tờ được chấp nhận khi bạn từ 16 tuổi trở lên.
+
+- Giấy tờ phải là giấy tờ thật, còn hiệu lực và của chính bạn, đồng thời thể hiện họ tên đầy đủ, trường của bạn và một ngày trong năm học hiện tại. Vui lòng không gửi thẻ căn cước, hộ chiếu hay thẻ ngân hàng.
+- Mỗi tài khoản có thể gửi tối đa 3 giấy tờ trong 12 tháng. Khi có thể, chúng tôi quyết định trong vòng 2 ngày làm việc, và chúng tôi có thể từ chối một giấy tờ mà không giải thích thêm ngoài lý do chúng tôi nêu.
+- License chỉ dành riêng cho bạn. License này không được bán, chia sẻ hay chuyển nhượng, và mỗi tài khoản chỉ được giữ một License như vậy tại một thời điểm.
+- Chúng tôi có thể thu hồi License, và từ chối mọi License sau đó, nếu thông tin hoặc giấy tờ bạn cung cấp là sai sự thật hoặc được dùng cho người khác, hoặc nếu License bị bán lại.
+- Bạn có thể gia hạn License từ 30 ngày trước khi License kết thúc, bằng địa chỉ email của trường hoặc một giấy tờ mới, miễn là bạn vẫn đang học hoặc giảng dạy tại một trường.
 
 ## Sử dụng được chấp nhận {#acceptable-use}
 

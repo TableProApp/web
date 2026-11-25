@@ -1,7 +1,7 @@
 ---
 title: Kebijakan privasi
 description: Data yang dikumpulkan TablePro, tujuan, penerima, masa penyimpanan, pilihan dan hak Anda.
-updatedAt: "2026-11-07"
+updatedAt: "2026-11-25"
 ---
 
 Kebijakan ini mencakup TablePro untuk Mac, Linux, iPhone dan iPad; tablepro.app; docs.tablepro.app; serta layanan akun, pembelian, dukungan dan newsletter. [Inventaris teknis](https://docs.tablepro.app/security/privacy) memuat kolom, tujuan jaringan dan kontrol. Kode ada di [repositori publik]({github}).
@@ -41,6 +41,14 @@ Masuk menggunakan tautan/kode email, passkey, Apple, GitHub atau Google. Catatan
 {merchant} (Polar Software, Inc.) adalah merchant of record dan penjual kembali. Mereka mengumpulkan nama, email, alamat tagihan dan pembayaran menurut ketentuannya. Mereka menangani pembayaran, pajak, kuitansi dan sengketa. Kami tidak pernah menerima detail kartu lengkap.
 
 Kami mengirim pembelian, bahasa, sumber kunjungan dan IP untuk checkout, pajak dan mata uang. Kami menerima detail pembeli/tagihan, jumlah, ID pesanan/langganan, perpanjangan, pembatalan dan pengembalian dana. Pesanan menyimpan email, negara, jumlah dan atribusi. Pembelian tamu membuat akun belum terverifikasi untuk email itu bila belum ada. Alasan/komentar pembatalan diteruskan ke {merchant} dan disimpan pada langganan. Pemrosesan memenuhi kontrak; catatan pajak/akuntansi memenuhi kewajiban hukum. Tanpa data wajib, checkout tidak selesai. Kelola tagihan di [portal {merchant}]({portal}); baca [ketentuan](/id/terms) dan [pengembalian dana](/id/refund-policy).
+
+### Pro untuk pelajar dan pengajar {#education}
+
+Saat Anda mengajukan Pro untuk pelajar dan pengajar, kami menanyakan kelompok usia Anda (di bawah 13, 13 sampai 15, 16 sampai 17 atau 18 ke atas) dan, bila di bawah 18, apakah orang tua atau wali Anda setuju. Kami menyimpan kelompok usia dan jawaban itu, tidak pernah tanggal lahir, dan menolak siapa pun di bawah 13 tahun. Kami mencocokkan alamat email akun Anda dengan daftar publik domain sekolah, mengirim kode konfirmasi ke alamat itu, dan mencatat pada Lisensi domain sekolah yang memenuhi syarat. PostHog menerima domain itu, tidak pernah alamat Anda.
+
+Jika alamat Anda tidak dapat diperiksa dengan cara itu, Anda dapat mengirim dokumen sekolah mulai usia 16 tahun. Kami menyimpan peran Anda (pelajar atau pengajar), nama lengkap, nama dan situs web sekolah, nomor induk pelajar hanya sebagai hash berkunci yang tidak dapat dibaca kembali, dokumen atau tautan ke halaman staf Anda, negara yang dilaporkan Cloudflare untuk permintaan itu, serta waktu dan versi teks persetujuan Anda. Kami menggunakannya untuk memutuskan apakah Anda memenuhi syarat, atas permintaan Anda, sebelum memberikan Lisensi; dasarnya ialah langkah yang Anda minta sebelum kontrak (Pasal 6(1)(b)), dan Anda juga memberikan persetujuan dalam formulir. Kami membandingkan sidik jari dokumen dan hash nomor induk pelajar dengan pengajuan akun lain untuk mencegah penyalahgunaan.
+
+File menunggu di bucket Cloudflare R2 tersendiri, yang tidak di-backup, sampai kami memutuskan, lalu dihapus saat keputusan dibuat, atau setelah 14 hari bila belum ada yang meninjaunya. File tidak pernah masuk ke database, log, email atau backup kami. Jangan kirim kartu identitas nasional, paspor atau kartu bank; bila ada yang terkirim, kami menolaknya dan langsung menghapusnya. [Penyimpanan](#retention) menjelaskan catatan keputusan.
 
 ### Tim dan konten bersama {#library}
 
@@ -168,7 +176,7 @@ Ubah persetujuan dengan Cookie settings di footer atau di sini:
 | Penerima | Data dan tujuan |
 | --- | --- |
 | [OVH]({ovhPrivacy}) | Server dan catatan layanan |
-| [Cloudflare]({cloudflarePrivacy}) | DNS/proxy, R2/backup, Turnstile, Cloudflare Web Analytics |
+| [Cloudflare]({cloudflarePrivacy}) | DNS/proxy, R2/backup, dokumen sekolah yang menunggu tinjauan, Turnstile, Cloudflare Web Analytics |
 | [Amazon Web Services]({awsPrivacy}) | Email Amazon SES, pengiriman dan interaksi; tautan CloudFront, peristiwa SNS/SQS |
 | [PostHog EU]({posthogPrivacy}) | Analitik aplikasi/server; ID tanpa nama/email; permintaan langsung memuat IP |
 | [{merchant}]({merchantPrivacy}) | Merchant of record independen; checkout, tagihan dan pembelian |
@@ -203,6 +211,7 @@ Kami belum menetapkan batas bila tabel menyatakan demikian. Menghapus akun tidak
 | Google Analytics | Data pengguna/peristiwa: 2 bulan; laporan total standar terpisah |
 | Cloudflare Web Analytics | Total enam bulan terakhir tersedia |
 | Dukungan | Crisp dan kotak surat sampai dihapus, termasuk atas permintaan. Tanpa batas. |
+| Pro untuk pelajar dan pengajar | Dokumen sekolah dihapus saat kami memutuskannya, atau 14 hari setelah dikirim bila belum ditinjau, dan tidak pernah masuk backup. Catatan keputusan (nama, sekolah, peran, kelompok usia, hash nomor induk pelajar, sidik jari dokumen, negara permintaan, persetujuan dan keputusan) disimpan sampai 12 bulan setelah Lisensi yang diberikan berakhir, atau 12 bulan setelah penolakan, dan dihapus bersama akun. Kelompok usia disimpan sampai akun dihapus. |
 | Backup dan arsip migrasi | Tanpa batas. Penghapusan akun tidak menghapus salinan. Arsip database lama lengkap memuat nama/email, lisensi, pesanan, tim, nama perangkat, pelanggan, beta, email, laporan penggunaan dan log lisensi dengan IP. |
 
 ## Pilihan dan hak {#rights}
@@ -217,7 +226,7 @@ Menurut tempat tinggal, minta akses, koreksi, penghapusan, pembatasan, portabili
 
 ## Anak-anak {#children}
 
-TablePro tidak ditujukan bagi anak di bawah 16 tahun dan kami tidak sengaja mengumpulkan datanya. Bila anak memberi kami data, hubungi kami untuk menghapusnya.
+Akun TablePro ditujukan bagi orang berusia 13 tahun ke atas. Di bawah 18 tahun, atau di bawah usia dewasa di tempat tinggal Anda, orang tua atau wali harus menyetujuinya, sebagaimana disebutkan dalam [ketentuan](/id/terms#account). Pro untuk pelajar dan pengajar menanyakan kelompok usia Anda terlebih dahulu, hanya menyimpan kelompok itu, menolak siapa pun di bawah 13 tahun, dan menerima dokumen sekolah hanya mulai usia 16 tahun. Bila Anda yakin anak di bawah 13 tahun telah memberi kami data pribadi, hubungi kami dan kami akan menghapusnya.
 
 ## Keamanan {#security}
 

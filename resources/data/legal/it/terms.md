@@ -1,7 +1,7 @@
 ---
 title: Termini di servizio
 description: I termini per sito, portale dell’account, server delle licenze e Team Library di TablePro e per l’acquisto di una licenza Pro o Team.
-updatedAt: "2026-11-19"
+updatedAt: "2026-11-25"
 ---
 
 Questi termini regolano il sito tablepro.app, il portale dell’account, il nostro server delle licenze, la Team Library e le Licenze e Chiavi di licenza a pagamento descritte sotto. Usandoli, oppure acquistando o attivando una Licenza, accetti questi termini. TablePro per Mac, TablePro per Linux e TablePro per iPhone e iPad sono concessi in licenza solo con la AGPLv3: non devi accettare questi termini per scaricarli, installarli o eseguirli.
@@ -51,6 +51,18 @@ Le app rinnovano il piano con il nostro server una volta al giorno. Se il server
 ## Portale dell’account {#account}
 
 Gestisci le Licenze nel [portale dell’account]({account}), a cui accedi con un link o un codice inviato al tuo indirizzo email, con una passkey oppure con Apple, GitHub o Google. Proteggili: non siamo responsabili dell’accesso al tuo account tramite un’email, un dispositivo o un account del fornitore compromessi.
+
+Per creare un account devi avere almeno 13 anni. Se hai meno di 18 anni, o non hai raggiunto la maggiore età nel luogo in cui vivi, un genitore o tutore deve accettare questi termini per te, e lo conferma quando richiedi Pro per studenti e docenti.
+
+## Pro per studenti e docenti {#education}
+
+Studenti e docenti possono ottenere gratis una Licenza Pro per un anno. Verifichiamo i requisiti con l’indirizzo email del tuo istituto usato dal tuo account, confrontandolo con un elenco pubblico di domini di istituti di istruzione, oppure, quando il tuo indirizzo non può essere verificato in questo modo, con un documento del tuo istituto che esaminiamo manualmente. Accettiamo documenti dai 16 anni in su.
+
+- Il documento deve essere autentico, valido e tuo, e riportare il tuo nome completo, il tuo istituto e una data dell’anno scolastico o accademico in corso. Non inviare carta d’identità, passaporto o carta bancaria.
+- Ogni account può inviare fino a 3 documenti in 12 mesi. Quando possibile decidiamo entro 2 giorni lavorativi, e possiamo rifiutare un documento senza indicare altri motivi oltre a quello che comunichiamo.
+- La Licenza è solo per te. Non può essere venduta, condivisa o trasferita, e un account non può averne più di una alla volta.
+- Possiamo revocare la Licenza, e rifiutare quelle successive, se le informazioni o il documento che hai fornito erano falsi o sono stati usati per un’altra persona, oppure se la Licenza viene rivenduta.
+- Puoi rinnovarla da 30 giorni prima della scadenza, con l’indirizzo email del tuo istituto o un nuovo documento, finché studi o insegni ancora in un istituto.
 
 ## Uso accettabile {#acceptable-use}
 
