@@ -46,6 +46,24 @@ test('each problem code api.md lists for POST /v2/checkouts has its own message,
     assert.deepEqual(checkoutOutcome(422, null, strings), { kind: 'error', message: strings.failed });
 });
 
+test('a guest who picks Team goes to sign in when the answer names an https sign-in URL', () => {
+    const signIn = 'https://account.tablepro.app/teams/new?cycle=yearly&locale=vi&seats=7';
+    const failed = { kind: 'error', message: strings.failed };
+
+    assert.deepEqual(checkoutOutcome(403, problem(403, 'sign_in_required', { sign_in_url: signIn }), strings), { kind: 'signIn', url: signIn });
+
+    // Anything short of a sign_in_required 403 with an https URL is a checkout that did not start.
+    assert.deepEqual(checkoutOutcome(403, problem(403, 'sign_in_required'), strings), failed);
+    assert.deepEqual(checkoutOutcome(403, problem(403, 'sign_in_required', { sign_in_url: 'http://account.tablepro.app/teams/new' }), strings), failed);
+    assert.deepEqual(checkoutOutcome(403, problem(403, 'sign_in_required', { sign_in_url: 'javascript:alert(1)' }), strings), failed);
+    assert.deepEqual(checkoutOutcome(403, problem(403, 'sign_in_required', { sign_in_url: 42 }), strings), failed);
+    assert.deepEqual(checkoutOutcome(403, problem(403, 'forbidden', { sign_in_url: signIn }), strings), failed);
+    assert.deepEqual(checkoutOutcome(422, problem(422, 'sign_in_required', { sign_in_url: signIn }), strings), failed);
+
+    // An API that still sells Team to guests answers with Polar's checkout, which opens as before.
+    assert.deepEqual(checkoutOutcome(201, { url: 'https://polar.sh/checkout/team' }, strings), { kind: 'open', url: 'https://polar.sh/checkout/team' });
+});
+
 test('a 422 on seats names the range only once /v2/pricing gave a maximum, and otherwise asks for fewer', () => {
     const range = (max: number) => `Choose between 5 and ${max} seats.`;
 

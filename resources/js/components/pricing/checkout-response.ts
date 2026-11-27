@@ -9,7 +9,11 @@ export interface CheckoutStrings {
     seats: string;
 }
 
-export type CheckoutOutcome = { kind: 'open'; url: string } | { kind: 'error'; message: string };
+export type CheckoutOutcome =
+    | { kind: 'open'; url: string }
+    // A guest's Team checkout: the portal's sign-in, which comes back to the purchase.
+    | { kind: 'signIn'; url: string }
+    | { kind: 'error'; message: string };
 
 export function checkoutOutcome(status: number, data: unknown, strings: CheckoutStrings): CheckoutOutcome {
     if (status >= 200 && status < 300) {
@@ -23,6 +27,10 @@ export function checkoutOutcome(status: number, data: unknown, strings: Checkout
     }
 
     const problem = problemOf(data);
+
+    if (status === 403 && problem.code === 'sign_in_required' && problem.signInUrl?.startsWith('https://')) {
+        return { kind: 'signIn', url: problem.signInUrl };
+    }
 
     if (status === 422 && problem.code === 'plan_unavailable') {
         return { kind: 'error', message: strings.planUnavailable };

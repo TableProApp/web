@@ -104,6 +104,12 @@ export function useCheckout() {
                 return;
             }
 
+            if (outcome.kind === 'signIn') {
+                window.location.assign(outcome.url);
+
+                return;
+            }
+
             try {
                 await withTimeout(sdk, SDK_WAIT_MS);
                 await openCheckoutOverlay(outcome.url, overlayTheme());
