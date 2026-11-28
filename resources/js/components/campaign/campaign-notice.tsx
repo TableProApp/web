@@ -223,7 +223,7 @@ function NoticeDialog({ campaign, href, onClose }: NoticeProps) {
                 }
             }}
             onClick={backdrop}
-            className="campaign-surface dark m-auto outline-none w-[calc(100vw-2rem)] max-w-[32.5rem] rounded-panel border border-rule p-0 text-foreground shadow-overlay backdrop:bg-[oklch(0_0_0/0.45)]"
+            className="m-auto bg-raised outline-none w-[calc(100vw-2rem)] max-w-[32.5rem] rounded-panel border border-rule p-0 text-foreground shadow-overlay backdrop:bg-[oklch(0_0_0/0.45)]"
         >
             <div className="px-6 pt-6 pb-5 sm:px-8 sm:pt-7">
                 <div className="flex items-center justify-between gap-4">
@@ -336,7 +336,7 @@ function NoticeCard({ campaign, href, onClose }: NoticeProps) {
         <section
             ref={card}
             aria-labelledby={titleId}
-            className="campaign-surface dark fixed inset-x-3 bottom-3 z-50 grid gap-2 rounded-panel border border-rule pt-1.5 pr-1.5 pb-3.5 pl-4 text-foreground shadow-overlay print:hidden"
+            className="fixed inset-x-3 bottom-3 z-50 grid gap-2 rounded-panel border border-rule bg-raised pt-1.5 pr-1.5 pb-3.5 pl-4 text-foreground shadow-overlay print:hidden"
         >
             <div className="flex items-center justify-between gap-2">
                 <h2 id={titleId} className="min-w-0 pt-2 text-[0.9375rem] font-semibold">

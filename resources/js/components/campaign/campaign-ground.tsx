@@ -7,10 +7,10 @@ interface CampaignGroundProps {
     children: ReactNode;
 }
 
-// The sale's black ground: an island of the dark theme in either theme, with its own rails. Flat: no glow, no light under the pointer.
+// The sale's ground: the page's own, in the reader's theme, with its own rails. Flat: no glow, no light under the pointer.
 export default function CampaignGround({ labelledBy, className, children }: CampaignGroundProps) {
     return (
-        <section aria-labelledby={labelledBy} className={cn('campaign-surface dark relative overflow-hidden', className)}>
+        <section aria-labelledby={labelledBy} className={cn('campaign-ground relative overflow-hidden', className)}>
             <div aria-hidden="true" className="campaign-rails">
                 <div />
             </div>

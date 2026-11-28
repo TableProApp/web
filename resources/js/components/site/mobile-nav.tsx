@@ -261,7 +261,7 @@ export default function MobileNav({ id, open, onClose, desktop }: MobileNavProps
 
                 <div className="mt-8 grid gap-4 border-t border-rule pt-4">
                     <LanguageSwitcher variant="stack" />
-                    <div className="theme-setting grid gap-2">
+                    <div className="grid gap-2">
                         <p className="type-small font-medium text-muted-foreground" aria-hidden="true">
                             {m.controls.theme.label}
                         </p>

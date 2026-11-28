@@ -7,12 +7,11 @@
     if (t === 'dark' || t === 'system' || t === 'light') { choice = t; }
   } catch (e) {}
   var root = document.documentElement;
-  var forced = root.dataset.themeForced === 'dark';
-  var dark = forced || choice === 'dark' || (choice === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+  var dark = choice === 'dark' || (choice === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
   if (dark) { root.classList.add('dark'); }
   root.dataset.themeChoice = choice;          /* drives the control's icon without hydration */
   root.style.colorScheme = dark ? 'dark' : 'light';
   var m = document.querySelector('meta[name="theme-color"]');
-  if (m) { m.setAttribute('content', forced ? '#060606' : dark ? '#121212' : '#ffffff'); }
+  if (m) { m.setAttribute('content', dark ? '#121212' : '#ffffff'); }
 })();
 </script>

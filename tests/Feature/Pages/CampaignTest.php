@@ -23,13 +23,16 @@ function afterSale(): void
     travelTo(Campaign::current()?->endsAt ?? now());
 }
 
-it('holds only the sale page dark before first paint', function (string $path, bool $forced): void {
-    expect(str_contains(get($path)->assertOk()->getContent(), 'data-theme-forced="dark"'))->toBe($forced);
+// Light mode is light throughout: no page holds itself dark, the sale's own included (owner, 2026-11-28).
+it('forces no page dark, the sale page included', function (string $path): void {
+    travelTo(saleCampaign()->startsAt);
+
+    expect(get($path)->assertOk()->getContent())->not->toContain('data-theme-forced');
 })->with([
-    'the sale page' => ['/black-friday', true],
-    'a translated sale page' => ['/vi/black-friday', true],
-    'the homepage' => ['/', false],
-    'pricing' => ['/pricing', false],
+    'the sale page' => ['/black-friday'],
+    'a translated sale page' => ['/vi/black-friday'],
+    'the homepage' => ['/'],
+    'pricing' => ['/pricing'],
 ]);
 
 it('is upcoming before the start, live from it, and ended from the end', function (): void {
@@ -226,6 +229,7 @@ it('shows only its banner on the homepage and Pricing while live', function (str
 
     $document = Dom\HTMLDocument::createFromString((string) get($path)->assertOk()->getContent(), LIBXML_NOERROR);
 
-    expect($document->querySelectorAll('.campaign-surface'))->toHaveCount(1)
-        ->and($document->querySelector('.campaign-surface')->classList->contains('campaign-banner'))->toBeTrue();
+    expect($document->querySelectorAll('.campaign-banner'))->toHaveCount(1)
+        ->and($document->querySelectorAll('.campaign-ground'))->toHaveCount(0)
+        ->and($document->querySelector('.campaign-banner')->classList->contains('dark'))->toBeFalse();
 })->with(['/', '/pricing', '/vi', '/vi/pricing'])->group('ssr');

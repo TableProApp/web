@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, type ReactNode } from 'react';
+import { useEffect, type ReactNode } from 'react';
 import { useLiveChat } from '@/components/site/chat-button';
 import CampaignNotice from '@/components/campaign/campaign-notice';
 import ConsentBar from '@/components/site/consent-bar';
@@ -7,16 +7,15 @@ import SiteFooter from '@/components/site/site-footer';
 import SiteHeader from '@/components/site/site-header';
 import TopBanner from '@/components/site/top-banner';
 import { useI18n } from '@/i18n';
-import { forceDark, syncTheme } from '@/lib/theme';
+import { syncTheme } from '@/lib/theme';
 
 interface Props {
     children: ReactNode;
     footerNewsletter?: boolean;
-    alwaysDark?: boolean;
 }
 
 // Nothing here clips overflow: `overflow-x: hidden` on an ancestor would break the sticky header.
-export default function LandingLayout({ children, footerNewsletter = true, alwaysDark = false }: Props) {
+export default function LandingLayout({ children, footerNewsletter = true }: Props) {
     const { locale, m } = useI18n();
 
     // History navigation can restore a page in another language without a document load.
@@ -25,9 +24,6 @@ export default function LandingLayout({ children, footerNewsletter = true, alway
     }, [locale]);
 
     useEffect(() => syncTheme(), []);
-
-    // Before paint, so a visit from a light page never shows this one light. Blade covers the first load.
-    useLayoutEffect(() => (alwaysDark ? forceDark() : undefined), [alwaysDark]);
 
     useLiveChat();
 

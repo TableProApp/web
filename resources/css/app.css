@@ -219,11 +219,10 @@ html.has-language-bar .support-banner {
  * reader's clock passes the end, so nothing offers a code checkout no longer
  * takes.
  *
- * The banner and the sale page's ground are an island of the dark theme
- * whatever the reader chose: the element carries `.dark`, so every token
- * inside resolves to its dark value and the design system's text pairs hold.
- * Flat black: no glow and no light under the pointer (owner, 2026-11-28), as
- * the accent never colours a glow (design-system §1). Positioning §12.2.
+ * The banner, the notice and the sale page follow the reader's theme like
+ * every other part of the site: light mode is light throughout (owner,
+ * 2026-11-28). Flat: no glow and no light under the pointer, as the accent
+ * never colours a glow (design-system §1). Positioning §12.2.
  *
  * The slot holds one bar: the language bar, when it shows, takes it from the
  * sale's banner as it does from the license banner. The rule names all three
@@ -243,29 +242,7 @@ html.has-language-bar.has-banner.campaign-live .campaign-banner {
   display: none;
 }
 
-.campaign-surface {
-  background-color: oklch(0.12 0 0);
-  color: var(--foreground);
-}
-
-/* /black-friday is black from the banner to the footer in either theme, so its hero's ground is the page's. */
-@media screen {
-  html[data-theme-forced] {
-    --background: oklch(0.12 0 0);
-    --surface: oklch(0.15 0 0);
-    --raised: oklch(0.18 0 0);
-  }
-}
-
-html[data-theme-forced] .theme-setting {
-  display: none;
-}
-
-.campaign-banner {
-  border-bottom: 1px solid color-mix(in oklab, var(--accent) 45%, var(--rule));
-}
-
-/* The global rails are drawn in the page's theme; on the black ground they would be a light line in the light theme. */
+/* The sale's own rails, drawn over its banner and ground, which sit above the global ones. */
 .campaign-rails {
   position: absolute;
   inset: 0;

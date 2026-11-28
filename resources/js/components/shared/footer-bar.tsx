@@ -148,7 +148,7 @@ export default function FooterBar({ copyright, language, themeLabels, chat = fal
                 style={chat ? { paddingRight: `max(0px, calc(${LAUNCHER_REACH}px - max(var(--cell-bleed), (100vw - 76rem) / 2)))` } : undefined}
             >
                 {language}
-                <ThemeControl variant="icons" labels={themeLabels} className="theme-setting" />
+                <ThemeControl variant="icons" labels={themeLabels} />
             </div>
         </div>
     );

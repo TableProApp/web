@@ -446,8 +446,9 @@ says what a discount takes off and how long is left. It is a real discount at th
 prices, with a code that works only inside the window (`App\Support\Pricing\Campaign`, `lib/campaign.ts`).
 - **Where, while it is live:** the banner slot on every page but the sale's own, and the plan cards of the cycles it
   covers. No band above a page's hero (owner, 2026-11-23). Checkout from the site attaches the code.
+  Before and after the window, only the sale's own page mentions it.
 - **The notice** (owner, 2026-11-28, `CampaignNotice`): once per page load, as the page opens. From 640px a modal
-  dialog on the black ground: the percentage off, the two offers as ruled rows with their struck prices, the
+  dialog in the reader's theme: the percentage off, the two offers as ruled rows with their struck prices, the
   countdown, a button that buys Pro one-time at its sale price, a link to the sale's page and "Not now". Below
   640px a card at the bottom of the screen that blocks nothing (Google's guidance on intrusive dialogs): the
   percentage, Pro one-time's sale price, the countdown and the sale's page. It never opens on the sale's page or
@@ -455,8 +456,7 @@ prices, with a code that works only inside the window (`App\Support\Pricing\Camp
   more off, or again once the reader has answered it, a click on an offer included: closing it or the banner closes
   it for the rest of the sale (`tablepro:campaign-closed`). No coloured dot, glow or accent rule on it; the accent
   is the one button.
-  Before and after the window, only the sale's own page mentions it.
-- **The sale's own page,** `/black-friday`, keeps one URL from year to year and is black throughout, in both themes. Before the sale it states the window and
+- **The sale's own page,** `/black-friday`, keeps one URL from year to year and follows the reader's theme like every other page. Before the sale it states the window and
   the prices, and offers a calendar file for the start instead of a button that cannot be pressed; during it the offers
   can be bought from it; after it, its title, heading and description say the sale has ended, and nothing on it is
   offered. Its copy stays near 150 words: the offers as two ruled rows, Pro one-time first and larger, then the Pro
@@ -475,8 +475,9 @@ prices, with a code that works only inside the window (`App\Support\Pricing\Camp
 - **The regional discount** stays as above: never named outside the plan block. Checkout takes one discount per
   order, so the site sends the sale's code only when it takes at least as much off as the reader's regional
   discount.
-- **The black ground** is an island of the dark theme (`.dark` on the element), so the design system's text pairs
-  hold on it in either theme.
+- **The theme:** the banner, the notice and the sale's page follow the reader's theme (owner, 2026-11-28, replacing
+  the always-black sale of 2026-11-18): light mode is light throughout. Only the share card, an image shown off the
+  site, keeps its black ground.
 
 ---
 

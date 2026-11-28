@@ -48,7 +48,7 @@ export default function CampaignBanner() {
     }
 
     return (
-        <div role="region" aria-label={copy.label} className="campaign-banner campaign-surface dark relative">
+        <div role="region" aria-label={copy.label} className="campaign-banner relative border-b border-rule bg-surface">
             <div aria-hidden="true" className="campaign-rails">
                 <div />
             </div>
