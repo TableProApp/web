@@ -31,4 +31,18 @@ export default {
             seconds: 'giây',
         },
     },
+    notice: {
+        headline: 'Giảm {percent}%',
+        product: 'TablePro Pro',
+        window: 'Pro mua một lần và Pro theo năm, đến {endsAtTime} UTC ngày {endsOn}.',
+        lifetime: 'Pro mua một lần',
+        lifetimeDetail: 'Trả một lần. Mọi bản cập nhật và tính năng Pro mới.',
+        yearly: 'Pro theo năm',
+        buy: 'Mua gói Pro mua một lần với giá {price}',
+        both: 'Xem cả hai ưu đãi',
+        later: 'Để sau',
+        footnote: 'Pro theo tháng và Team không được giảm giá. Giá thường áp dụng từ {listPriceSince}.',
+        card: 'Black Friday: giảm {percent}% Pro',
+        cardPrice: 'Pro mua một lần giá {price}.',
+    },
 } satisfies Messages['campaign'];

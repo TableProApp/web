@@ -8,7 +8,6 @@ import {
     THEME_COLORS,
     THEME_STORAGE_KEY,
     applyTheme,
-    forceDark,
     parseTheme,
     readTheme,
     renderTheme,
@@ -247,32 +246,6 @@ test('another tab changing the key repaints this one without writing it back', (
     assert.equal(browser.events.length, 1, 'an unrelated key changes nothing');
 });
 
-test('a forced page stays dark through every repaint and gives the reader their theme back', () => {
-    const browser = installBrowser({ stored: 'light', systemDark: false });
-
-    syncTheme();
-    const release = forceDark();
-
-    assert.ok(browser.root.classes.has('dark'));
-    assert.equal(browser.root.style.colorScheme, 'dark');
-    assert.equal(browser.themeColor.content, THEME_COLORS.sale);
-    assert.equal(browser.root.dataset.themeChoice, 'light');
-    assert.equal(browser.storage.get(THEME_STORAGE_KEY), 'light');
-
-    for (const listener of browser.listeners.get('storage') ?? []) {
-        listener({ key: THEME_STORAGE_KEY });
-    }
-
-    assert.ok(browser.root.classes.has('dark'), 'another tab cannot lighten it');
-
-    release();
-
-    assert.ok(!browser.root.classes.has('dark'));
-    assert.equal(browser.root.dataset.themeForced, undefined);
-    assert.equal(browser.root.style.colorScheme, 'light');
-    assert.equal(browser.themeColor.content, THEME_COLORS.light);
-});
-
 function headScript(): string {
     const partial = readFileSync(
         fileURLToPath(new URL('../../resources/views/partials/head-theme.blade.php', import.meta.url)),
@@ -284,23 +257,6 @@ function headScript(): string {
 
     return script;
 }
-
-test('the head script paints a forced page dark over a stored light choice', () => {
-    const browser = installBrowser({ stored: 'light', systemDark: false });
-
-    browser.root.dataset.themeForced = 'dark';
-
-    new Function('window', 'localStorage', 'document', headScript())(
-        (globalThis as Record<string, unknown>).window,
-        (globalThis as unknown as { window: { localStorage: unknown } }).window.localStorage,
-        (globalThis as Record<string, unknown>).document,
-    );
-
-    assert.ok(browser.root.classes.has('dark'));
-    assert.equal(browser.root.dataset.themeChoice, 'light');
-    assert.equal(browser.root.style.colorScheme, 'dark');
-    assert.equal(browser.themeColor.content, THEME_COLORS.sale);
-});
 
 // The head partial cannot import this module, so it repeats the decision.
 test('the head script and this module make the same decision', () => {

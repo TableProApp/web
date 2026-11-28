@@ -23,7 +23,7 @@
 --}}
 @php($campaign = \App\Support\Pricing\Campaign::current())
 @php($htmlClasses = array_filter([\App\Support\Banner::shownOn(request()) ? 'has-banner' : null, $campaign?->isLive() ? 'campaign-live' : null]))
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}"@if($htmlClasses !== []) class="{{ implode(' ', $htmlClasses) }}"@endif{!! ($page['component'] ?? null) === 'BlackFriday' ? ' data-theme-forced="dark"' : '' !!}>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}"@if($htmlClasses !== []) class="{{ implode(' ', $htmlClasses) }}"@endif>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />

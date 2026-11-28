@@ -7,8 +7,9 @@ import { cn } from '@/lib/utils';
 
 interface CountdownProps {
     to: 'start' | 'end';
-    // `inline`: one line of text, for the banner. `digits`: large rolling digits with their units, for the band and the sale's page.
-    variant: 'inline' | 'digits';
+    // `inline`: one line of text, for the banner. `row`: one line of rolling digits with their units, for the sale's notice.
+    // `digits`: large rolling digits with their units, for the band and the sale's page.
+    variant: 'inline' | 'row' | 'digits';
     className?: string;
 }
 
@@ -51,6 +52,26 @@ export default function Countdown({ to, variant, className }: CountdownProps) {
                   [left.minutes, copy.units.minutes],
                   [left.seconds, copy.units.seconds],
               ];
+
+    if (variant === 'row') {
+        return (
+            <div role="timer" aria-label={written} className={cn('flex flex-wrap items-baseline gap-x-4 gap-y-1 tabular-nums', className)}>
+                <p aria-hidden="true" className="type-small text-muted-foreground">
+                    {left === null ? written : lead}
+                </p>
+                {left !== null && (
+                    <ol aria-hidden="true" className="contents">
+                        {cells.map(([value, unit]) => (
+                            <li key={unit} className="flex items-baseline gap-1">
+                                <RollingText value={pad(value)} className="text-xl leading-none font-semibold tracking-[-0.02em]" />
+                                <span className="type-caption text-muted-foreground">{unit}</span>
+                            </li>
+                        ))}
+                    </ol>
+                )}
+            </div>
+        );
+    }
 
     return (
         <div role="timer" aria-label={written} className={cn('grid gap-2', className)}>

@@ -11,7 +11,7 @@ import { languageCopy } from '@/i18n';
  * the header and in place of the license banner (TopBanner).
  *
  * It speaks the language it offers, never the page's, since the reader it is
- * for may not read the page's: "Đọc trang này bằng tiếng Việt →" on an English
+ * for may not read the page's: "Đọc trang này bằng tiếng Việt" on an English
  * page. Those few strings ship for every locale (`languageCopy`). The link is
  * the switcher's own option for that language, a plain `<a>` to the same page
  * there, and following it is the reader's pick (`pickLanguage`). ✕ means that
@@ -50,7 +50,6 @@ export default function LanguageBar() {
                             className={textLinkClasses('standalone', 'relative whitespace-nowrap after:absolute after:-inset-x-1 after:-inset-y-3')}
                         >
                             {copy.action}
-                            <span aria-hidden="true">→</span>
                         </a>
                     </p>
                     <button

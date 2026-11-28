@@ -266,20 +266,19 @@ Every row of the §2.3 table becomes an assertion. Add a gamut assertion: no tok
     if (t === 'dark' || t === 'system' || t === 'light') { choice = t; }
   } catch (e) {}
   var root = document.documentElement;
-  var forced = root.dataset.themeForced === 'dark';
-  var dark = forced || choice === 'dark' || (choice === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+  var dark = choice === 'dark' || (choice === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
   if (dark) { root.classList.add('dark'); }
   root.dataset.themeChoice = choice;          /* drives the control's icon without hydration */
   root.style.colorScheme = dark ? 'dark' : 'light';
   var m = document.querySelector('meta[name="theme-color"]');
-  if (m) { m.setAttribute('content', forced ? '#060606' : dark ? '#121212' : '#ffffff'); }
+  if (m) { m.setAttribute('content', dark ? '#121212' : '#ffffff'); }
 })();
 </script>
 ```
 
 `#ffffff` and `#121212` are the two `--background` values in §2.2.
 
-**The one forced page.** `/black-friday` is dark in both themes, from the banner to the footer (owner decision, 2026-11-18). Blade stamps `html[data-theme-forced="dark"]` and `LandingLayout`'s `alwaysDark` holds it across visits inside the app. The reader's stored choice is untouched, the theme control is hidden there, and `--background`, `--surface` and `--raised` drop to `oklch(0.12 0 0)` (`#060606`), `oklch(0.15 0 0)` and `oklch(0.18 0 0)`.
+**No forced page.** Every page and every part of one follows the reader's theme, `/black-friday`, the sale's banner and its notice included (owner decision, 2026-11-28, replacing the always-dark sale page of 2026-11-18): light mode is light throughout, with no dark island in it.
 
 **Rules:**
 
@@ -1040,6 +1039,7 @@ One shared file, `components/shared/theme-control.tsx` (architecture §1.10 and 
 - Actions are right-aligned: **Cancel** (`quiet`, default focus on destructive dialogs), then **confirm** (`danger` or `primary`).
 - Below 480 the actions stack full width in the same order.
 - Escape cancels. The confirm button shows a busy state; on error the dialog stays open with an inline `Callout danger`.
+- The dated sale's notice (`CampaignNotice`, positioning "Dated sales") is the one dialog outside this shape: 520px, on `--raised` in the reader's theme, focus on the dialog itself when it opens, one `primary` action full width and `Not now` as `quiet`. Escape, the backdrop and every action close it.
 
 **Toast:**
 
@@ -1321,11 +1321,10 @@ The ceiling drops from 320ms to 240ms, and `--dur-row` goes with the row bar.
 - autoplay video
 - hover lifts (`translateY`) or shadow blooms
 
-**The dated sale is the exception** (owner decision, 2026-11-06: "ban the AI look, not motion"). On the sale's black ground only (`/black-friday` and its banner), and never under reduced motion:
+**The dated sale is the exception** (owner decision, 2026-11-06: "ban the AI look, not motion"). On the sale's own ground only (`/black-friday` and its banner), and never under reduced motion:
 
 - **The load sequence,** once per visit: the headline settles (`sale-rise`, 560ms, `--ease-panel`), a drawn line strikes the list prices, then the sale prices arrive. Under a second in all.
 - **The countdown digits roll**, each one only when it changes (`roll-in`, `roll-out`, 320ms).
-- **The light under the pointer** (`campaign-spot`): a 30rem accent radial at 13% that follows a mouse, never a finger, and fades out when the pointer leaves.
 - **The Pro capture crossfade** (`sale-stage`, `--dur-panel`): only when the reader picks another feature.
 
 **Pricing** (owner decision, 2026-11-06), on the plan block wherever it shows (/pricing, the homepage, /teams), never under reduced motion:

@@ -400,7 +400,11 @@ Events keep the names the Plausible goals had: `download_click` (`location`,
 `newsletter_signup_clicked` (`source`). The license banner adds
 `license_banner_view` and `license_banner_click`, without parameters, so a
 banner's clicks can be compared with its views and with `checkout_started`.
-It cannot be closed, so there is no dismiss event. GA4 stores the parameters
+It cannot be closed, so there is no dismiss event. The dated sale's banner sends
+`campaign_banner_view`, `campaign_banner_click` and `campaign_banner_close`;
+its notice (`CampaignNotice`) sends `campaign_notice_view` (`kind`: `dialog`
+or `card`), `campaign_notice_click` (`action`: `buy`, `both` or `deal`) and
+`campaign_notice_close` (`action`: what closed it). GA4 stores the parameters
 from the first hit but only shows them in reports once each is registered as
 an event-scoped custom dimension under Admin → Custom definitions. Page changes
 between Inertia visits are counted by enhanced measurement's "page changes

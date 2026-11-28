@@ -119,7 +119,7 @@ export default function BlackFriday({ content, paidFeatures, organizationProfile
     const big = { big: (text: string) => <span className="sale-display block pb-2 text-foreground">{text}</span> };
 
     return (
-        <LandingLayout footerNewsletter={phase === 'live'} alwaysDark>
+        <LandingLayout footerNewsletter={phase === 'live'}>
             <SEOHead
                 title={title}
                 description={description}
@@ -138,10 +138,7 @@ export default function BlackFriday({ content, paidFeatures, organizationProfile
                 <Container className="relative grid gap-10 pt-12 pb-10 @container md:gap-14 md:pt-16 md:pb-12 xl:pt-20">
                     <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end lg:gap-12">
                         <div className="grid gap-6">
-                            <p className="sale-rise type-small flex items-center gap-2 font-medium text-foreground">
-                                <span aria-hidden="true" className="size-1.5 rounded-full bg-accent" />
-                                {content.hero.eyebrow}
-                            </p>
+                            <p className="sale-rise type-small font-medium text-foreground">{content.hero.eyebrow}</p>
                             <h1 id="sale-title" className="sale-rise type-display text-balance text-muted-foreground" style={delay(60)}>
                                 <Trans text={fmt(phase === 'ended' ? content.ended.title : content.hero.title, values)} tags={big} />
                             </h1>
@@ -156,7 +153,6 @@ export default function BlackFriday({ content, paidFeatures, organizationProfile
                         <p>
                             <LocaleLink href="/pricing" className={buttonClasses('primary', 'lg')}>
                                 {content.ended.action}
-                                <span aria-hidden="true">→</span>
                             </LocaleLink>
                         </p>
                     ) : (

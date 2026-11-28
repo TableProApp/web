@@ -81,6 +81,31 @@ export function offerFor(
     return { code: campaign.code, percent: campaign.percent, firstChargeOnly: cycle !== 'lifetime' };
 }
 
+/**
+ * What `tablepro:campaign-closed` holds once a reader closes the sale's notice
+ * (`CampaignNotice`): the notice stays closed for the rest of the sale, and the
+ * banner stays. Closing the banner stores the bare id, which closes both.
+ */
+export function noticeClosedValue(campaign: CampaignData): string {
+    return `${campaign.id}:notice`;
+}
+
+/** Whether the stored value closes the sale's notice: the reader closed it, or the banner. */
+export function noticeClosed(campaign: CampaignData, stored: string | null): boolean {
+    return stored === campaign.id || stored === noticeClosedValue(campaign);
+}
+
+/**
+ * Whether the sale's notice may open for this reader: the sale is live and
+ * its lead offer, Pro one-time, applies to them. A reader whose regional
+ * discount takes more off would be shown a price checkout does not charge,
+ * and the regional discount is never named outside the plan block, so for
+ * them the notice stays shut.
+ */
+export function noticeOpens(campaign: CampaignData | null, phase: CampaignPhase | null, regionalPercent: number | null): boolean {
+    return offerFor(campaign, phase, campaign?.tier ?? '', 'lifetime', regionalPercent) !== null;
+}
+
 export interface Remaining {
     days: number;
     hours: number;

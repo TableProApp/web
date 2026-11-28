@@ -33,4 +33,18 @@ export default {
             "seconds": "秒",
         },
     },
+    "notice": {
+        "headline": "{percent}% 折扣",
+        "product": "TablePro Pro",
+        "window": "Pro 一次性和 Pro 年付，{endsOn} {endsAtTime} UTC 截止。",
+        "lifetime": "Pro 一次性",
+        "lifetimeDetail": "一次付费。包含所有更新和新增的 Pro 功能。",
+        "yearly": "Pro 年付",
+        "buy": "以 {price} 购买 Pro 一次性",
+        "both": "查看两种优惠",
+        "later": "以后再说",
+        "footnote": "Pro 月付和 Team 不参加此次优惠。原价自 {listPriceSince} 起执行。",
+        "card": "Black Friday：Pro {percent}% 折扣",
+        "cardPrice": "Pro 一次性 {price}。"
+    },
 } satisfies Messages['campaign'];
