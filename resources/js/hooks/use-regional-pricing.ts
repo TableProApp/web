@@ -7,9 +7,12 @@ interface PricingAnswer {
     regional: Regional | null;
     teamMaxSeats: Partial<Record<BillingCycle, number>>;
     educationOpen: boolean;
+    /** False until GET /v2/pricing answers or fails. */
+    settled: boolean;
 }
 
-const NO_ANSWER: PricingAnswer = { regional: null, teamMaxSeats: {}, educationOpen: false };
+const NO_ANSWER: PricingAnswer = { regional: null, teamMaxSeats: {}, educationOpen: false, settled: true };
+const WAITING: PricingAnswer = { ...NO_ANSWER, settled: false };
 
 let pending: Promise<PricingAnswer> | null = null;
 
@@ -30,6 +33,7 @@ function fetchPricing(api: (path: ApiPath) => string): Promise<PricingAnswer> {
             regional: parseRegional(body, LIST_CENTS),
             teamMaxSeats: parseSeatMaximums(body, 'team', PRICING.tiers.team.seats.min),
             educationOpen: parseEducationOpen(body),
+            settled: true,
         }))
         .catch(() => NO_ANSWER);
 
@@ -38,7 +42,7 @@ function fetchPricing(api: (path: ApiPath) => string): Promise<PricingAnswer> {
 
 function usePricingAnswer(): PricingAnswer {
     const api = useApi();
-    const [answer, setAnswer] = useState<PricingAnswer>(NO_ANSWER);
+    const [answer, setAnswer] = useState<PricingAnswer>(WAITING);
 
     useEffect(() => {
         let active = true;
@@ -60,6 +64,17 @@ function usePricingAnswer(): PricingAnswer {
 // Null on the server and the first render, so the cached HTML, the structured data and hydration carry the list prices.
 export function useRegionalPricing(): Regional | null {
     return usePricingAnswer().regional;
+}
+
+/**
+ * The regional discount once GET /v2/pricing has answered, or failed (then
+ * null): undefined until then. For what must not show a sale price before it
+ * knows whether a larger regional discount applies (`CampaignNotice`).
+ */
+export function useSettledRegionalPricing(): Regional | null | undefined {
+    const answer = usePricingAnswer();
+
+    return answer.settled ? answer.regional : undefined;
 }
 
 // Empty until GET /v2/pricing answers, and for a cycle Polar sets no limit for: the seat field then has no maximum.

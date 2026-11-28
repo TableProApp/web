@@ -33,5 +33,19 @@ export default {
             "minutes": "min",
             "seconds": "sec"
         }
+    },
+    "notice": {
+        "headline": "−{percent}%",
+        "product": "TablePro Pro",
+        "window": "Pro una tantum e Pro annuale, fino al {endsOn} alle {endsAtTime} UTC.",
+        "lifetime": "Pro una tantum",
+        "lifetimeDetail": "Un solo pagamento. Tutti gli aggiornamenti e le nuove funzionalità Pro.",
+        "yearly": "Pro annuale",
+        "buy": "Acquista Pro una tantum a {price}",
+        "both": "Vedi le due offerte",
+        "later": "Non ora",
+        "footnote": "Pro mensile e Team non sono in promozione. Prezzi di listino dal {listPriceSince}.",
+        "card": "Black Friday: −{percent}% su Pro",
+        "cardPrice": "Pro una tantum a {price}."
     }
 } satisfies Messages['campaign'];

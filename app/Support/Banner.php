@@ -44,6 +44,14 @@ final class Banner
      */
     public const CAMPAIGN_PAGE = 'landing.black-friday';
 
+    /**
+     * Base route names where the sale's banner shows but its notice does not
+     * open over the page: Pricing already carries the sale on its plan cards.
+     *
+     * @var list<string>
+     */
+    public const CAMPAIGN_NOTICE_HIDDEN_ON = ['landing.pricing'];
+
     public const KIND_CAMPAIGN = 'campaign';
 
     public const KIND_LICENSE = 'license';
@@ -75,15 +83,23 @@ final class Banner
     /**
      * The shared `banner` prop, or null where no banner is on this page. Null
      * rather than a flag, so the component renders nothing at all. Only which
-     * banner and its link: the words are the `banner` and `campaign` catalogs',
-     * and neither banner can be closed, so there is no version to close it at.
+     * banner and its link: the words are the `banner` and `campaign` catalogs'.
+     * The license banner cannot be closed, so there is no version to close it at.
      *
-     * @return array{kind: string, href: string}|null
+     * The sale's carries `notice`: whether its notice (`CampaignNotice`) may
+     * open over this page on load. Whether it does is the reader's browser's
+     * call, since the page sits in the edge cache.
+     *
+     * @return array{kind: string, href: string, notice?: bool}|null
      */
     public static function forRequest(Request $request): ?array
     {
         return match (self::kind($request)) {
-            self::KIND_CAMPAIGN => ['kind' => self::KIND_CAMPAIGN, 'href' => '/black-friday'],
+            self::KIND_CAMPAIGN => [
+                'kind' => self::KIND_CAMPAIGN,
+                'href' => '/black-friday',
+                'notice' => ! in_array(self::page($request), self::CAMPAIGN_NOTICE_HIDDEN_ON, true),
+            ],
             self::KIND_LICENSE => ['kind' => self::KIND_LICENSE, 'href' => (string) config('banner.href')],
             default => null,
         };

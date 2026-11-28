@@ -1040,6 +1040,7 @@ One shared file, `components/shared/theme-control.tsx` (architecture §1.10 and 
 - Actions are right-aligned: **Cancel** (`quiet`, default focus on destructive dialogs), then **confirm** (`danger` or `primary`).
 - Below 480 the actions stack full width in the same order.
 - Escape cancels. The confirm button shows a busy state; on error the dialog stays open with an inline `Callout danger`.
+- The dated sale's notice (`CampaignNotice`, positioning "Dated sales") is the one dialog outside this shape: 520px, on the sale's black ground, focus on the dialog itself when it opens, one `primary` action full width and `Not now` as `quiet`. Escape, the backdrop and every action close it.
 
 **Toast:**
 
@@ -1325,7 +1326,6 @@ The ceiling drops from 320ms to 240ms, and `--dur-row` goes with the row bar.
 
 - **The load sequence,** once per visit: the headline settles (`sale-rise`, 560ms, `--ease-panel`), a drawn line strikes the list prices, then the sale prices arrive. Under a second in all.
 - **The countdown digits roll**, each one only when it changes (`roll-in`, `roll-out`, 320ms).
-- **The light under the pointer** (`campaign-spot`): a 30rem accent radial at 13% that follows a mouse, never a finger, and fades out when the pointer leaves.
 - **The Pro capture crossfade** (`sale-stage`, `--dur-panel`): only when the reader picks another feature.
 
 **Pricing** (owner decision, 2026-11-06), on the plan block wherever it shows (/pricing, the homepage, /teams), never under reduced motion:

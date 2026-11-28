@@ -222,7 +222,13 @@ html.has-language-bar .support-banner {
  * The banner and the sale page's ground are an island of the dark theme
  * whatever the reader chose: the element carries `.dark`, so every token
  * inside resolves to its dark value and the design system's text pairs hold.
- * The glow is the brand hue thinning out from the top right. Positioning §12.2.
+ * Flat black: no glow and no light under the pointer (owner, 2026-11-28), as
+ * the accent never colours a glow (design-system §1). Positioning §12.2.
+ *
+ * The slot holds one bar: the language bar, when it shows, takes it from the
+ * sale's banner as it does from the license banner. The rule names all three
+ * classes so it outweighs the one that shows the banner; with only
+ * `has-language-bar` it lost on specificity and both bars stacked.
  */
 .campaign-banner {
   display: none;
@@ -233,7 +239,7 @@ html.has-banner.campaign-live .campaign-banner {
   height: var(--banner-h);
 }
 
-html.has-language-bar .campaign-banner {
+html.has-language-bar.has-banner.campaign-live .campaign-banner {
   display: none;
 }
 
@@ -257,20 +263,6 @@ html[data-theme-forced] .theme-setting {
 
 .campaign-banner {
   border-bottom: 1px solid color-mix(in oklab, var(--accent) 45%, var(--rule));
-}
-
-.campaign-glow {
-  background-image: radial-gradient(
-    56rem 28rem at 100% 0%,
-    color-mix(in oklab, var(--accent) 16%, transparent),
-    transparent 70%
-  );
-}
-
-@media (forced-colors: active) {
-  .campaign-glow {
-    background-image: none;
-  }
 }
 
 /* The global rails are drawn in the page's theme; on the black ground they would be a light line in the light theme. */
@@ -298,30 +290,6 @@ html[data-theme-forced] .theme-setting {
 
 @media (forced-colors: active), print {
   .campaign-rails {
-    display: none;
-  }
-}
-
-/* The light under the pointer on the sale's black ground. Mouse only. */
-.campaign-spot {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0;
-  background: radial-gradient(
-    30rem circle at var(--spot-x, 50%) var(--spot-y, 50%),
-    color-mix(in oklab, var(--accent) 13%, transparent),
-    transparent 70%
-  );
-  transition: opacity var(--dur-panel) var(--ease-feedback);
-}
-
-[data-spot="on"] > .campaign-spot {
-  opacity: 1;
-}
-
-@media (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce), (forced-colors: active) {
-  .campaign-spot {
     display: none;
   }
 }

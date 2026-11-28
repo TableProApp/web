@@ -64,10 +64,10 @@ export default function SupportBanner() {
                     <LocaleLink
                         href={banner.href}
                         onClick={() => trackEvent('license_banner_click')}
-                        className={textLinkClasses('standalone', 'relative whitespace-nowrap after:absolute after:-inset-x-1 after:-inset-y-3')}
+                        // Underlined, with no arrow: it follows the banner's sentence, so colour alone would not mark it (WCAG 1.4.1).
+                        className={textLinkClasses('standalone', 'relative whitespace-nowrap underline underline-offset-3 after:absolute after:-inset-x-1 after:-inset-y-3')}
                     >
                         {m.banner.cta}
-                        <span aria-hidden="true">→</span>
                     </LocaleLink>
                 </p>
             </Container>

@@ -33,4 +33,18 @@ export default {
             "seconds": "초",
         },
     },
+    "notice": {
+        "headline": "{percent}% 할인",
+        "product": "TablePro Pro",
+        "window": "Pro 일회성과 Pro 연간, {endsOn} {endsAtTime} UTC까지.",
+        "lifetime": "Pro 일회성",
+        "lifetimeDetail": "일회 결제. 모든 업데이트와 새로운 Pro 기능.",
+        "yearly": "Pro 연간",
+        "buy": "Pro 일회성을 {price}에 구매",
+        "both": "두 가지 혜택 보기",
+        "later": "나중에",
+        "footnote": "Pro 월간과 Team은 할인 대상이 아닙니다. 정가는 {listPriceSince}부터 적용되었습니다.",
+        "card": "Black Friday: Pro {percent}% 할인",
+        "cardPrice": "Pro 일회성 {price}."
+    },
 } satisfies Messages['campaign'];

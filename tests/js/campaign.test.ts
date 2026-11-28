@@ -1,7 +1,8 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
 
-import { calendarHref, offerFor, phaseAt, remaining, shownPhase, type CampaignData } from '../../resources/js/lib/campaign.ts';
+import { calendarHref, noticeClosed, noticeClosedValue, noticeOpens, offerFor, phaseAt, remaining, shownPhase, type CampaignData } from '../../resources/js/lib/campaign.ts';
 
 // The phase must match App\Support\Pricing\Campaign, and the offer the provider's discount.
 const campaign: CampaignData = {
@@ -72,4 +73,38 @@ test('the calendar file is a half-hour event at the start, with an alert and esc
     assert.ok(lines.includes('DESCRIPTION:Until December 1\\nthen gone'));
     assert.ok(lines.includes('TRIGGER:PT0M'));
     assert.equal(lines.at(-2), 'END:VCALENDAR');
+});
+
+test('the notice opens only while the sale is live and its one-time offer applies', () => {
+    assert.equal(noticeOpens(campaign, 'live', null), true);
+    assert.equal(noticeOpens(campaign, 'live', 40), true);
+    assert.equal(noticeOpens(campaign, 'live', 50), false, 'a larger regional discount is never contradicted by the notice');
+    assert.equal(noticeOpens(campaign, 'upcoming', null), false);
+    assert.equal(noticeOpens(campaign, 'ended', null), false);
+    assert.equal(noticeOpens(null, 'live', null), false);
+    assert.equal(noticeOpens({ ...campaign, cycles: ['yearly'] }, 'live', null), false);
+});
+
+test('closing the notice keeps the banner, and closing the banner closes the notice too', () => {
+    assert.equal(noticeClosedValue(campaign), 'sale:notice');
+    assert.notEqual(noticeClosedValue(campaign), campaign.id, 'the head script hides the banner only for the bare id');
+    assert.equal(noticeClosed(campaign, null), false);
+    assert.equal(noticeClosed(campaign, 'sale:notice'), true);
+    assert.equal(noticeClosed(campaign, 'sale'), true);
+    assert.equal(noticeClosed(campaign, 'last-year'), false);
+    assert.equal(noticeClosed(campaign, 'last-year:notice'), false);
+});
+
+// The rule that shows the sale's banner names three classes; the one that hands its slot to the language bar must outweigh it.
+test('the language bar takes the slot from the sale\'s banner, so the two never stack', () => {
+    const css = readFileSync(new URL('../../resources/css/app.css', import.meta.url), 'utf8');
+    const specificity = (selector: string): number => (selector.match(/\.[\w-]+/g) ?? []).length;
+    const rule = (display: string): string | undefined =>
+        [...css.matchAll(/([^{}]+)\{([^{}]*)\}/g)].find(([, selector, body]) => selector.includes('.campaign-banner') && selector.includes('html.') && body.includes(`display: ${display}`))?.[1].trim();
+
+    const shows = rule('block');
+    const hides = [...css.matchAll(/([^{}]+)\{([^{}]*)\}/g)].find(([, selector, body]) => selector.includes('has-language-bar') && selector.includes('.campaign-banner') && body.includes('display: none'))?.[1].trim();
+
+    assert.ok(shows !== undefined && hides !== undefined, 'both rules exist');
+    assert.ok(specificity(hides) > specificity(shows), `${hides} must outweigh ${shows}`);
 });

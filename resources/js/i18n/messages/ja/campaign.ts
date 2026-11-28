@@ -33,4 +33,18 @@ export default {
             "seconds": "秒",
         },
     },
+    "notice": {
+        "headline": "{percent}% オフ",
+        "product": "TablePro Pro",
+        "window": "Pro 買い切りと Pro 年払い、{endsOn} {endsAtTime} UTC まで。",
+        "lifetime": "Pro 買い切り",
+        "lifetimeDetail": "一度のお支払い。すべてのアップデートと Pro の新機能。",
+        "yearly": "Pro 年払い",
+        "buy": "Pro 買い切りを {price} で購入",
+        "both": "両方のプランを見る",
+        "later": "今はしない",
+        "footnote": "Pro 月払いと Team はセールの対象外です。通常価格は {listPriceSince} から適用されています。",
+        "card": "Black Friday：Pro {percent}% オフ",
+        "cardPrice": "Pro 買い切りが {price}。"
+    },
 } satisfies Messages['campaign'];

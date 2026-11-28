@@ -38,12 +38,14 @@ export interface SwitcherItem {
 /**
  * Which banner holds the slot above the header, and its link: the license
  * banner, or the dated sale's while it is live (`App\Support\Banner`). The
- * words are the `banner` and `campaign` catalogs'. Neither can be closed, so
- * there is no version.
+ * words are the `banner` and `campaign` catalogs'. The license banner cannot
+ * be closed, so there is no version.
  */
 export interface BannerProp {
     kind: 'license' | 'campaign';
     href: string;
+    /** The sale's banner only: whether its notice (`CampaignNotice`) may open over this page. */
+    notice?: boolean;
 }
 
 /**

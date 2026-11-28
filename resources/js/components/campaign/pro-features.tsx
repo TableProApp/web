@@ -1,5 +1,6 @@
 import { useId, useRef, useState, type KeyboardEvent, type ReactNode } from 'react';
 import LocaleLink from '@/components/ui/locale-link';
+import { textLinkClasses } from '@/components/ui/text-link';
 import { cn } from '@/lib/utils';
 
 export interface ProFeatureTab {
@@ -102,9 +103,9 @@ export default function ProFeatures({ items, label }: ProFeaturesProps) {
                             {item.capture}
                             <p className="type-body max-w-[60ch] text-muted-foreground">
                                 {item.detail}{' '}
-                                <LocaleLink href={item.href} className="font-medium whitespace-nowrap text-foreground hover:underline">
+                                {/* Underlined, not arrowed: beside the muted sentence, colour alone would not mark it (WCAG 1.4.1). */}
+                                <LocaleLink href={item.href} className={textLinkClasses('inline', 'font-medium whitespace-nowrap')}>
                                     {item.link}
-                                    <span aria-hidden="true"> →</span>
                                 </LocaleLink>
                             </p>
                         </div>

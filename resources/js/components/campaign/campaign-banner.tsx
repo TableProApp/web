@@ -8,7 +8,8 @@ import { trackEvent } from '@/lib/analytics';
 import { PRICING } from '@/lib/data/pricing';
 import Countdown from './countdown';
 
-// Local storage: the id of the sale whose banner the reader closed. Listed in the privacy policy.
+// Local storage: the id of the sale whose banner the reader closed, or `{id}:notice` once they closed only its notice
+// (`noticeClosedValue`, CampaignNotice). Listed in the privacy policy as the closed sale notice.
 export const CLOSED_KEY = 'tablepro:campaign-closed';
 
 // Closable, because its countdown updates by itself on every page (WCAG 2.2.2).
@@ -55,19 +56,15 @@ export default function CampaignBanner() {
                 <LocaleLink
                     href={banner.href}
                     onClick={() => trackEvent('campaign_banner_click')}
-                    className="type-small flex h-full min-w-0 flex-1 items-center gap-x-3 whitespace-nowrap no-underline"
+                    className="type-small flex h-full min-w-0 flex-1 items-center gap-x-2 whitespace-nowrap no-underline sm:gap-x-3"
                 >
-                    <span className="flex items-center gap-2 font-semibold">
-                        <span aria-hidden="true" className="size-1.5 rounded-full bg-accent" />
-                        {m.campaign.name}
-                    </span>
+                    <span className="font-semibold">{m.campaign.name}</span>
                     <span className="max-lg:hidden">{fmt(copy.message, { percent: campaign.percent })}</span>
-                    <span className="lg:hidden">{fmt(copy.short, { percent: campaign.percent })}</span>
+                    {/* Below 360px the name and the call to action are what fits. */}
+                    <span className="max-[359px]:hidden lg:hidden">{fmt(copy.short, { percent: campaign.percent })}</span>
                     <Countdown to="end" variant="inline" className="text-muted-foreground max-sm:hidden" />
-                    <span className="ml-auto font-medium text-accent-text">
-                        <span className="max-lg:sr-only">{copy.cta} </span>
-                        <span aria-hidden="true">→</span>
-                    </span>
+                    {/* Written out at every width, with no arrow or dot: the words say where it leads. */}
+                    <span className="ml-auto font-medium text-accent-text">{copy.cta}</span>
                 </LocaleLink>
                 <button
                     type="button"

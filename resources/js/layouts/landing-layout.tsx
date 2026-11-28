@@ -1,5 +1,6 @@
 import { useEffect, useLayoutEffect, type ReactNode } from 'react';
 import { useLiveChat } from '@/components/site/chat-button';
+import CampaignNotice from '@/components/campaign/campaign-notice';
 import ConsentBar from '@/components/site/consent-bar';
 import FrameRails from '@/components/shared/frame-rails';
 import SiteFooter from '@/components/site/site-footer';
@@ -48,6 +49,7 @@ export default function LandingLayout({ children, footerNewsletter = true, alway
             <SiteFooter newsletter={footerNewsletter} />
             <FrameRails />
             <ConsentBar />
+            <CampaignNotice />
         </div>
     );
 }

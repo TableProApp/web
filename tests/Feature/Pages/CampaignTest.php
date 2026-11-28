@@ -74,14 +74,14 @@ it('shares its phase with every page', function (string $path, string $at, strin
     'at the end' => ['end', Campaign::ENDED],
 ]);
 
-it('takes the banner slot while it is live, on every page but its own', function (string $prefix): void {
+it('takes the banner slot while it is live, on every page but its own, with its notice on all but Pricing', function (string $prefix): void {
     travelTo(saleCampaign()->startsAt);
 
-    foreach (['/download', '/pricing', ''] as $path) {
+    foreach (['/download' => true, '/pricing' => false, '' => true] as $path => $notice) {
         $response = get("{$prefix}{$path}" ?: '/')->assertOk();
 
         expect($response->getContent())->toMatch('/<html[^>]*class="has-banner campaign-live"/');
-        $response->assertInertia(fn(AssertableInertia $page) => $page->where('banner', ['kind' => 'campaign', 'href' => '/black-friday']));
+        $response->assertInertia(fn(AssertableInertia $page) => $page->where('banner', ['kind' => 'campaign', 'href' => '/black-friday', 'notice' => $notice]));
     }
 
     $own = get("{$prefix}/black-friday")->assertOk();
